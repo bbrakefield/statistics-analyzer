@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1082</width>
+    <height>666</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QGroupBox" name="calcGroupBox">
+       <property name="title">
+        <string>Calculations</string>
+       </property>
+       <widget class="QCheckBox" name="meadianCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>85</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Median</string>
+        </property>
+       </widget>
+       <widget class="QDialogButtonBox" name="calcButtonBox">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>520</y>
+          <width>164</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="modeCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>85</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Mode</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="StanDevCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>161</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Standard Deviation</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="RankSumCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>151</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Rank Sum</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="PercentileCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>180</y>
+          <width>85</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Percentile</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="meanCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>85</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Mean</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="CoeffVarCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>210</y>
+          <width>161</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Coefficient of Variance</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="SpearRankCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>240</y>
+          <width>131</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Spearman Rank</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="CorCoeffCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>270</y>
+          <width>171</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Correlation Coefficient</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="VarCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>300</y>
+          <width>85</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Variance</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="CovarCheckBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>330</y>
+          <width>101</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Covariance</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="LeastSquareCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>360</y>
+          <width>161</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Least Square Line</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="PearCorCheck">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>390</y>
+          <width>161</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Pearson Correlation</string>
+        </property>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="graphsGroupBox">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Graphs</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <widget class="QDialogButtonBox" name="graphButtonBox">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>520</y>
+          <width>164</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="VerBarRadioB">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>141</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Vertical Bar Chart</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="horBarRadioB">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>70</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Horizontal Bar Chart</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="PieCharRadioB">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>100</y>
+          <width>97</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Pie Chart</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="xyPlotRadioB">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>97</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>XY Plot</string>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="normalCurRadioB">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>160</y>
+          <width>121</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Normal Curve</string>
+        </property>
+       </widget>
+       <zorder>graphButtonBox</zorder>
+       <zorder>VerBarRadioB</zorder>
+       <zorder>horBarRadioB</zorder>
+       <zorder>PieCharRadioB</zorder>
+       <zorder>calcGroupBox</zorder>
+       <zorder>xyPlotRadioB</zorder>
+       <zorder>normalCurRadioB</zorder>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGraphicsView" name="graphicsView">
+       <property name="maximumSize">
+        <size>
+         <width>500</width>
+         <height>16777215</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
