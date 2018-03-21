@@ -8,7 +8,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+from FrequencyDataScreen import Ui_Form
 import csv
+
+typeFlag = 0
 
 class Ui_Dialog(QFileDialog):
 
@@ -24,15 +27,18 @@ class Ui_Dialog(QFileDialog):
         self.verticalLayout.setObjectName("verticalLayout")
         self.groupBox = QtWidgets.QGroupBox(Dialog)
         self.groupBox.setObjectName("groupBox")
-        self.radioButton_2 = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton_2.setGeometry(QtCore.QRect(9, 70, 241, 20))
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.radioButton = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton.setGeometry(QtCore.QRect(9, 40, 241, 20))
-        self.radioButton.setObjectName("radioButton")
-        self.radioButton_3 = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton_3.setGeometry(QtCore.QRect(9, 100, 241, 20))
-        self.radioButton_3.setObjectName("radioButton_3")
+        self.IntervalRadioB = QtWidgets.QRadioButton(self.groupBox)
+        self.IntervalRadioB.setGeometry(QtCore.QRect(9, 70, 241, 20))
+        self.IntervalRadioB.setObjectName("IntervalRadioB")
+        self.IntervalRadioB.clicked.connect(self.isInterval)
+        self.OrdinalRadioB = QtWidgets.QRadioButton(self.groupBox)
+        self.OrdinalRadioB.setGeometry(QtCore.QRect(9, 40, 241, 20))
+        self.OrdinalRadioB.setObjectName("OrdinalRadioB")
+        self.OrdinalRadioB.clicked.connect(self.isOrdinal)
+        self.FreqRadioB = QtWidgets.QRadioButton(self.groupBox)
+        self.FreqRadioB.setGeometry(QtCore.QRect(9, 100, 241, 20))
+        self.FreqRadioB.setObjectName("FreqRadioB")
+        self.FreqRadioB.clicked.connect(self.isFrequency)
         self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
         self.pushButton_2.setGeometry(QtCore.QRect(130, 90, 110, 32))
 
@@ -75,16 +81,34 @@ class Ui_Dialog(QFileDialog):
         except IOError:
             print("Could not open file: {}!".format(filename))
 
+    def isInterval(self):
+        global typeFlag
+        typeFlag = 1
+
+    def isOrdinal(self):
+        global typeFlag
+        typeFlag = 2
+
+    def isFrequency(self):
+        global typeFlag
+        typeFlag = 3
+
+    def end(self):
+        print(typeFlag)
+
+    def getType(self):
+        return typeFlag
+
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Select Data Type"))
         self.groupBox.setTitle(_translate("Dialog", "Statistical Data Type:"))
-        self.radioButton_2.setText(_translate("Dialog", "Interval"))
-        self.radioButton.setText(_translate("Dialog", "Ordinal"))
-        self.radioButton_3.setText(_translate("Dialog", "Frequency"))
+        self.IntervalRadioB.setText(_translate("Dialog", "Interval"))
+        self.OrdinalRadioB.setText(_translate("Dialog", "Ordinal"))
+        self.FreqRadioB.setText(_translate("Dialog", "Frequency"))
         self.pushButton_2.setText(_translate("Dialog", "Manual Input"))
         self.pushButton.setText(_translate("Dialog", "Open File"))
-
 
 
 if __name__ == "__main__":
