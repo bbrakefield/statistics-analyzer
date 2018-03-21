@@ -184,14 +184,16 @@ if __name__ == '__main__':
         ui = Ui_Form1()
         ui.setupUi(inter)
         application.setCentralWidget(inter)
+        sys.exit(app.exec_())
     elif typeFlag == 2:
         ordn = QtWidgets.QWidget()
         ui = Ui_Form2()
         ui.setupUi(ordn)
         application.setCentralWidget(ordn)
+        sys.exit(app.exec_())
     elif typeFlag == 3:
         freq = QtWidgets.QWidget()
         ui = Ui_Form()
         ui.setupUi(freq)
         application.setCentralWidget(freq)
-    sys.exit(app.exec_())
+        sys.exit(app.exec_())
