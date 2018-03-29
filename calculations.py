@@ -6,8 +6,7 @@ class Calculations:
     @staticmethod
     def calculate_mean(data):
 
-        mean = sum(data) / float(len(data))
-        return mean
+        return float(sum(data)) / max(len(data), 1)
 
     @staticmethod
     def calculate_mode(data):
@@ -42,7 +41,6 @@ class Calculations:
 
     @staticmethod
     def calculate_standard_deviation(data):
-        standardDtemp = 0
         standardDtemp = Calculations.calculate_variance(data)
         standardD = math.sqrt(standardDtemp)
         return standardD

@@ -14,19 +14,22 @@ class IntervalDataObject(DataObject):
         self.mean_y = self.get_mean(self.y)
         self.mode_x = self.get_mode(self.x)
         self.mode_y = self.get_mode(self.y)
-        self.standard_dev = self.get_standard_dev(self.data)
+        self.standard_dev_x = self.get_standard_dev(self.x)
+        self.standard_dev_y = self.get_standard_dev(self.y)
         self.percentile = self.get_percentile()
-        self.coefficient_of_var = self.get_coefficient_of_variance(self.data)
+        self.coefficient_of_var_x = self.get_coefficient_of_variance(self.x)
+        self.coefficient_of_var_y = self.get_coefficient_of_variance(self.y)
         self.pearson = self.get_pearson_correlation()
         self.correlation_coeff = self.get_correlation_coefficient()
-        self.variance = self.get_variance(self.data)
-        self.covariance = self.get_variance(self.data)
+        self.variance_x = self.get_variance(self.x)
+        self.variance_y = self.get_variance(self.y)
+        self.covariance = self.get_covariance()
         self.least_square = self.get_least_square_line()
         self.rank_sum = self.get_rank_sum()
         self.spearman = self.get_spearman_rank()
-        self.vertical_bar_graphs = self.get_vertical_bar_graphs()
-        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs()
-        self.pie_graphs = self.get_pie_charts()
+        self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
+        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
+        self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_x(self):
         x = []
@@ -99,38 +102,3 @@ class IntervalDataObject(DataObject):
     def get_rank_sum(self):
 
         return self.calculator.calculate_rank_sum_test(self.x, self.y)
-
-    def get_horizontal_bar_graphs(self):
-
-        labels = self.data[0][1:]
-        y_pos = np.arange(len(labels))
-        bar_graphs = []
-
-        for row in self.data[1:]:
-            ax = self.plotter.make_horizontal_bar_chart(labels, y_pos, row)
-            bar_graphs.append(ax)
-
-        return bar_graphs
-
-    def get_vertical_bar_graphs(self):
-
-        labels = self.data[0][1:]
-        x_pos = np.arange(len(labels))
-        bar_graphs = []
-
-        for row in self.data[1:]:
-            ax = self.plotter.make_vertical_bar_chart(labels, x_pos, row)
-            bar_graphs.append(ax)
-
-        return bar_graphs
-
-    def get_pie_charts(self):
-
-        labels = self.data[0][1:]
-        pie_graphs = []
-
-        for row in self.data[1:]:
-            ax = self.plotter.make_pie_chart(labels, row)
-            pie_graphs.append(ax)
-
-        return pie_graphs

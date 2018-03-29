@@ -15,9 +15,9 @@ class OrdinalDataObject(DataObject):
         self.sign_test = self.get_sign_test()
         self.rank_sum = self.get_rank_sum()
         self.percentile = None
-        self.vertical_bar_graphs = self.get_vertical_bar_graphs()
-        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs()
-        self.pie_graphs = self.get_pie_charts()
+        self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
+        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
+        self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_x(self):
 
@@ -61,37 +61,3 @@ class OrdinalDataObject(DataObject):
         # return self.calculator.calculate_percentiles(percentile, data)
         pass
 
-    def get_horizontal_bar_graphs(self):
-
-        labels = self.data[0][1:]
-        y_pos = np.arange(len(labels))
-        bar_graphs = []
-
-        for row in self.data[1:]:
-            ax = self.plotter.make_horizontal_bar_chart(labels, y_pos, row)
-            bar_graphs.append(ax)
-
-        return bar_graphs
-
-    def get_vertical_bar_graphs(self):
-
-        labels = self.data[0][1:]
-        x_pos = np.arange(len(labels))
-        bar_graphs = []
-
-        for row in self.data[1:]:
-            ax = self.plotter.make_vertical_bar_chart(labels, x_pos, row)
-            bar_graphs.append(ax)
-
-        return bar_graphs
-
-    def get_pie_charts(self):
-
-        labels = self.data[0][1:]
-        pie_graphs = []
-
-        for row in self.data[1:]:
-            ax = self.plotter.make_pie_chart(labels, row)
-            pie_graphs.append(ax)
-
-        return pie_graphs

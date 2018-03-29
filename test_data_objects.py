@@ -2,6 +2,7 @@ import csv
 import unittest
 
 from frequency import FrequencyDataObject
+from interval import IntervalDataObject
 
 
 class TestDataObjects(unittest.TestCase):
@@ -26,7 +27,6 @@ class TestDataObjects(unittest.TestCase):
         except IOError:
             print("Couldn't find IntervalDataTest.csv!")
 
-
     def test_freq_unpack_x(self):
 
         freqObject = FrequencyDataObject(self.freqData)
@@ -44,17 +44,17 @@ class TestDataObjects(unittest.TestCase):
     def test_freq_get_horizontal_bar_chart(self):
 
         freqObject = FrequencyDataObject(self.freqData)
-        self.assertTrue(freqObject.get_horizontal_bar_graphs())
+        self.assertTrue(freqObject.get_horizontal_bar_graphs(self.freqData))
 
     def test_freq_get_vertical_bar_graph(self):
 
         freqObject = FrequencyDataObject(self.freqData)
-        self.assertTrue(freqObject.get_vertical_bar_graphs())
+        self.assertTrue(freqObject.get_vertical_bar_graphs(self.freqData))
 
     def test_freq_get_pie_graph(self):
 
         freqObject = FrequencyDataObject(self.freqData)
-        self.assertTrue(freqObject.get_pie_charts())
+        self.assertTrue(freqObject.get_pie_charts(self.freqData))
 
     def test_interval_unpack_x(self):
 
@@ -64,7 +64,7 @@ class TestDataObjects(unittest.TestCase):
                      60,71,77,81,67,46,97,77,88,53,63,91,85,94,83,72,47,71,54,63,83,
                      80,59,79,69,76,67,74,73,63,66,74,69,64,77,58,53]
 
-        intervalObject = FrequencyDataObject(self.intervalData)
+        intervalObject = IntervalDataObject(self.intervalData)
         self.assertEqual(test_list, intervalObject.unpack_x())
 
     def test_interval_unpack_y(self):
@@ -75,7 +75,7 @@ class TestDataObjects(unittest.TestCase):
                      63,72,83,81,67,50,97,77,89,53,63,94,87,98,87,73,50,78,58,67,85,
                      83,64,86,78,76,68,77,82,64,66,74,69,64,83,58,56]
 
-        intervalObject = FrequencyDataObject(self.intervalData)
+        intervalObject = IntervalDataObject(self.intervalData)
         self.assertEqual(test_list, intervalObject.unpack_y())
 
 
