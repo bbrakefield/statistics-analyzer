@@ -3,7 +3,7 @@ import unittest
 
 from frequency import FrequencyDataObject
 from interval import IntervalDataObject
-
+from ordinal import OrdinalDataObject
 
 class TestDataObjects(unittest.TestCase):
 
@@ -55,6 +55,9 @@ class TestDataObjects(unittest.TestCase):
 
         freqObject = FrequencyDataObject(self.freqData)
         self.assertTrue(freqObject.get_pie_charts(self.freqData))
+
+    # def test_ordinal(self):
+    #     ordinalObject = OrdinalDataObject(self.ordinalData)
 
     def test_interval_unpack_x(self):
 

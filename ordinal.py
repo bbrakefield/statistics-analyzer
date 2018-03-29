@@ -8,10 +8,19 @@ class OrdinalDataObject(DataObject):
         super().__init__()
         self.data = data
         self.unpack_data()
-        self.x_mode = self.get_mode(self.x)
-        self.y_mode = self.get_mode(self.y)
-        self.x_median = self.get_median(self.x)
-        self.y_median = self.get_median(self.y)
+
+        self.a_mode = self.get_mode(self.a)
+        self.b_mode = self.get_mode(self.b)
+        self.c_mode = self.get_mode(self.c)
+        self.d_mode = self.get_mode(self.d)
+        self.e_mode = self.get_mode(self.e)
+
+        self.a_median = self.get_median(self.a)
+        self.b_median = self.get_median(self.b)
+        self.c_median = self.get_median(self.c)
+        self.d_median = self.get_median(self.d)
+        self.e_median = self.get_median(self.e)
+
         self.sign_test = self.get_sign_test()
         self.rank_sum = self.get_rank_sum()
         self.percentile = None
@@ -19,26 +28,53 @@ class OrdinalDataObject(DataObject):
         self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
         self.pie_graphs = self.get_pie_charts(self.data)
 
-    def unpack_x(self):
+    def unpack_a(self):
 
-        x = []
-
-        for row in self.data[1:]:
-            x.append(float(row[1]))
-        return x
-
-    def unpack_y(self):
-
-        y = []
+        a = []
 
         for row in self.data[1:]:
-            y.append(float(row[2]))
-        return y
+            a.append(float(row[1]))
+        return a
+
+    def unpack_b(self):
+
+        b = []
+
+        for row in self.data[1:]:
+            b.append(float(row[2]))
+        return b
+
+    def unpack_c(self):
+
+        c = []
+
+        for row in self.data[1:]:
+            c.append(float(row[2]))
+        return c
+
+    def unpack_d(self):
+
+        d = []
+
+        for row in self.data[1:]:
+            d.append(float(row[2]))
+        return d
+
+    def unpack_e(self):
+
+        e = []
+
+        for row in self.data[1:]:
+            e.append(float(row[2]))
+        return e
 
     def unpack_data(self):
 
-        self.x = OrdinalDataObject.unpack_x(self)
-        self.y = OrdinalDataObject.unpack_y(self)
+        self.a = OrdinalDataObject.unpack_a(self)
+        self.b = OrdinalDataObject.unpack_b(self)
+        self.c = OrdinalDataObject.unpack_c(self)
+        self.d = OrdinalDataObject.unpack_d(self)
+        self.e = OrdinalDataObject.unpack_e(self)
 
     def get_mode(self, data):
 
