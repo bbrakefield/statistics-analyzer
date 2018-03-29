@@ -1,5 +1,3 @@
-from calculations import Calculations
-from graphing import Plotter
 from data_object import DataObject
 import numpy as np
 
@@ -7,11 +5,10 @@ import numpy as np
 class FrequencyDataObject(DataObject):
 
     def __init__(self, data):
-        self.calculator = Calculations()
-        self.plotter = Plotter()
+        super().__init__()
         self.data = data
         self.unpack_data()
-        self.chi_square = self.get_chi_square();
+        self.chi_square = self.get_chi_square()
         self.expected_mode = self.get_mode(self.x)
         self.actual_mode = self.get_mode(self.y)
         self.probability_distribution = None  # self.get_probability_distribution();

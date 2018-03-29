@@ -10,7 +10,6 @@ class DataObject(ABC):
         self.plotter = Plotter()
         self.x = []
         self.y = []
-        super().__init__()
 
     @abstractmethod
     def unpack_data(self):

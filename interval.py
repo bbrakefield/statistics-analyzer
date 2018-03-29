@@ -1,13 +1,11 @@
 from data_object import DataObject
-from calculations import Calculations
-from graphing import Plotter
 import numpy as np
+
 
 class IntervalDataObject(DataObject):
 
     def __init__(self, data):
-        self.calculator = Calculations()
-        self.plotter = Plotter()
+        super().__init__()
         self.data = data
         self.median_x = self.get_median(self.x)
         self.median_y = self.get_median(self.y)

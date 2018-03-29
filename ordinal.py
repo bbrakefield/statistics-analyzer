@@ -1,14 +1,11 @@
 from data_object import DataObject
-from calculations import Calculations
-from graphing import Plotter
 import numpy as np
 
 
 class OrdinalDataObject(DataObject):
 
     def __init__(self, data):
-        self.calculator = Calculations()
-        self.plotter = Plotter()
+        super().__init__()
         self.data = data
         self.unpack_data()
         self.x_mode = self.get_mode(self.x)
