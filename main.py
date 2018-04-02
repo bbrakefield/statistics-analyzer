@@ -193,10 +193,18 @@ if __name__ == '__main__':
         sys.exit(app.exec_())
     elif typeFlag == 3:
         freq = QtWidgets.QWidget()
-        data = ui.getData()
-        freqObject = FrequencyDataObject(data)
+        application.data = ui.getData()
+        freqObject = FrequencyDataObject(application.data)
         ui = Ui_Form()
         ui.setupUi(freq)
         application.setCentralWidget(freq)
-        ui.qlabel.setText(str(freqObject.x))
+        text = "X: {}\nY: {}\nChi Square: {}\nExpected Mode: {}\nActual Mode: {}\n" \
+               "Probability Dist: {}\nBinomial Distribution: {}\n" \
+            .format(str(freqObject.x), str(freqObject.y), str(freqObject.chi_square), str(freqObject.expected_mode),
+                    str(freqObject.actual_mode), str(freqObject.probability_distribution),
+                    str(freqObject.binomial_distribution))
+        ui.qlabel.setText(text)
         sys.exit(app.exec_())
+
+    # def freqReport():
+    #     return )
