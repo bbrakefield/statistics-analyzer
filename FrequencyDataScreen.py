@@ -60,10 +60,17 @@ class Ui_Form(object):
         self.radioButton_3.setGeometry(QtCore.QRect(20, 100, 97, 18))
         self.radioButton_3.setObjectName("radioButton_3")
         self.horizontalLayout.addWidget(self.groupBox)
-        self.graphicsView = QtWidgets.QGraphicsView(Form)
-        self.graphicsView.setMaximumSize(QtCore.QSize(500, 16777215))
-        self.graphicsView.setObjectName("graphicsView")
-        self.horizontalLayout.addWidget(self.graphicsView)
+
+        # self.graphicsView = QtWidgets.QGraphicsView(Form)
+        # self.graphicsView.setMaximumSize(QtCore.QSize(500, 16777215))
+        # self.graphicsView.setObjectName("graphicsView")
+        # self.horizontalLayout.addWidget(self.graphicsView)
+
+        self.qlabel = QtWidgets.QLabel(Form)
+        self.qlabel.setMaximumSize(QtCore.QSize(500, 15777215))
+        self.qlabel.setObjectName("qlabel")
+        self.horizontalLayout.addWidget(self.qlabel)
+
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(Form)
@@ -82,13 +89,4 @@ class Ui_Form(object):
         self.radioButton_2.setText(_translate("Form", "Horizontal Bar Chart"))
         self.radioButton_3.setText(_translate("Form", "Pie Chart"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
 

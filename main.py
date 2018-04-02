@@ -8,6 +8,7 @@ from graphing import Plotter
 from OrdinalDataScreen import Ui_Form2
 from IntervalDataScreen import Ui_Form1
 from FrequencyDataScreen import Ui_Form
+from frequency import FrequencyDataObject
 
 class StatisticalAnalyzer(QMainWindow):
 
@@ -174,8 +175,7 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     atexit.register(exit_handler)
     Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
+    ui = Ui_Dialog(Dialog)
     Dialog.exec_()
     typeFlag = ui.getType()
     application = StatisticalAnalyzer()
@@ -193,7 +193,10 @@ if __name__ == '__main__':
         sys.exit(app.exec_())
     elif typeFlag == 3:
         freq = QtWidgets.QWidget()
+        data = ui.getData()
+        freqObject = FrequencyDataObject(data)
         ui = Ui_Form()
         ui.setupUi(freq)
         application.setCentralWidget(freq)
+        ui.qlabel.setText(str(freqObject.x))
         sys.exit(app.exec_())

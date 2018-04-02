@@ -15,8 +15,9 @@ typeFlag = 0
 
 class Ui_Dialog(QFileDialog):
 
-    def __init__(self):
+    def __init__(self, Dialog):
         super(QFileDialog, self).__init__()
+        self.setupUi(Dialog)
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -99,6 +100,9 @@ class Ui_Dialog(QFileDialog):
     def getType(self):
         return typeFlag
 
+    def getData(self):
+        return self.data
+
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -109,13 +113,3 @@ class Ui_Dialog(QFileDialog):
         self.FreqRadioB.setText(_translate("Dialog", "Frequency"))
         self.pushButton_2.setText(_translate("Dialog", "Manual Input"))
         self.pushButton.setText(_translate("Dialog", "Open File"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
