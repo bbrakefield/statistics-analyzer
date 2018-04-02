@@ -15,7 +15,7 @@ class Ui_Form(object):
         self.modeBool = False
         self.probabilityBool = False
         self.binomialBool = False
-        frequencyObject = FrequencyDataObject(freqObject)
+        self.frequencyObject = FrequencyDataObject(freqObject)
         Form.setObjectName("Form")
         Form.resize(1280, 706)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -108,9 +108,9 @@ class Ui_Form(object):
 
         text = "X: {}\nY: {}\nChi Square: {}\nExpected Mode: {}\nActual Mode: {}\n" \
                "Probability Dist: {}\nBinomial Distribution: {}\n" \
-            .format(str(frequencyObject.x), str(frequencyObject.y), str(frequencyObject.chi_square), str(frequencyObject.expected_mode),
-                    str(frequencyObject.actual_mode), str(frequencyObject.probability_distribution),
-                    str(frequencyObject.binomial_distribution))
+            .format(str(self.frequencyObject.x), str(self.frequencyObject.y), str(self.frequencyObject.chi_square), str(self.frequencyObject.expected_mode),
+                    str(self.frequencyObject.actual_mode), str(self.frequencyObject.probability_distribution),
+                    str(self.frequencyObject.binomial_distribution))
         self.label.setText(text)
 
         self.retranslateUi(Form)
@@ -160,14 +160,34 @@ class Ui_Form(object):
             self.binomialBool = True
 
     def submit(self):
+
+        f= open("frequencyDataReport.txt", "w")
+        f.write("===Frequency Data Report===\n\n")
         if self.modeBool == True:
-            print("hey mode")
+            if self.frequencyObject.actual_mode == None:
+                f.write("Mode: There is no mode to be calculated.\n")
+            else:
+                f.write("Mode: " + str(self.frequencyObject.actual_mode) + "\n")
+
         if self.chiSquarebool==True:
-            print("hey chi")
+            if self.frequencyObject.chi_square == None:
+                f.write("Chi Square: Value could not be calculated.\n")
+            else:
+                f.write("Chi Square: " + str(self.frequencyObject.chi_square) + "\n")
+
         if self.probabilityBool==True:
-            print("hey prob")
+            if self.frequencyObject.probability_distribution == None:
+                f.write("Probability Distribution: Value could not be calculated.\n")
+            else:
+                f.write("Probability Distribution: " + str(self.frequencyObject.probability_distribution) + "\n")
+
         if self.binomialBool==True:
-            print("hey bin")
+            if self.frequencyObject.binomial_distribution == None:
+                f.write("Binomial Distribution: Value could not be calculated\n")
+            else:
+                f.write("Binomial Distribution: " + str(self.frequencyObject.binomial_distribution) + "\n")
+
+        f.close()
 
 
 if __name__ == "__main__":
