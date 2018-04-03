@@ -10,6 +10,19 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Form1(object):
     def setupUi(self, Form):
+        self.medianBool = False
+        self.modeBool = False
+        self.stanDevBool = False
+        self.rankSumBool = False
+        self.meanBool = False
+        self.percentileBool = False
+        self.coeffVarBool = False
+        self.spearRankBool = False
+        self.corCoeffBool = False
+        self.varBool = False
+        self.covarBool = False
+        self.leastSquareBool = False
+        self.pearCorBool = False
         Form.setObjectName("Form")
         Form.resize(1280, 706)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -24,9 +37,9 @@ class Ui_Form1(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.calcGroupBox = QtWidgets.QGroupBox(Form)
         self.calcGroupBox.setObjectName("calcGroupBox")
-        self.meadianCheckBox = QtWidgets.QCheckBox(self.calcGroupBox)
-        self.meadianCheckBox.setGeometry(QtCore.QRect(10, 60, 85, 18))
-        self.meadianCheckBox.setObjectName("meadianCheckBox")
+        self.medianCheckBox = QtWidgets.QCheckBox(self.calcGroupBox)
+        self.medianCheckBox.setGeometry(QtCore.QRect(10, 60, 85, 18))
+        self.medianCheckBox.setObjectName("medianCheckBox")
         self.calcButtonBox = QtWidgets.QDialogButtonBox(self.calcGroupBox)
         self.calcButtonBox.setGeometry(QtCore.QRect(30, 520, 164, 32))
         self.calcButtonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Reset|QtWidgets.QDialogButtonBox.Ok)
@@ -104,72 +117,10 @@ class Ui_Form1(object):
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
         self.groupBox_3.setTitle("")
         self.groupBox_3.setObjectName("groupBox_3")
-        self.scrollArea = QtWidgets.QScrollArea(self.groupBox_3)
-        self.scrollArea.setGeometry(QtCore.QRect(10, 10, 601, 661))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 599, 659))
-        self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
-        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setObjectName("label")
-
-        self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_2.setGeometry(QtCore.QRect(20, 80, 56, 13))
-        self.label_2.setText("")
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_3.setGeometry(QtCore.QRect(20, 120, 56, 13))
-        self.label_3.setText("")
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_4.setGeometry(QtCore.QRect(20, 160, 56, 13))
-        self.label_4.setText("")
-        self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_5.setGeometry(QtCore.QRect(20, 200, 56, 13))
-        self.label_5.setText("")
-        self.label_5.setObjectName("label_5")
-        self.label_6 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_6.setGeometry(QtCore.QRect(20, 240, 56, 13))
-        self.label_6.setText("")
-        self.label_6.setObjectName("label_6")
-        self.label_7 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_7.setGeometry(QtCore.QRect(20, 280, 56, 13))
-        self.label_7.setText("")
-        self.label_7.setObjectName("label_7")
-        self.label_8 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_8.setGeometry(QtCore.QRect(20, 320, 56, 13))
-        self.label_8.setText("")
-        self.label_8.setObjectName("label_8")
-        self.label_9 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_9.setGeometry(QtCore.QRect(20, 360, 56, 13))
-        self.label_9.setText("")
-        self.label_9.setObjectName("label_9")
-        self.label_10 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_10.setGeometry(QtCore.QRect(20, 400, 56, 13))
-        self.label_10.setText("")
-        self.label_10.setObjectName("label_10")
-        self.label_11 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_11.setGeometry(QtCore.QRect(20, 440, 56, 13))
-        self.label_11.setText("")
-        self.label_11.setObjectName("label_11")
-        self.label_12 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_12.setGeometry(QtCore.QRect(20, 480, 56, 13))
-        self.label_12.setText("")
-        self.label_12.setObjectName("label_12")
-        self.label_13 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_13.setGeometry(QtCore.QRect(20, 520, 56, 13))
-        self.label_13.setText("")
-        self.label_13.setObjectName("label_5")
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents_4)
+        self.listWidget = QtWidgets.QListWidget(self.groupBox_3)
+        self.listWidget.setGeometry(QtCore.QRect(10, 10, 601, 661))
+        self.listWidget.setObjectName("listWidget")
         self.gridLayout.addWidget(self.groupBox_3, 0, 1, 1, 1)
-
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -178,7 +129,7 @@ class Ui_Form1(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.calcGroupBox.setTitle(_translate("Form", "Calculations"))
-        self.meadianCheckBox.setText(_translate("Form", "Median"))
+        self.medianCheckBox.setText(_translate("Form", "Median"))
         self.modeCheckBox.setText(_translate("Form", "Mode"))
         self.StanDevCheck.setText(_translate("Form", "Standard Deviation"))
         self.RankSumCheck.setText(_translate("Form", "Rank Sum"))
@@ -197,7 +148,128 @@ class Ui_Form1(object):
         self.PieCharRadioB.setText(_translate("Form", "Pie Chart"))
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
         self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
+        self.medianCheckBox.stateChanged.connect(self.setMedianBool)
+        self.modeCheckBox.stateChanged.connect(self.setModeBool)
+        self.StanDevCheck.stateChanged.connect(self.setStanDevBool)
+        self.RankSumCheck.stateChanged.connect(self.setRankSumBool)
+        self.meanCheckBox.stateChanged.connect(self.setMeanBool)
+        self.PercentileCheck.stateChanged.connect(self.setPercentileBool)
+        self.CoeffVarCheck.stateChanged.connect(self.setCoeffVarBool)
+        self.SpearRankCheck.stateChanged.connect(self.setSpearRankBool)
+        self.CorCoeffCheck.stateChanged.connect(self.setCorCoeffBool)
+        self.VarCheckBox.stateChanged.connect(self.setVarBool)
+        self.CovarCheckBox.stateChanged.connect(self.setCovarBool)
+        self.LeastSquareCheck.stateChanged.connect(self.setLeastSquareBool)
+        self.PearCorCheck.stateChanged.connect(self.setPearCorBool)
 
+        self.calcButtonBox.accepted.connect(self.submit)
+
+
+    def setMedianBool(self):
+        if self.medianBool == True:
+            self.medianBool = False
+        elif self.medianBool == False:
+            self.medianBool = True
+
+    def setModeBool(self):
+        if self.modeBool == True:
+            self.modeBool = False
+        elif self.modeBool == False:
+            self.modeBool = True
+
+    def setStanDevBool(self):
+        if self.stanDevBool == True:
+            self.stanDevBool = False
+        elif self.stanDevBool == False:
+            self.stanDevBool = True
+
+    def setRankSumBool(self):
+        if self.rankSumBool == True:
+            self.rankSumBool = False
+        elif self.rankSumBool == False:
+            self.rankSumBool = True
+
+    def setMeanBool(self):
+        if self.meanBool == True:
+            self.meanBool = False
+        elif self.meanBool == False:
+            self.meanBool = True
+
+    def setPercentileBool(self):
+        if self.percentileBool == True:
+            self.percentileBool = False
+        elif self.percentileBool == False:
+            self.percentileBool = True
+
+    def setCoeffVarBool(self):
+        if self.coeffVarBool == True:
+            self.coeffVarBool = False
+        elif self.coeffVarBool == False:
+            self.coeffVarBool = True
+
+    def setSpearRankBool(self):
+        if self.spearRankBool == True:
+            self.spearRankBool = False
+        elif self.spearRankBool == False:
+            self.spearRankBool = True
+
+    def setCorCoeffBool(self):
+        if self.corCoeffBool == True:
+            self.corCoeffBool = False
+        elif self.corCoeffBool == False:
+            self.corCoeffBool = True
+
+    def setVarBool(self):
+        if self.varBool == True:
+            self.varBool = False
+        elif self.varBool == False:
+            self.varBool = True
+
+    def setCovarBool(self):
+        if self.covarBool == True:
+            self.covarBool = False
+        elif self.covarBool == False:
+            self.covarBool = True
+
+    def setLeastSquareBool(self):
+        if self.leastSquareBool == True:
+            self.leastSquareBool = False
+        elif self.leastSquareBool == False:
+            self.leastSquareBool = True
+
+    def setPearCorBool(self):
+        if self.pearCorBool == True:
+            self.pearCorBool = False
+        elif self.pearCorBool == False:
+            self.pearCorBool = True
+
+    def submit(self):
+        if self.medianBool == True:
+            print("hey median")
+        if self.modeBool == True:
+            print("hey mode")
+        if self.stanDevBool == True:
+            print("hey stan")
+        if self.rankSumBool == True:
+            print("hey rank")
+        if self.meanBool == True:
+            print("hey mean")
+        if self.percentileBool == True:
+            print("hey perc")
+        if self.coeffVarBool == True:
+            print("hey coeff")
+        if self.spearRankBool == True:
+            print("hey spear")
+        if self.corCoeffBool == True:
+            print("hey median")
+        if self.varBool == True:
+            print("hey var")
+        if self.covarBool == True:
+            print("hey covar")
+        if self.leastSquareBool == True:
+            print("hey least square")
+        if self.pearCorBool == True:
+            print("hey pear")
 
 
 if __name__ == "__main__":

@@ -10,6 +10,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Form2(object):
     def setupUi(self, Form):
+        self.percentileBool = False
+        self.medianbool = False
+        self.modeBool = False
+        self.rankSumBool = False
+        self.signBool = False
         Form.setObjectName("Form")
         Form.setEnabled(True)
         Form.resize(1280, 706)
@@ -74,55 +79,49 @@ class Ui_Form2(object):
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
         self.groupBox_3.setTitle("")
         self.groupBox_3.setObjectName("groupBox_3")
-        self.scrollArea = QtWidgets.QScrollArea(self.groupBox_3)
-        self.scrollArea.setGeometry(QtCore.QRect(10, 10, 601, 661))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 599, 659))
-        self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
-        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label.setGeometry(QtCore.QRect(20, 40, 56, 13))
-        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
+        self.listWidget = QtWidgets.QListWidget(self.groupBox_3)
+        self.listWidget.setGeometry(QtCore.QRect(10, 10, 601, 661))
+        self.listWidget.setObjectName("listWidget")
+        self.label = QtWidgets.QLabel(self.listWidget)
+        # self.label.setGeometry(QtCore.QRect(20, 40, 56, 13))
+        self.label = QtWidgets.QLabel(self.listWidget)
+        self.label.setGeometry(QtCore.QRect(20, 10, 599, 140))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_2.setGeometry(QtCore.QRect(20, 80, 56, 13))
+        self.label_2 = QtWidgets.QLabel(self.listWidget)
+        self.label_2.setGeometry(QtCore.QRect(20, 100, 599, 280))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_3.setGeometry(QtCore.QRect(20, 120, 56, 13))
+        self.label_3 = QtWidgets.QLabel(self.listWidget)
+        self.label_3.setGeometry(QtCore.QRect(20, 200, 599, 420))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_4.setGeometry(QtCore.QRect(20, 160, 56, 13))
+        self.label_4 = QtWidgets.QLabel(self.listWidget)
+        self.label_4.setGeometry(QtCore.QRect(20, 300, 599, 560))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy)
         self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_5.setGeometry(QtCore.QRect(20, 200, 56, 13))
+        self.label_5 = QtWidgets.QLabel(self.listWidget)
+        self.label_5.setGeometry(QtCore.QRect(20, 400, 56, 13))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
         self.label_5.setObjectName("label_5")
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents_4)
         self.gridLayout.addWidget(self.groupBox_3, 0, 1, 1, 1)
 
         self.retranslateUi(Form)
@@ -143,6 +142,54 @@ class Ui_Form2(object):
         self.pieChartRadioB.setText(_translate("Form", "Pie Chart"))
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
         self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
+        self.modeCheckBox.stateChanged.connect(self.setModeBool)
+        self.MediancheckBox.stateChanged.connect(self.setMedianBool)
+        self.SignTestCheck.stateChanged.connect(self.setSignTestBool)
+        self.RankSumCheck.stateChanged.connect(self.setRankBool)
+        self.PercentileCheck.stateChanged.connect(self.setPercentileBool)
+        self.CalcButtonBox.accepted.connect(self.submit)
+
+    def setMedianBool(self):
+        if self.medianbool == True:
+            self.medianbool = False
+        elif self.medianbool == False:
+            self.medianbool = True
+
+    def setModeBool(self):
+        if self.modeBool == True:
+            self.modeBool = False
+        elif self.modeBool == False:
+            self.modeBool = True
+
+    def setSignTestBool(self):
+        if self.signBool == True:
+            self.signBool = False
+        elif self.signBool == False:
+            self.signBool = True
+
+    def setRankBool(self):
+        if self.rankSumBool == True:
+            self.rankSumBool = False
+        elif self.rankSumBool == False:
+            self.rankSumBool = True
+
+    def setPercentileBool(self):
+        if self.percentileBool == True:
+            self.percentileBool = False
+        elif self.percentileBool == False:
+            self.percentileBool = True
+
+    def submit(self):
+        if self.medianbool == True:
+            print("hey median")
+        if self.modeBool == True:
+            print("hey mode")
+        if self.signBool == True:
+            print("hey sign")
+        if self.rankSumBool == True:
+            print("hey rank")
+        if self.percentileBool == True:
+            print("hey perc")
 
 
 if __name__ == "__main__":

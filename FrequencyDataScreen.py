@@ -16,6 +16,12 @@ class Ui_Form(object):
         self.probabilityBool = False
         self.binomialBool = False
         self.frequencyObject = FrequencyDataObject(freqObject)
+        text = "X: {}\nY: {}\nChi Square: {}\nExpected Mode: {}\nActual Mode: {}\n" \
+               "Probability Dist: {}\nBinomial Distribution: {}\n" \
+            .format(str(self.frequencyObject.x), str(self.frequencyObject.y), str(self.frequencyObject.chi_square), str(self.frequencyObject.expected_mode),
+                    str(self.frequencyObject.actual_mode), str(self.frequencyObject.probability_distribution),
+                    str(self.frequencyObject.binomial_distribution))
+
         Form.setObjectName("Form")
         Form.resize(1280, 706)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -68,50 +74,21 @@ class Ui_Form(object):
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
         self.groupBox_3.setTitle("")
         self.groupBox_3.setObjectName("groupBox_3")
-        self.scrollArea = QtWidgets.QScrollArea(self.groupBox_3)
-        self.scrollArea.setGeometry(QtCore.QRect(10, 10, 601, 661))
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 599, 659))
-        self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
-        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        #self.label.setGeometry(QtCore.QRect(20, 40, 56, 13))
-        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setObjectName("label_4")
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents_4)
+        self.listWidget = QtWidgets.QListWidget(self.groupBox_3)
+        self.listWidget.setGeometry(QtCore.QRect(10, 10, 601, 661))
+        self.listWidget.setObjectName("listWidget")
+        self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.listWidget.addItem(text)
         self.gridLayout.addWidget(self.groupBox_3, 1, 1, 1, 1)
-
-        text = "X: {}\nY: {}\nChi Square: {}\nExpected Mode: {}\nActual Mode: {}\n" \
-               "Probability Dist: {}\nBinomial Distribution: {}\n" \
-            .format(str(self.frequencyObject.x), str(self.frequencyObject.y), str(self.frequencyObject.chi_square), str(self.frequencyObject.expected_mode),
-                    str(self.frequencyObject.actual_mode), str(self.frequencyObject.probability_distribution),
-                    str(self.frequencyObject.binomial_distribution))
-        self.label.setText(text)
+        self.listWidget.addItem(text)
+        self.listWidget.addItem(text)
+        self.listWidget.addItem(text)
+        self.listWidget.addItem(text)
+        self.listWidget.addItem(text)
+        self.listWidget.addItem(text)
+        self.listWidget.addItem(text)
+        self.gridLayout.addWidget(self.groupBox_3, 1, 1, 1, 1)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -168,24 +145,28 @@ class Ui_Form(object):
                 f.write("Mode: There is no mode to be calculated.\n")
             else:
                 f.write("Mode: " + str(self.frequencyObject.actual_mode) + "\n")
+            print("Hey mode")
 
         if self.chiSquarebool==True:
             if self.frequencyObject.chi_square == None:
                 f.write("Chi Square: Value could not be calculated.\n")
             else:
                 f.write("Chi Square: " + str(self.frequencyObject.chi_square) + "\n")
+            print("Hey Chi")
 
         if self.probabilityBool==True:
             if self.frequencyObject.probability_distribution == None:
                 f.write("Probability Distribution: Value could not be calculated.\n")
             else:
                 f.write("Probability Distribution: " + str(self.frequencyObject.probability_distribution) + "\n")
+            print("Hey prob")
 
         if self.binomialBool==True:
             if self.frequencyObject.binomial_distribution == None:
                 f.write("Binomial Distribution: Value could not be calculated\n")
             else:
                 f.write("Binomial Distribution: " + str(self.frequencyObject.binomial_distribution) + "\n")
+            print("Hey bin")
 
         f.close()
 
