@@ -182,7 +182,7 @@ if __name__ == '__main__':
     if typeFlag == 1:
         inter = QtWidgets.QWidget()
         ui = Ui_Form1()
-        ui.setupUi(inter)
+        ui.setupUi(inter, application.data)
         application.setCentralWidget(inter)
         sys.exit(app.exec_())
     elif typeFlag == 2:

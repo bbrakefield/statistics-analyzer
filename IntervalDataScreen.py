@@ -5,11 +5,13 @@
 # Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
-
+from interval import IntervalDataObject
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Form1(object):
-    def setupUi(self, Form):
+    def setupUi(self, Form, interObject):
+
+
         self.medianBool = False
         self.modeBool = False
         self.stanDevBool = False
@@ -162,7 +164,7 @@ class Ui_Form1(object):
         self.LeastSquareCheck.stateChanged.connect(self.setLeastSquareBool)
         self.PearCorCheck.stateChanged.connect(self.setPearCorBool)
 
-        self.calcButtonBox.accepted.connect(self.submit)
+        self.calcButtonBox.accepted.connect(self.calcSubmit)
 
 
     def setMedianBool(self):
@@ -243,33 +245,71 @@ class Ui_Form1(object):
         elif self.pearCorBool == False:
             self.pearCorBool = True
 
-    def submit(self):
+    def calcSubmit(self):
         if self.medianBool == True:
-            print("hey median")
+            medianText = "Median: {}\n" \
+            #    .format(str(self.intervalObject.get_median))
+            self.listWidget.addItem(medianText)
+
         if self.modeBool == True:
-            print("hey mode")
+            modeText = "Mode: {}\n" \
+            #    .format(str(self.intervalObject.get_mode))
+            self.listWidget.addItem(modeText)
+
         if self.stanDevBool == True:
-            print("hey stan")
+            stanDevText = "Standard Deviation: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(stanDevText)
+
         if self.rankSumBool == True:
-            print("hey rank")
+            rankSumText = "Rank Sum: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(rankSumText)
+
         if self.meanBool == True:
-            print("hey mean")
+            meanText = "Mean: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(meanText)
+
         if self.percentileBool == True:
-            print("hey perc")
+            percentileText = "Percentile: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(percentileText)
+
         if self.coeffVarBool == True:
-            print("hey coeff")
+            coeffVarText = "Coefficient of Variance: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(coeffVarText)
+
         if self.spearRankBool == True:
-            print("hey spear")
+            spearRankText = "Spearman Rank: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(spearRankText)
+
         if self.corCoeffBool == True:
-            print("hey median")
+            corCoeffText = "Correlation Coefficient: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(corCoeffText)
+
         if self.varBool == True:
-            print("hey var")
+            varText = "Variance: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(varText)
+
         if self.covarBool == True:
-            print("hey covar")
+            covarText = "Covariance: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(covarText)
+
         if self.leastSquareBool == True:
-            print("hey least square")
+            leastSquareText = "Least Square Line: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(leastSquareText)
+
         if self.pearCorBool == True:
-            print("hey pear")
+            pearCorText = "Pearson Correlation: {}\n" \
+                #    .format(str(self.intervalObject.))
+            self.listWidget.addItem(pearCorText)
 
 
 if __name__ == "__main__":

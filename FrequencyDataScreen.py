@@ -79,15 +79,6 @@ class Ui_Form(object):
         self.listWidget.setObjectName("listWidget")
         self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.listWidget.addItem(text)
-        self.gridLayout.addWidget(self.groupBox_3, 1, 1, 1, 1)
-        self.listWidget.addItem(text)
-        self.listWidget.addItem(text)
-        self.listWidget.addItem(text)
-        self.listWidget.addItem(text)
-        self.listWidget.addItem(text)
-        self.listWidget.addItem(text)
-        self.listWidget.addItem(text)
         self.gridLayout.addWidget(self.groupBox_3, 1, 1, 1, 1)
 
         self.retranslateUi(Form)
@@ -110,7 +101,7 @@ class Ui_Form(object):
         self.checkBox_2.stateChanged.connect(self.setChiSquareBool)
         self.checkBox_3.stateChanged.connect(self.setProbabilityBool)
         self.checkBox_4.stateChanged.connect(self.setBinomialBool)
-        self.buttonBox.accepted.connect(self.submit)
+        self.buttonBox.accepted.connect(self.calcSubmit)
 
     def setModeBool(self):
         if self.modeBool == True:
@@ -136,37 +127,48 @@ class Ui_Form(object):
         elif self.binomialBool == False:
             self.binomialBool = True
 
-    def submit(self):
-
+    def calcSubmit(self):
         f= open("frequencyDataReport.txt", "w")
         f.write("===Frequency Data Report===\n\n")
         if self.modeBool == True:
             if self.frequencyObject.actual_mode == None:
                 f.write("Mode: There is no mode to be calculated.\n")
+                modeText = "Mode: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
             else:
                 f.write("Mode: " + str(self.frequencyObject.actual_mode) + "\n")
-            print("Hey mode")
+                modeText = "Mode: " + str(self.frequencyObject.actual_mode) + "\n"
+                self.listWidget.addItem(modeText)
 
         if self.chiSquarebool==True:
             if self.frequencyObject.chi_square == None:
                 f.write("Chi Square: Value could not be calculated.\n")
+                chiSquareText = "Chi Square: Value could not be calculated.\n"
+                self.listWidget.addItem(chiSquareText)
             else:
                 f.write("Chi Square: " + str(self.frequencyObject.chi_square) + "\n")
-            print("Hey Chi")
+                chiSquareText = "Chi Square: " + str(self.frequencyObject.chi_square) + "\n"
+                self.listWidget.addItem(chiSquareText)
 
         if self.probabilityBool==True:
             if self.frequencyObject.probability_distribution == None:
                 f.write("Probability Distribution: Value could not be calculated.\n")
+                probText = "Probability Distribution: Value could not be calculated.\n"
+                self.listWidget.addItem(probText)
             else:
                 f.write("Probability Distribution: " + str(self.frequencyObject.probability_distribution) + "\n")
-            print("Hey prob")
+                probText = "Probability Distribution: " + str(self.frequencyObject.probability_distribution) + "\n"
+                self.listWidget.addItem(probText)
 
         if self.binomialBool==True:
             if self.frequencyObject.binomial_distribution == None:
                 f.write("Binomial Distribution: Value could not be calculated\n")
+                binText = "Binomial Distribution: Value could not be calculated\n"
+                self.listWidget.addItem(binText)
             else:
                 f.write("Binomial Distribution: " + str(self.frequencyObject.binomial_distribution) + "\n")
-            print("Hey bin")
+                binText = "Binomial Distribution: " + str(self.frequencyObject.binomial_distribution) + "\n"
+                self.listWidget.addItem(binText)
 
         f.close()
 

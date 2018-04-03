@@ -147,7 +147,7 @@ class Ui_Form2(object):
         self.SignTestCheck.stateChanged.connect(self.setSignTestBool)
         self.RankSumCheck.stateChanged.connect(self.setRankBool)
         self.PercentileCheck.stateChanged.connect(self.setPercentileBool)
-        self.CalcButtonBox.accepted.connect(self.submit)
+        self.CalcButtonBox.accepted.connect(self.calcSubmit)
 
     def setMedianBool(self):
         if self.medianbool == True:
@@ -179,17 +179,35 @@ class Ui_Form2(object):
         elif self.percentileBool == False:
             self.percentileBool = True
 
-    def submit(self):
+
+    def calcSubmit(self):
         if self.medianbool == True:
-            print("hey median")
+            medianText = "Median: {}\n" \
+            #    .format(str(ordinalObject function))
+            self.listWidget.addItem(medianText)
+
         if self.modeBool == True:
-            print("hey mode")
+            modeText = "Mode: {}\n" \
+            #    .format(str(ordinalObject function))
+            self.listWidget.addItem(modeText)
+
         if self.signBool == True:
-            print("hey sign")
+            signText = "Percentile: {}\n" \
+            #    .format(str(ordinalObject function))
+            self.listWidget.addItem(signText)
+
         if self.rankSumBool == True:
-            print("hey rank")
+            rankSumText = "Rank Sum: {}\n" \
+            #    .format(str(ordinalObject function))
+            self.listWidget.addItem(rankSumText)
+
         if self.percentileBool == True:
-            print("hey perc")
+            percentileText = "Percentile: {}\n" \
+            #    .format(str(ordinalObject function))
+            self.listWidget.addItem(percentileText)
+
+
+
 
 
 if __name__ == "__main__":
