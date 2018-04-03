@@ -40,7 +40,7 @@ class Ui_Form(object):
         self.checkBox.setObjectName("checkBox")
         self.buttonBox = QtWidgets.QDialogButtonBox(self.groupBox_2)
         self.buttonBox.setGeometry(QtCore.QRect(30, 520, 164, 32))
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Reset|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.checkBox_2 = QtWidgets.QCheckBox(self.groupBox_2)
         self.checkBox_2.setGeometry(QtCore.QRect(10, 60, 90, 18))
@@ -58,7 +58,7 @@ class Ui_Form(object):
         self.groupBox.setObjectName("groupBox")
         self.buttonBox_2 = QtWidgets.QDialogButtonBox(self.groupBox)
         self.buttonBox_2.setGeometry(QtCore.QRect(50, 520, 164, 32))
-        self.buttonBox_2.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox_2.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox_2.setObjectName("buttonBox_2")
         self.radioButton = QtWidgets.QRadioButton(self.groupBox)
         self.radioButton.setGeometry(QtCore.QRect(20, 40, 141, 18))
@@ -102,6 +102,7 @@ class Ui_Form(object):
         self.checkBox_3.stateChanged.connect(self.setProbabilityBool)
         self.checkBox_4.stateChanged.connect(self.setBinomialBool)
         self.buttonBox.accepted.connect(self.calcSubmit)
+        self.buttonBox.clicked.connect(self.calcReset)
 
     def setModeBool(self):
         if self.modeBool == True:
@@ -171,6 +172,9 @@ class Ui_Form(object):
                 self.listWidget.addItem(binText)
 
         f.close()
+
+    def calcReset(self):
+        self.listWidget.clear()
 
 
 if __name__ == "__main__":

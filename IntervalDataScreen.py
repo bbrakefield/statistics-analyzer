@@ -163,8 +163,9 @@ class Ui_Form1(object):
         self.CovarCheckBox.stateChanged.connect(self.setCovarBool)
         self.LeastSquareCheck.stateChanged.connect(self.setLeastSquareBool)
         self.PearCorCheck.stateChanged.connect(self.setPearCorBool)
-
         self.calcButtonBox.accepted.connect(self.calcSubmit)
+        self.calcButtonBox.clicked.connect(self.calcReset)
+
 
 
     def setMedianBool(self):
@@ -311,6 +312,8 @@ class Ui_Form1(object):
                 #    .format(str(self.intervalObject.))
             self.listWidget.addItem(pearCorText)
 
+    def calcReset(self):
+        self.listWidget.clear()
 
 if __name__ == "__main__":
     import sys

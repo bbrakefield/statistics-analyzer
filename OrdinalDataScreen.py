@@ -35,7 +35,7 @@ class Ui_Form2(object):
         self.MediancheckBox.setObjectName("MediancheckBox")
         self.CalcButtonBox = QtWidgets.QDialogButtonBox(self.groupBox_2)
         self.CalcButtonBox.setGeometry(QtCore.QRect(30, 520, 164, 32))
-        self.CalcButtonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.CalcButtonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Reset|QtWidgets.QDialogButtonBox.Ok)
         self.CalcButtonBox.setObjectName("CalcButtonBox")
         self.modeCheckBox = QtWidgets.QCheckBox(self.groupBox_2)
         self.modeCheckBox.setGeometry(QtCore.QRect(10, 60, 85, 18))
@@ -57,7 +57,7 @@ class Ui_Form2(object):
         self.groupBox.setObjectName("groupBox")
         self.graphButtonBox = QtWidgets.QDialogButtonBox(self.groupBox)
         self.graphButtonBox.setGeometry(QtCore.QRect(50, 520, 164, 32))
-        self.graphButtonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.graphButtonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.graphButtonBox.setObjectName("graphButtonBox")
         self.verBarRadioB = QtWidgets.QRadioButton(self.groupBox)
         self.verBarRadioB.setGeometry(QtCore.QRect(20, 40, 141, 18))
@@ -123,7 +123,6 @@ class Ui_Form2(object):
         self.label_5.setSizePolicy(sizePolicy)
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.groupBox_3, 0, 1, 1, 1)
-
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -148,6 +147,7 @@ class Ui_Form2(object):
         self.RankSumCheck.stateChanged.connect(self.setRankBool)
         self.PercentileCheck.stateChanged.connect(self.setPercentileBool)
         self.CalcButtonBox.accepted.connect(self.calcSubmit)
+        self.CalcButtonBox.clicked.connect(self.calcReset)
 
     def setMedianBool(self):
         if self.medianbool == True:
@@ -206,7 +206,8 @@ class Ui_Form2(object):
             #    .format(str(ordinalObject function))
             self.listWidget.addItem(percentileText)
 
-
+    def calcReset(self):
+        self.listWidget.clear()
 
 
 
