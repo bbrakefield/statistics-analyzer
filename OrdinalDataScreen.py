@@ -7,14 +7,17 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from ordinal import OrdinalDataObject
 
 class Ui_Form2(object):
-    def setupUi(self, Form):
+    def setupUi(self, Form, ordObject):
         self.percentileBool = False
         self.medianbool = False
         self.modeBool = False
         self.rankSumBool = False
         self.signBool = False
+        self.ordinalObject = OrdinalDataObject(ordObject)
+        text = "".format()
         Form.setObjectName("Form")
         Form.setEnabled(True)
         Form.resize(1280, 706)
@@ -183,27 +186,27 @@ class Ui_Form2(object):
     def calcSubmit(self):
         if self.medianbool == True:
             medianText = "Median: {}\n" \
-            #    .format(str(ordinalObject function))
+                .format(str(self.ordinalObject.a_median))
             self.listWidget.addItem(medianText)
 
         if self.modeBool == True:
             modeText = "Mode: {}\n" \
-            #    .format(str(ordinalObject function))
+                .format(str(self.ordinalObject.a_median))
             self.listWidget.addItem(modeText)
 
         if self.signBool == True:
-            signText = "Percentile: {}\n" \
-            #    .format(str(ordinalObject function))
+            signText = "Sign Test: {}\n" \
+               .format(str(self.ordinalObject.sign_test))
             self.listWidget.addItem(signText)
 
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
-            #    .format(str(ordinalObject function))
+               .format(str(self.ordinalObject.rank_sum))
             self.listWidget.addItem(rankSumText)
 
         if self.percentileBool == True:
             percentileText = "Percentile: {}\n" \
-            #    .format(str(ordinalObject function))
+               .format(str(self.ordinalObject.percentile))
             self.listWidget.addItem(percentileText)
 
     def calcReset(self):

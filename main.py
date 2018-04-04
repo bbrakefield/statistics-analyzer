@@ -187,8 +187,9 @@ if __name__ == '__main__':
         sys.exit(app.exec_())
     elif typeFlag == 2:
         ordn = QtWidgets.QWidget()
+        application.data = ui.getData()
         ui = Ui_Form2()
-        ui.setupUi(ordn)
+        ui.setupUi(ordn, application.data)
         application.setCentralWidget(ordn)
         sys.exit(app.exec_())
     elif typeFlag == 3:

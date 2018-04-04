@@ -86,11 +86,11 @@ class OrdinalDataObject(DataObject):
 
     def get_sign_test(self):
 
-        return self.calculator.calculate_sign_test(self.x, self.y)
+        return self.calculator.calculate_sign_test(self.a, self.b)
 
     def get_rank_sum(self):
 
-        return self.calculator.calculate_rank_sum_test(self.x, self.y)
+        return self.calculator.calculate_rank_sum_test(self.a, self.b)
 
     def get_percentile(self):
 
