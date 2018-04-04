@@ -291,15 +291,11 @@ class Ui_Form1(object):
             f.write(meanText)
             self.listWidget.addItem(meanText)
 
-        if self.percentileBool == True:
-            percentileText = "Percentile of Pretest: {}\n" \
-                   .format(str(self.intervalObject.get_percentileX(desiredpercent)))
-            f.write(percentileText)
-            self.listWidget.addItem(percentileText)
-            percentileText2 = "Percentile of Posttest: {}\n" \
-                .format(str(self.intervalObject.get_percentileY(desiredpercent)))
-            f.write(percentileText2)
-            self.listWidget.addItem(percentileText2)
+        if self.pearCorBool == True:
+            pearCorText = "Pearson Correlation: {}\n" \
+                   .format(str(self.intervalObject.pearson))
+            f.write(pearCorText)
+            self.listWidget.addItem(pearCorText)
 
         if self.coeffVarBool == True:
             coeffVarText = "Coefficient of Variance: {}\n" \
@@ -337,11 +333,15 @@ class Ui_Form1(object):
             f.write(leastSquareText)
             self.listWidget.addItem(leastSquareText)
 
-        if self.pearCorBool == True:
-            pearCorText = "Pearson Correlation: {}\n" \
-                   .format(str(self.intervalObject.pearson))
-            f.write(pearCorText)
-            self.listWidget.addItem(pearCorText)
+        if self.percentileBool == True:
+            percentileText = "Percentile of Pretest: {}\n" \
+                   .format(str(self.intervalObject.get_percentileX(desiredpercent)))
+            f.write(percentileText)
+            self.listWidget.addItem(percentileText)
+            percentileText2 = "Percentile of Posttest: {}\n" \
+                .format(str(self.intervalObject.get_percentileY(desiredpercent)))
+            f.write(percentileText2)
+            self.listWidget.addItem(percentileText2)
 
     def calcReset(self):
         self.listWidget.clear()
