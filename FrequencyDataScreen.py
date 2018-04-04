@@ -6,7 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 from frequency import FrequencyDataObject
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+
 
 class Ui_Form(object):
 
@@ -16,11 +17,6 @@ class Ui_Form(object):
         self.probabilityBool = False
         self.binomialBool = False
         self.frequencyObject = FrequencyDataObject(freqObject)
-        text = "X: {}\nY: {}\nChi Square: {}\nExpected Mode: {}\nActual Mode: {}\n" \
-               "Probability Dist: {}\nBinomial Distribution: {}\n" \
-            .format(str(self.frequencyObject.x), str(self.frequencyObject.y), str(self.frequencyObject.chi_square), str(self.frequencyObject.expected_mode),
-                    str(self.frequencyObject.actual_mode), str(self.frequencyObject.probability_distribution),
-                    str(self.frequencyObject.binomial_distribution))
 
         Form.setObjectName("Form")
         Form.resize(1280, 706)
@@ -49,8 +45,47 @@ class Ui_Form(object):
         self.checkBox_3.setGeometry(QtCore.QRect(10, 90, 161, 21))
         self.checkBox_3.setObjectName("checkBox_3")
         self.checkBox_4 = QtWidgets.QCheckBox(self.groupBox_2)
-        self.checkBox_4.setGeometry(QtCore.QRect(10, 120, 151, 18))
+        self.checkBox_4.setGeometry(QtCore.QRect(10, 190, 151, 18))
         self.checkBox_4.setObjectName("checkBox_4")
+        self.pbTrialsLabel = QtWidgets.QLabel(self.groupBox_2)
+        self.pbTrialsLabel.setGeometry(QtCore.QRect(140, 120, 41, 21))
+        self.pbTrialsLabel.setObjectName("pbTrialsLabel")
+        self.pbTrialSpinBox = QtWidgets.QSpinBox(self.groupBox_2)
+        self.pbTrialSpinBox.setGeometry(QtCore.QRect(180, 120, 53, 21))
+        self.pbTrialSpinBox.setMinimum(1)
+        self.pbTrialSpinBox.setMaximum(9999)
+        self.pbTrialSpinBox.setObjectName("pbTrialSpinBox")
+        self.pbSuccessSpinBox = QtWidgets.QSpinBox(self.groupBox_2)
+        self.pbSuccessSpinBox.setGeometry(QtCore.QRect(180, 150, 53, 24))
+        self.pbSuccessSpinBox.setMaximum(9999)
+        self.pbSuccessSpinBox.setObjectName("pbSuccessSpinBox")
+        self.pbSuccessesLabel = QtWidgets.QLabel(self.groupBox_2)
+        self.pbSuccessesLabel.setGeometry(QtCore.QRect(110, 150, 71, 31))
+        self.pbSuccessesLabel.setObjectName("pbSuccessesLabel")
+        self.bdTrialSpinBox = QtWidgets.QSpinBox(self.groupBox_2)
+        self.bdTrialSpinBox.setGeometry(QtCore.QRect(180, 220, 53, 21))
+        self.bdTrialSpinBox.setMinimum(1)
+        self.bdTrialSpinBox.setMaximum(9999)
+        self.bdTrialSpinBox.setObjectName("bdTrialSpinBox")
+        self.bdTrialLabel = QtWidgets.QLabel(self.groupBox_2)
+        self.bdTrialLabel.setGeometry(QtCore.QRect(140, 220, 41, 21))
+        self.bdTrialLabel.setObjectName("bdTrialLabel")
+        self.bdSuccessSpinBox = QtWidgets.QSpinBox(self.groupBox_2)
+        self.bdSuccessSpinBox.setGeometry(QtCore.QRect(180, 250, 53, 24))
+        self.bdSuccessSpinBox.setMaximum(9999)
+        self.bdSuccessSpinBox.setObjectName("bdSuccessSpinBox")
+        self.bdSuccessLabel = QtWidgets.QLabel(self.groupBox_2)
+        self.bdSuccessLabel.setGeometry(QtCore.QRect(110, 250, 71, 31))
+        self.bdSuccessLabel.setObjectName("bdSuccessLabel")
+        self.doubleSpinBox = QtWidgets.QDoubleSpinBox(self.groupBox_2)
+        self.doubleSpinBox.setGeometry(QtCore.QRect(180, 280, 62, 31))
+        self.doubleSpinBox.setMinimum(0.01)
+        self.doubleSpinBox.setMaximum(0.99)
+        self.doubleSpinBox.setSingleStep(0.01)
+        self.doubleSpinBox.setObjectName("doubleSpinBox")
+        self.bdProbSuccess = QtWidgets.QLabel(self.groupBox_2)
+        self.bdProbSuccess.setGeometry(QtCore.QRect(40, 283, 131, 31))
+        self.bdProbSuccess.setObjectName("bdProbSuccess")
         self.horizontalLayout.addWidget(self.groupBox_2)
         self.groupBox = QtWidgets.QGroupBox(Form)
         self.groupBox.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -97,6 +132,11 @@ class Ui_Form(object):
         self.radioButton.setText(_translate("Form", "Vertical Bar Chart"))
         self.radioButton_2.setText(_translate("Form", "Horizontal Bar Chart"))
         self.radioButton_3.setText(_translate("Form", "Pie Chart"))
+        self.pbTrialsLabel.setText(_translate("Form", "Trials"))
+        self.pbSuccessesLabel.setText(_translate("Form", "Successes"))
+        self.bdTrialLabel.setText(_translate("Form", "Trials"))
+        self.bdSuccessLabel.setText(_translate("Form", "Successes"))
+        self.bdProbSuccess.setText(_translate("Form", "Probability of Success:"))
         self.checkBox.stateChanged.connect(self.setModeBool)
         self.checkBox_2.stateChanged.connect(self.setChiSquareBool)
         self.checkBox_3.stateChanged.connect(self.setProbabilityBool)
@@ -129,6 +169,11 @@ class Ui_Form(object):
             self.binomialBool = True
 
     def calcSubmit(self):
+        pbSuccesses = self.pbSuccessSpinBox.value()
+        pbTrials = self.pbTrialSpinBox.value()
+        bdSuccesses = self.bdSuccessSpinBox.value()
+        bdTrials = self.bdTrialSpinBox.value()
+        bdProbSucc = self.doubleSpinBox.value()
         f= open("frequencyDataReport.txt", "w")
         f.write("===Frequency Data Report===\n\n")
         if self.modeBool == True:
@@ -152,23 +197,23 @@ class Ui_Form(object):
                 self.listWidget.addItem(chiSquareText)
 
         if self.probabilityBool==True:
-            if self.frequencyObject.probability_distribution == None:
-                f.write("Probability Distribution: Value could not be calculated.\n")
-                probText = "Probability Distribution: Value could not be calculated.\n"
+            if pbTrials < pbSuccesses:
+                f.write("Probability Distribution: invalid data provided. Successes cannot exceed trials.")
+                probText = "Probability Distribution: invalid data provided. Successes cannot exceed trials."
                 self.listWidget.addItem(probText)
             else:
-                f.write("Probability Distribution: " + str(self.frequencyObject.probability_distribution) + "\n")
-                probText = "Probability Distribution: " + str(self.frequencyObject.probability_distribution) + "\n"
+                f.write("Probability Distribution: " + str(self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials)) + "\n")
+                probText = "Probability Distribution: " + str(self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials)) + "\n"
                 self.listWidget.addItem(probText)
 
         if self.binomialBool==True:
-            if self.frequencyObject.binomial_distribution == None:
-                f.write("Binomial Distribution: Value could not be calculated\n")
-                binText = "Binomial Distribution: Value could not be calculated\n"
+            if bdTrials < bdSuccesses:
+                f.write("Binomial Distribution: Invalid data provided. Successes cannot exceed trials.")
+                binText = "Binomial Distribution: Invalid data provided. Successes cannot exceed trials."
                 self.listWidget.addItem(binText)
             else:
-                f.write("Binomial Distribution: " + str(self.frequencyObject.binomial_distribution) + "\n")
-                binText = "Binomial Distribution: " + str(self.frequencyObject.binomial_distribution) + "\n"
+                f.write("Binomial Distribution: " + str(self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)) + "\n")
+                binText = "Binomial Distribution: " + str(self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)) + "\n"
                 self.listWidget.addItem(binText)
 
         f.close()

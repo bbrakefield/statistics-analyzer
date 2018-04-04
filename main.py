@@ -8,7 +8,7 @@ from graphing import Plotter
 from OrdinalDataScreen import Ui_Form2
 from IntervalDataScreen import Ui_Form1
 from FrequencyDataScreen import Ui_Form
-from frequency import FrequencyDataObject
+
 
 class StatisticalAnalyzer(QMainWindow):
 

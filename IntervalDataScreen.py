@@ -5,13 +5,10 @@
 # Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
-from interval import IntervalDataObject
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from interval import IntervalDataObject
 class Ui_Form1(object):
     def setupUi(self, Form, interObject):
-
-
         self.medianBool = False
         self.modeBool = False
         self.stanDevBool = False
@@ -57,7 +54,7 @@ class Ui_Form1(object):
         self.RankSumCheck.setGeometry(QtCore.QRect(10, 150, 151, 18))
         self.RankSumCheck.setObjectName("RankSumCheck")
         self.PercentileCheck = QtWidgets.QCheckBox(self.calcGroupBox)
-        self.PercentileCheck.setGeometry(QtCore.QRect(10, 180, 85, 18))
+        self.PercentileCheck.setGeometry(QtCore.QRect(10, 390, 85, 18))
         self.PercentileCheck.setObjectName("PercentileCheck")
         self.meanCheckBox = QtWidgets.QCheckBox(self.calcGroupBox)
         self.meanCheckBox.setGeometry(QtCore.QRect(10, 30, 85, 18))
@@ -81,8 +78,17 @@ class Ui_Form1(object):
         self.LeastSquareCheck.setGeometry(QtCore.QRect(10, 360, 161, 18))
         self.LeastSquareCheck.setObjectName("LeastSquareCheck")
         self.PearCorCheck = QtWidgets.QCheckBox(self.calcGroupBox)
-        self.PearCorCheck.setGeometry(QtCore.QRect(10, 390, 161, 18))
+        self.PearCorCheck.setGeometry(QtCore.QRect(10, 180, 161, 18))
         self.PearCorCheck.setObjectName("PearCorCheck")
+        self.doubleSpinBox = QtWidgets.QDoubleSpinBox(self.calcGroupBox)
+        self.doubleSpinBox.setGeometry(QtCore.QRect(160, 410, 62, 24))
+        self.doubleSpinBox.setMinimum(0.01)
+        self.doubleSpinBox.setMaximum(0.99)
+        self.doubleSpinBox.setSingleStep(0.01)
+        self.doubleSpinBox.setObjectName("doubleSpinBox")
+        self.percentileLabel = QtWidgets.QLabel(self.calcGroupBox)
+        self.percentileLabel.setGeometry(QtCore.QRect(40, 410, 111, 21))
+        self.percentileLabel.setObjectName("label_3")
         self.horizontalLayout.addWidget(self.calcGroupBox)
         self.graphsGroupBox = QtWidgets.QGroupBox(Form)
         self.graphsGroupBox.setMaximumSize(QtCore.QSize(16777215, 16777215))
@@ -107,6 +113,7 @@ class Ui_Form1(object):
         self.normalCurRadioB = QtWidgets.QRadioButton(self.graphsGroupBox)
         self.normalCurRadioB.setGeometry(QtCore.QRect(20, 160, 121, 18))
         self.normalCurRadioB.setObjectName("normalCurRadioB")
+
         self.graphButtonBox.raise_()
         self.VerBarRadioB.raise_()
         self.horBarRadioB.raise_()
@@ -151,6 +158,9 @@ class Ui_Form1(object):
         self.PieCharRadioB.setText(_translate("Form", "Pie Chart"))
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
         self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
+        self.percentileLabel.setText(_translate("Form", "Desired Percentile:"))
+
+
         self.medianCheckBox.stateChanged.connect(self.setMedianBool)
         self.modeCheckBox.stateChanged.connect(self.setModeBool)
         self.StanDevCheck.stateChanged.connect(self.setStanDevBool)
@@ -248,6 +258,7 @@ class Ui_Form1(object):
             self.pearCorBool = True
 
     def calcSubmit(self):
+        desiredpercent = self.doubleSpinBox.value()
         f = open("intervalDataReport.txt", "w")
         f.write("===Interval Data Report===")
         if self.medianBool == True:
@@ -281,10 +292,14 @@ class Ui_Form1(object):
             self.listWidget.addItem(meanText)
 
         if self.percentileBool == True:
-            percentileText = "Percentile: {}\n" \
-                   .format(str(self.intervalObject.percentile))
+            percentileText = "Percentile of Pretest: {}\n" \
+                   .format(str(self.intervalObject.get_percentileX(desiredpercent)))
             f.write(percentileText)
             self.listWidget.addItem(percentileText)
+            percentileText2 = "Percentile of Posttest: {}\n" \
+                .format(str(self.intervalObject.get_percentileY(desiredpercent)))
+            f.write(percentileText2)
+            self.listWidget.addItem(percentileText2)
 
         if self.coeffVarBool == True:
             coeffVarText = "Coefficient of Variance: {}\n" \

@@ -16,7 +16,6 @@ class IntervalDataObject(DataObject):
         self.mode_y = self.get_mode(self.y)
         self.standard_dev_x = self.get_standard_dev(self.x)
         self.standard_dev_y = self.get_standard_dev(self.y)
-        self.percentile = self.get_percentile()
         self.coefficient_of_var_x = self.get_coefficient_of_variance(self.x)
         self.coefficient_of_var_y = self.get_coefficient_of_variance(self.y)
         self.pearson = self.get_pearson_correlation()
@@ -66,10 +65,13 @@ class IntervalDataObject(DataObject):
 
         return self.calculator.calculate_standard_deviation(data)
 
-    def get_percentile(self):
+    def get_percentileX(self, desiredpercent):
 
-        # return self.calculator.calculate_percentiles(percentile, data)
-        pass
+        return self.calculator.calculate_percentiles(desiredpercent, self.x)
+
+    def get_percentileY(self, desiredpercent):
+
+        return self.calculator.calculate_percentiles(desiredpercent, self.y)
 
     def get_coefficient_of_variance(self, data):
 
