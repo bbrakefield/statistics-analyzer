@@ -6,9 +6,9 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-from FrequencyDataScreen import Ui_Form
+
 import csv
 
 typeFlag = 0
@@ -20,6 +20,7 @@ class Ui_Dialog(QFileDialog):
         self.setupUi(Dialog)
 
     def setupUi(self, Dialog):
+
         Dialog.setObjectName("Dialog")
         Dialog.resize(284, 216)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(Dialog)

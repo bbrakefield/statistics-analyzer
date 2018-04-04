@@ -23,7 +23,6 @@ class OrdinalDataObject(DataObject):
 
         self.sign_test = self.get_sign_test()
         self.rank_sum = self.get_rank_sum()
-        self.percentile = None
         self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
         self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
         self.pie_graphs = self.get_pie_charts(self.data)
@@ -92,8 +91,7 @@ class OrdinalDataObject(DataObject):
 
         return self.calculator.calculate_rank_sum_test(self.a, self.b)
 
-    def get_percentile(self):
-
-        # return self.calculator.calculate_percentiles(percentile, data)
+    def get_percentile(self, desiredpercentile):
+        return self.calculator.calculate_percentiles(desiredpercentile, self.data)
         pass
 

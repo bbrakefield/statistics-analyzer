@@ -87,7 +87,7 @@ class Calculations:
 
     @staticmethod
     def calculate_binomial_distribution(prob, trials, succ):
-        fail = prob-1
+        fail = 1-prob
         binDist = ((Calculations.fact(trials))/(Calculations.fact(trials-succ)*Calculations.fact(succ)))*((prob**succ)*(fail**(trials-succ)))
         return binDist
 

@@ -11,8 +11,6 @@ class FrequencyDataObject(DataObject):
         self.chi_square = self.get_chi_square()
         self.expected_mode = self.get_mode(self.x)
         self.actual_mode = self.get_mode(self.y)
-        self.probability_distribution = None  # self.get_probability_distribution();
-        self.binomial_distribution = None  # self.get_binomial_distribution();
         self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
         self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
         self.pie_graphs = self.get_pie_charts(self.data)
@@ -44,15 +42,14 @@ class FrequencyDataObject(DataObject):
 
         return self.calculator.calculate_mode(data)
 
-    def get_probability_distribution(self):
+    def get_probability_distribution(self, successes, trials):
 
-        # return self.calculator.calculate_probability_distribution();
-        pass
+        return self.calculator.calculate_probability_distribution(successes, trials)
 
-    def get_binomial_distribution(self):
+    def get_binomial_distribution(self, probSuccess, trials, successes):
 
-        # return self.calculator.calculate_binomial_distribution()
-        pass
+        return self.calculator.calculate_binomial_distribution(probSuccess, trials, successes)
+
 
 
 
