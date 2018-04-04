@@ -184,30 +184,39 @@ class Ui_Form2(object):
 
 
     def calcSubmit(self):
+        f = open("ordinalDataReport.txt", "w")
+        f.write("===Ordinal Data Report===\n\n")
         if self.medianbool == True:
             medianText = "Median: {}\n" \
                 .format(str(self.ordinalObject.a_median))
+            f.write(medianText)
             self.listWidget.addItem(medianText)
 
         if self.modeBool == True:
             modeText = "Mode: {}\n" \
                 .format(str(self.ordinalObject.a_median))
+            f.write(modeText)
             self.listWidget.addItem(modeText)
 
         if self.signBool == True:
             signText = "Sign Test: {}\n" \
                .format(str(self.ordinalObject.sign_test))
+            f.write(signText)
             self.listWidget.addItem(signText)
 
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
                .format(str(self.ordinalObject.rank_sum))
+            f.write(rankSumText)
             self.listWidget.addItem(rankSumText)
 
         if self.percentileBool == True:
             percentileText = "Percentile: {}\n" \
                .format(str(self.ordinalObject.percentile))
+            f.write(percentileText)
             self.listWidget.addItem(percentileText)
+
+        f.close()
 
     def calcReset(self):
         self.listWidget.clear()

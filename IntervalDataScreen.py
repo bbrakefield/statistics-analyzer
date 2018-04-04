@@ -248,69 +248,84 @@ class Ui_Form1(object):
             self.pearCorBool = True
 
     def calcSubmit(self):
+        f = open("intervalDataReport.txt", "w")
+        f.write("===Interval Data Report===")
         if self.medianBool == True:
             medianText = "Median: {}\n" \
                .format(str(self.intervalObject.median_x))
+            f.write(medianText)
             self.listWidget.addItem(medianText)
 
         if self.modeBool == True:
             modeText = "Mode: {}\n" \
                 .format(str(self.intervalObject.mode_x))
+            f.write(modeText)
             self.listWidget.addItem(modeText)
 
         if self.stanDevBool == True:
             stanDevText = "Standard Deviation: {}\n" \
                    .format(str(self.intervalObject.standard_dev_x))
+            f.write(stanDevText)
             self.listWidget.addItem(stanDevText)
 
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
                    .format(str(self.intervalObject.rank_sum))
+            f.write(rankSumText)
             self.listWidget.addItem(rankSumText)
 
         if self.meanBool == True:
             meanText = "Mean: {}\n" \
                    .format(str(self.intervalObject.mean_x))
+            f.write(meanText)
             self.listWidget.addItem(meanText)
 
         if self.percentileBool == True:
             percentileText = "Percentile: {}\n" \
                    .format(str(self.intervalObject.percentile))
+            f.write(percentileText)
             self.listWidget.addItem(percentileText)
 
         if self.coeffVarBool == True:
             coeffVarText = "Coefficient of Variance: {}\n" \
                    .format(str(self.intervalObject.coefficient_of_var_x))
+            f.write(coeffVarText)
             self.listWidget.addItem(coeffVarText)
 
         if self.spearRankBool == True:
             spearRankText = "Spearman Rank: {}\n" \
                    .format(str(self.intervalObject.spearman))
+            f.write(spearRankText)
             self.listWidget.addItem(spearRankText)
 
         if self.corCoeffBool == True:
             corCoeffText = "Correlation Coefficient: {}\n" \
                    .format(str(self.intervalObject.correlation_coeff))
+            f.write(corCoeffText)
             self.listWidget.addItem(corCoeffText)
 
         if self.varBool == True:
             varText = "Variance: {}\n" \
                    .format(str(self.intervalObject.variance_x))
+            f.write(varText)
             self.listWidget.addItem(varText)
 
         if self.covarBool == True:
             covarText = "Covariance: {}\n" \
                    .format(str(self.intervalObject.covariance))
+            f.write(covarText)
             self.listWidget.addItem(covarText)
 
         if self.leastSquareBool == True:
             leastSquareText = "Least Square Line: {}\n" \
                    .format(str(self.intervalObject.least_square))
+            f.write(leastSquareText)
             self.listWidget.addItem(leastSquareText)
 
         if self.pearCorBool == True:
             pearCorText = "Pearson Correlation: {}\n" \
                    .format(str(self.intervalObject.pearson))
+            f.write(pearCorText)
             self.listWidget.addItem(pearCorText)
 
     def calcReset(self):
