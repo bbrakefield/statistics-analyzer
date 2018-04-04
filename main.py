@@ -181,6 +181,7 @@ if __name__ == '__main__':
     application = StatisticalAnalyzer()
     if typeFlag == 1:
         inter = QtWidgets.QWidget()
+        application.data = ui.getData()
         ui = Ui_Form1()
         ui.setupUi(inter, application.data)
         application.setCentralWidget(inter)

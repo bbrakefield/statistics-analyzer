@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 from interval import IntervalDataObject
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from interval import IntervalDataObject
 class Ui_Form1(object):
     def setupUi(self, Form, interObject):
 
@@ -25,6 +25,7 @@ class Ui_Form1(object):
         self.covarBool = False
         self.leastSquareBool = False
         self.pearCorBool = False
+        self.intervalObject = IntervalDataObject(interObject)
         Form.setObjectName("Form")
         Form.resize(1280, 706)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -249,67 +250,67 @@ class Ui_Form1(object):
     def calcSubmit(self):
         if self.medianBool == True:
             medianText = "Median: {}\n" \
-            #    .format(str(self.intervalObject.get_median))
+               .format(str(self.intervalObject.median_x))
             self.listWidget.addItem(medianText)
 
         if self.modeBool == True:
             modeText = "Mode: {}\n" \
-            #    .format(str(self.intervalObject.get_mode))
+                .format(str(self.intervalObject.mode_x))
             self.listWidget.addItem(modeText)
 
         if self.stanDevBool == True:
             stanDevText = "Standard Deviation: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.standard_dev_x))
             self.listWidget.addItem(stanDevText)
 
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.rank_sum))
             self.listWidget.addItem(rankSumText)
 
         if self.meanBool == True:
             meanText = "Mean: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.mean_x))
             self.listWidget.addItem(meanText)
 
         if self.percentileBool == True:
             percentileText = "Percentile: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.percentile))
             self.listWidget.addItem(percentileText)
 
         if self.coeffVarBool == True:
             coeffVarText = "Coefficient of Variance: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.coefficient_of_var_x))
             self.listWidget.addItem(coeffVarText)
 
         if self.spearRankBool == True:
             spearRankText = "Spearman Rank: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.spearman))
             self.listWidget.addItem(spearRankText)
 
         if self.corCoeffBool == True:
             corCoeffText = "Correlation Coefficient: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.correlation_coeff))
             self.listWidget.addItem(corCoeffText)
 
         if self.varBool == True:
             varText = "Variance: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.variance_x))
             self.listWidget.addItem(varText)
 
         if self.covarBool == True:
             covarText = "Covariance: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.covariance))
             self.listWidget.addItem(covarText)
 
         if self.leastSquareBool == True:
             leastSquareText = "Least Square Line: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.least_square))
             self.listWidget.addItem(leastSquareText)
 
         if self.pearCorBool == True:
             pearCorText = "Pearson Correlation: {}\n" \
-                #    .format(str(self.intervalObject.))
+                   .format(str(self.intervalObject.pearson))
             self.listWidget.addItem(pearCorText)
 
     def calcReset(self):
