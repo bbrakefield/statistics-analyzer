@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 from frequency import FrequencyDataObject
 from PyQt5 import QtCore, QtWidgets
-
+import csv
 
 class Ui_Form(object):
 
@@ -177,13 +177,22 @@ class Ui_Form(object):
         f= open("frequencyDataReport.txt", "w")
         f.write("===Frequency Data Report===\n\n")
         if self.modeBool == True:
-            if self.frequencyObject.actual_mode == None:
-                f.write("Mode: There is no mode to be calculated.\n")
-                modeText = "Mode: There is no mode to be calculated.\n"
+            if self.frequencyObject.expected_mode == None:
+                f.write("Expected Mode: There is no mode to be calculated.\n")
+                modeText = "Expected Mode: There is no mode to be calculated.\n"
                 self.listWidget.addItem(modeText)
             else:
-                f.write("Mode: " + str(self.frequencyObject.actual_mode) + "\n")
-                modeText = "Mode: " + str(self.frequencyObject.actual_mode) + "\n"
+                f.write("Expected Mode: " + str(self.frequencyObject.expected_mode) + "\n")
+                modeText = "Expected Mode: " + str(self.frequencyObject.expected_mode) + "\n"
+                self.listWidget.addItem(modeText)
+
+            if self.frequencyObject.actual_mode == None:
+                f.write("Actual Mode: There is no mode to be calculated.\n")
+                modeText = "Actual Mode: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
+            else:
+                f.write("Actual Mode: " + str(self.frequencyObject.actual_mode) + "\n")
+                modeText = modeText + "Actual Mode: " + str(self.frequencyObject.actual_mode) + "\n"
                 self.listWidget.addItem(modeText)
 
         if self.chiSquarebool==True:
@@ -217,17 +226,15 @@ class Ui_Form(object):
                 self.listWidget.addItem(binText)
 
         f.close()
+        with open('frequencyResults.csv', 'w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(['Mode', 'Chi Square', 'Prob. Dist.', 'Binom Dist.'])
+            writer.writerow([self.frequencyObject.actual_mode, self.frequencyObject.chi_square,
+                             self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
+                             self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)])
+            writer.writerow([self.frequencyObject.actual_mode])
+
 
     def calcReset(self):
         self.listWidget.clear()
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
 
