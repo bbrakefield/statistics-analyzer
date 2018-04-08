@@ -48,7 +48,7 @@ class OrdinalDataObject(DataObject):
         c = []
 
         for row in self.data[1:]:
-            c.append(float(row[2]))
+            c.append(float(row[3]))
         return c
 
     def unpack_d(self):
@@ -56,7 +56,7 @@ class OrdinalDataObject(DataObject):
         d = []
 
         for row in self.data[1:]:
-            d.append(float(row[2]))
+            d.append(float(row[4]))
         return d
 
     def unpack_e(self):
@@ -64,7 +64,7 @@ class OrdinalDataObject(DataObject):
         e = []
 
         for row in self.data[1:]:
-            e.append(float(row[2]))
+            e.append(float(row[5]))
         return e
 
     def unpack_data(self):

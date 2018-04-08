@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 from ordinal import OrdinalDataObject
+import csv
 
 class Ui_Form2(object):
 
@@ -145,19 +146,74 @@ class Ui_Form2(object):
 
 
     def calcSubmit(self):
+
+        headers = ["Choices"]
+        stats = []
         f = open("ordinalDataReport.txt", "w")
         f.write("===Ordinal Data Report===\n\n")
         if self.medianbool == True:
-            medianText = "Median: {}\n" \
+            medianText = "Median A: {}\n" \
                 .format(str(self.ordinalObject.a_median))
             f.write(medianText)
             self.listWidget.addItem(medianText)
 
+            medianText = "Median B: {}\n" \
+                .format(str(self.ordinalObject.b_median))
+            f.write(medianText)
+            self.listWidget.addItem(medianText)
+
+            medianText = "Median C: {}\n" \
+                .format(str(self.ordinalObject.c_median))
+            f.write(medianText)
+            self.listWidget.addItem(medianText)
+
+            medianText = "Median D: {}\n" \
+                .format(str(self.ordinalObject.d_median))
+            f.write(medianText)
+            self.listWidget.addItem(medianText)
+
+            medianText = "Median E: {}\n" \
+                .format(str(self.ordinalObject.e_median))
+            f.write(medianText)
+            self.listWidget.addItem(medianText)
+
+            headers.append("Median")
+            medians = [self.ordinalObject.a_median, self.ordinalObject.b_median,
+                       self.ordinalObject.c_median, self.ordinalObject.d_median,
+                       self.ordinalObject.e_median]
+            stats.append(medians)
+
         if self.modeBool == True:
-            modeText = "Mode: {}\n" \
-                .format(str(self.ordinalObject.a_median))
+            modeText = "Mode A: {}\n" \
+                .format(str(self.ordinalObject.a_mode))
             f.write(modeText)
             self.listWidget.addItem(modeText)
+
+            modeText = "Mode B: {}\n" \
+                .format(str(self.ordinalObject.b_mode))
+            f.write(modeText)
+            self.listWidget.addItem(modeText)
+
+            modeText = "Mode C: {}\n" \
+                .format(str(self.ordinalObject.c_mode))
+            f.write(modeText)
+            self.listWidget.addItem(modeText)
+
+            modeText = "Mode D: {}\n" \
+                .format(str(self.ordinalObject.d_median))
+            f.write(modeText)
+            self.listWidget.addItem(modeText)
+
+            modeText = "Mode E: {}\n" \
+                .format(str(self.ordinalObject.e_mode))
+            f.write(modeText)
+            self.listWidget.addItem(modeText)
+
+            headers.append("Mode")
+            modes = [self.ordinalObject.a_mode, self.ordinalObject.b_mode,
+                       self.ordinalObject.c_mode, self.ordinalObject.d_mode,
+                       self.ordinalObject.e_mode]
+            stats.append(modes)
 
         if self.signBool == True:
             signText = "Sign Test: {}\n" \
@@ -165,27 +221,40 @@ class Ui_Form2(object):
             f.write(signText)
             self.listWidget.addItem(signText)
 
+            headers.append("Sign Test")
+            signs = [self.ordinalObject.sign_test, self.ordinalObject.sign_test, self.ordinalObject.sign_test,
+                     self.ordinalObject.sign_test, self.ordinalObject.sign_test]
+            stats.append(signs)
+
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
                .format(str(self.ordinalObject.rank_sum))
             f.write(rankSumText)
             self.listWidget.addItem(rankSumText)
 
+            headers.append("Rank Sum")
+            ranks_sums = [self.ordinalObject.rank_sum, self.ordinalObject.rank_sum, self.ordinalObject.rank_sum,
+                          self.ordinalObject.rank_sum, self.ordinalObject.rank_sum]
+            stats.append(ranks_sums)
+
         f.close()
+
+        with open('ordinalResults.csv', 'w', newline='') as csv_file:
+
+            writer = csv.writer(csv_file)
+
+            choices = ['A', 'B', 'C', 'D', 'E']
+            stats.insert(0, choices)
+            writer.writerow(headers)
+
+            sublist = []
+            for x in zip(*stats):
+                for y in x:
+                    sublist.append(y)
+                writer.writerow(sublist)
+                sublist = []
 
     def calcReset(self):
         self.listWidget.clear()
 
-
-
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form2()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
 
