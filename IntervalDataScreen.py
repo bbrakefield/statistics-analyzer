@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 from PyQt5 import QtCore, QtWidgets
 from interval import IntervalDataObject
+import csv
+
 class Ui_Form1(object):
     def setupUi(self, Form, interObject):
         self.medianBool = False
@@ -259,25 +261,70 @@ class Ui_Form1(object):
 
     def calcSubmit(self):
         desiredpercent = self.doubleSpinBox.value()
+        headers = ["Phases"]
+        stats = []
         f = open("intervalDataReport.txt", "w")
-        f.write("===Interval Data Report===")
+        f.write("===Interval Data Report===\n\n")
+        if self.meanBool == True:
+            meanText = "Mean X: {}\n" \
+                   .format(str(self.intervalObject.mean_x))
+            f.write(meanText)
+            self.listWidget.addItem(meanText)
+
+            meanText = "Mean Y: {}\n" \
+                .format(str(self.intervalObject.mean_y))
+            f.write(meanText)
+            self.listWidget.addItem(meanText)
+
+            headers.append("Mean")
+            means = [self.intervalObject.mean_x, self.intervalObject.mean_y]
+            stats.append(means)
+
         if self.medianBool == True:
-            medianText = "Median: {}\n" \
+            medianText = "Median X: {}\n" \
                .format(str(self.intervalObject.median_x))
             f.write(medianText)
             self.listWidget.addItem(medianText)
 
+            medianText = "Median Y: {}\n" \
+                .format(str(self.intervalObject.median_y))
+            f.write(medianText)
+            self.listWidget.addItem(medianText)
+
+            headers.append("Median")
+            medians = [self.intervalObject.median_x, self.intervalObject.median_y]
+            stats.append(medians)
+
         if self.modeBool == True:
-            modeText = "Mode: {}\n" \
+            modeText = "Mode X: {}\n" \
                 .format(str(self.intervalObject.mode_x))
             f.write(modeText)
             self.listWidget.addItem(modeText)
 
+            modeText = "Mode Y: {}\n" \
+                .format(str(self.intervalObject.mode_y))
+            f.write(modeText)
+            self.listWidget.addItem(modeText)
+
+            headers.append("Mode")
+            modes = [self.intervalObject.mode_x, self.intervalObject.mode_y]
+            stats.append(modes)
+
         if self.stanDevBool == True:
-            stanDevText = "Standard Deviation: {}\n" \
+            stanDevText = "Standard Deviation X: {}\n" \
                    .format(str(self.intervalObject.standard_dev_x))
             f.write(stanDevText)
             self.listWidget.addItem(stanDevText)
+
+            stanDevText = "Standard Deviation Y: {}\n" \
+                .format(str(self.intervalObject.standard_dev_y))
+            f.write(stanDevText)
+            self.listWidget.addItem(stanDevText)
+
+            headers.append("Standard Dev")
+            stddevs = [self.intervalObject.standard_dev_x, self.intervalObject.standard_dev_y]
+            stats.append(stddevs)
+
 
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
@@ -285,11 +332,9 @@ class Ui_Form1(object):
             f.write(rankSumText)
             self.listWidget.addItem(rankSumText)
 
-        if self.meanBool == True:
-            meanText = "Mean: {}\n" \
-                   .format(str(self.intervalObject.mean_x))
-            f.write(meanText)
-            self.listWidget.addItem(meanText)
+            headers.append("Rank Sum")
+            rank_sums = [self.intervalObject.rank_sum, self.intervalObject.rank_sum]
+            stats.append(rank_sums)
 
         if self.pearCorBool == True:
             pearCorText = "Pearson Correlation: {}\n" \
@@ -297,11 +342,24 @@ class Ui_Form1(object):
             f.write(pearCorText)
             self.listWidget.addItem(pearCorText)
 
+            headers.append("Pearson")
+            pearsons = [self.intervalObject.pearson, self.intervalObject.pearson]
+            stats.append(pearsons)
+
         if self.coeffVarBool == True:
-            coeffVarText = "Coefficient of Variance: {}\n" \
+            coeffVarText = "Coefficient of Variance Y: {}\n" \
                    .format(str(self.intervalObject.coefficient_of_var_x))
             f.write(coeffVarText)
             self.listWidget.addItem(coeffVarText)
+
+            coeffVarText = "Coefficient of Variance Y: {}\n" \
+                .format(str(self.intervalObject.coefficient_of_var_y))
+            f.write(coeffVarText)
+            self.listWidget.addItem(coeffVarText)
+
+            headers.append("Coeff of Var")
+            coeffvars = [self.intervalObject.coefficient_of_var_x, self.intervalObject.coefficient_of_var_y]
+            stats.append(coeffvars)
 
         if self.spearRankBool == True:
             spearRankText = "Spearman Rank: {}\n" \
@@ -309,17 +367,34 @@ class Ui_Form1(object):
             f.write(spearRankText)
             self.listWidget.addItem(spearRankText)
 
+            headers.append("Spearman")
+            spearmans = [self.intervalObject.spearman, self.intervalObject.spearman]
+            stats.append(spearmans)
+
         if self.corCoeffBool == True:
             corCoeffText = "Correlation Coefficient: {}\n" \
                    .format(str(self.intervalObject.correlation_coeff))
             f.write(corCoeffText)
             self.listWidget.addItem(corCoeffText)
 
+            headers.append("Correlation Coeff")
+            corcoeffs = [self.intervalObject.correlation_coeff, self.intervalObject.correlation_coeff]
+            stats.append(corcoeffs)
+
         if self.varBool == True:
-            varText = "Variance: {}\n" \
+            varText = "Variance X: {}\n" \
                    .format(str(self.intervalObject.variance_x))
             f.write(varText)
             self.listWidget.addItem(varText)
+
+            varText = "Variance Y: {}\n" \
+                .format(str(self.intervalObject.variance_y))
+            f.write(varText)
+            self.listWidget.addItem(varText)
+
+            headers.append("Varience")
+            variences = [self.intervalObject.variance_x, self.intervalObject.variance_y]
+            stats.append(variences)
 
         if self.covarBool == True:
             covarText = "Covariance: {}\n" \
@@ -327,31 +402,52 @@ class Ui_Form1(object):
             f.write(covarText)
             self.listWidget.addItem(covarText)
 
+            headers.append("Covarience")
+            covariences = [self.intervalObject.covariance, self.intervalObject.covariance]
+            stats.append(covariences)
+
         if self.leastSquareBool == True:
             leastSquareText = "Least Square Line: {}\n" \
                    .format(str(self.intervalObject.least_square))
             f.write(leastSquareText)
             self.listWidget.addItem(leastSquareText)
 
+            headers.append("Least Square Line")
+            least_squares = [self.intervalObject.least_square, self.intervalObject.least_square]
+            stats.append(least_squares)
+
         if self.percentileBool == True:
+
             percentileText = "Percentile of Pretest: {}\n" \
                    .format(str(self.intervalObject.get_percentileX(desiredpercent)))
             f.write(percentileText)
             self.listWidget.addItem(percentileText)
+
             percentileText2 = "Percentile of Posttest: {}\n" \
                 .format(str(self.intervalObject.get_percentileY(desiredpercent)))
             f.write(percentileText2)
             self.listWidget.addItem(percentileText2)
 
+            headers.append("Percentiles")
+            percentiles = [self.intervalObject.get_percentileX(desiredpercent),
+                           self.intervalObject.get_percentileY(desiredpercent)]
+            stats.append(percentiles)
+
+        f.close()
+
+        with open('intervalResult.csv', 'w', newline='') as csv_file:
+            writer = csv.writer(csv_file)
+
+            phases = ['Pretest', "Posttest"]
+            stats.insert(0, phases)
+            writer.writerow(headers)
+
+            sublist = []
+            for x in zip(*stats):
+                for y in x:
+                    sublist.append(y)
+                writer.writerow(sublist)
+                sublist = []
+
     def calcReset(self):
         self.listWidget.clear()
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui = Ui_Form1()
-    ui.setupUi(Form)
-    Form.show()
-    sys.exit(app.exec_())
-
