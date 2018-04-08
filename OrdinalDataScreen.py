@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 from ordinal import OrdinalDataObject
+from matplottest import App
 import csv
 
 class Ui_Form2(object):
@@ -19,7 +20,12 @@ class Ui_Form2(object):
         self.modeBool = False
         self.rankSumBool = False
         self.signBool = False
-
+        self.verBarBool = False
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+        self.ordObject = ordObject
         self.ordinalObject = OrdinalDataObject(ordObject)
         Form.setObjectName("Form")
         Form.setEnabled(True)
@@ -112,6 +118,12 @@ class Ui_Form2(object):
         self.RankSumCheck.stateChanged.connect(self.setRankBool)
         self.CalcButtonBox.accepted.connect(self.calcSubmit)
         self.CalcButtonBox.clicked.connect(self.calcReset)
+        self.verBarRadioB.clicked.connect(self.setVerBarBool)
+        self.horBarRadioB.clicked.connect(self.setHorBarBool)
+        self.pieChartRadioB.clicked.connect(self.setPieCharBool)
+        self.xyPlotRadioB.clicked.connect(self.setPieCharBool)
+        self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
+        self.graphButtonBox.accepted.connect(self.graphSubmit)
 
 
     def setMedianBool(self):
@@ -144,6 +156,62 @@ class Ui_Form2(object):
         elif self.percentileBool == False:
             self.percentileBool = True
 
+    def graphSubmit(self):
+        if self.verBarBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.ordObject, 3, 1)
+            Dialog.exec_()
+        elif self.horBarBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.ordObject, 3, 2)
+            Dialog.exec_()
+        elif self.pieCharBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.ordObject, 3, 3)
+            Dialog.exec_()
+        elif self.xyPlotBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.ordObject, 3, 4)
+            Dialog.exec_()
+        elif self.normalCurBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.ordObject, 3, 5)
+            Dialog.exec_()
+
+    def setVerBarBool(self):
+        self.verBarBool = True
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+
+    def setHorBarBool(self):
+        self.horBarBool = True
+        self.verBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+
+    def setPieCharBool(self):
+        self.pieCharBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+
+    def setXYPlotBool(self):
+        self.xyPlotBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.normalCurBool = False
+
+    def setNormalCurBool(self):
+        self.normalCurBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
 
     def calcSubmit(self):
 

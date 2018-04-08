@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 from frequency import FrequencyDataObject
 from PyQt5 import QtCore, QtWidgets
+from matplottest import App
 import csv
 
 class Ui_Form(object):
@@ -16,7 +17,11 @@ class Ui_Form(object):
         self.modeBool = False
         self.probabilityBool = False
         self.binomialBool = False
+        self.freqObject = freqObject
         self.frequencyObject = FrequencyDataObject(freqObject)
+        self.verBarBool = False
+        self.horBarBool = False
+        self.pieCharBool = False
 
         Form.setObjectName("Form")
         Form.resize(1280, 706)
@@ -95,15 +100,15 @@ class Ui_Form(object):
         self.buttonBox_2.setGeometry(QtCore.QRect(50, 520, 164, 32))
         self.buttonBox_2.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox_2.setObjectName("buttonBox_2")
-        self.radioButton = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton.setGeometry(QtCore.QRect(20, 40, 141, 18))
-        self.radioButton.setObjectName("radioButton")
-        self.radioButton_2 = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton_2.setGeometry(QtCore.QRect(20, 70, 151, 20))
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.radioButton_3 = QtWidgets.QRadioButton(self.groupBox)
-        self.radioButton_3.setGeometry(QtCore.QRect(20, 100, 97, 18))
-        self.radioButton_3.setObjectName("radioButton_3")
+        self.verBarRadioB = QtWidgets.QRadioButton(self.groupBox)
+        self.verBarRadioB.setGeometry(QtCore.QRect(20, 40, 141, 18))
+        self.verBarRadioB.setObjectName("verBarRadioB")
+        self.horBarRadioB = QtWidgets.QRadioButton(self.groupBox)
+        self.horBarRadioB.setGeometry(QtCore.QRect(20, 70, 151, 20))
+        self.horBarRadioB.setObjectName("horBarRadioB")
+        self.pieCharRadioB = QtWidgets.QRadioButton(self.groupBox)
+        self.pieCharRadioB.setGeometry(QtCore.QRect(20, 100, 97, 18))
+        self.pieCharRadioB.setObjectName("pieCharRadioB")
         self.horizontalLayout.addWidget(self.groupBox)
         self.gridLayout.addLayout(self.horizontalLayout, 1, 0, 1, 1)
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
@@ -129,9 +134,9 @@ class Ui_Form(object):
         self.checkBox_3.setText(_translate("Form", "Probability Distribution"))
         self.checkBox_4.setText(_translate("Form", "Binomial Distribution"))
         self.groupBox.setTitle(_translate("Form", "Graphs"))
-        self.radioButton.setText(_translate("Form", "Vertical Bar Chart"))
-        self.radioButton_2.setText(_translate("Form", "Horizontal Bar Chart"))
-        self.radioButton_3.setText(_translate("Form", "Pie Chart"))
+        self.verBarRadioB.setText(_translate("Form", "Vertical Bar Chart"))
+        self.horBarRadioB.setText(_translate("Form", "Horizontal Bar Chart"))
+        self.pieCharRadioB.setText(_translate("Form", "Pie Chart"))
         self.pbTrialsLabel.setText(_translate("Form", "Trials"))
         self.pbSuccessesLabel.setText(_translate("Form", "Successes"))
         self.bdTrialLabel.setText(_translate("Form", "Trials"))
@@ -143,6 +148,39 @@ class Ui_Form(object):
         self.checkBox_4.stateChanged.connect(self.setBinomialBool)
         self.buttonBox.accepted.connect(self.calcSubmit)
         self.buttonBox.clicked.connect(self.calcReset)
+        self.verBarRadioB.clicked.connect(self.setVerBarBool)
+        self.horBarRadioB.clicked.connect(self.setHorBarBool)
+        self.pieCharRadioB.clicked.connect(self.setPieCharBool)
+        self.buttonBox_2.accepted.connect(self.graphSubmit)
+
+    def setVerBarBool(self):
+        self.verBarBool = True
+        self.horBarBool = False
+        self.pieCharBool = False
+
+    def setHorBarBool(self):
+        self.horBarBool = True
+        self.verBarBool = False
+        self.pieCharBool = False
+
+    def setPieCharBool(self):
+        self.pieCharBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+
+    def graphSubmit(self):
+        if self.verBarBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.freqObject, 2, 1)
+            Dialog.exec_()
+        elif self.horBarBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.freqObject, 2, 2)
+            Dialog.exec_()
+        elif self.pieCharBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.freqObject, 2, 3)
+            Dialog.exec_()
 
     def setModeBool(self):
         if self.modeBool == True:

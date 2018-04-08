@@ -39,7 +39,6 @@ class Plotter:
         ax.set_yticklabels(labels)
         ax.invert_yaxis()
         ax.set_title(row[0])
-
         #self.last_figure_plotted = plot.gcf()  # save plot before showing
 
         z = plot.gcf()

@@ -7,6 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 from PyQt5 import QtCore, QtWidgets
 from interval import IntervalDataObject
+from matplottest import *
 import csv
 
 class Ui_Form1(object):
@@ -24,6 +25,12 @@ class Ui_Form1(object):
         self.covarBool = False
         self.leastSquareBool = False
         self.pearCorBool = False
+        self.verBarBool = False
+        self.horBarBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+        self.pieCharBool = False
+        self.interObject = interObject
         self.intervalObject = IntervalDataObject(interObject)
         Form.setObjectName("Form")
         Form.resize(1280, 706)
@@ -178,8 +185,70 @@ class Ui_Form1(object):
         self.PearCorCheck.stateChanged.connect(self.setPearCorBool)
         self.calcButtonBox.accepted.connect(self.calcSubmit)
         self.calcButtonBox.clicked.connect(self.calcReset)
+        self.VerBarRadioB.clicked.connect(self.setVerBarBool)
+        self.horBarRadioB.clicked.connect(self.setHorBarBool)
+        self.PieCharRadioB.clicked.connect(self.setPieCharBool)
+        self.xyPlotRadioB.clicked.connect(self.setPieCharBool)
+        self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
+        self.graphButtonBox.accepted.connect(self.graphSubmit)
 
 
+    def setVerBarBool(self):
+        self.verBarBool = True
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+
+    def setHorBarBool(self):
+        self.horBarBool = True
+        self.verBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+
+    def setPieCharBool(self):
+        self.pieCharBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+        self.xyPlotBool = False
+        self.normalCurBool = False
+
+    def setXYPlotBool(self):
+        self.xyPlotBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.normalCurBool = False
+
+    def setNormalCurBool(self):
+        self.normalCurBool = True
+        self.verBarBool = False
+        self.horBarBool = False
+        self.pieCharBool = False
+        self.xyPlotBool = False
+
+    def graphSubmit(self):
+        if self.verBarBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.interObject, 1, 1)
+            Dialog.exec_()
+        elif self.horBarBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.interObject, 1, 2)
+            Dialog.exec_()
+        elif self.pieCharBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.interObject, 1, 3)
+            Dialog.exec_()
+        elif self.xyPlotBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.interObject, 1, 4)
+            Dialog.exec_()
+        elif self.normalCurBool == True:
+            Dialog = QtWidgets.QDialog()
+            ui = App(Dialog, self.interObject, 1, 5)
+            Dialog.exec_()
 
     def setMedianBool(self):
         if self.medianBool == True:
