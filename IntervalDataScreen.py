@@ -11,6 +11,11 @@ from matplottest import *
 import csv
 
 class Ui_Form1(object):
+
+    def __init__(self):
+        super().__init__()
+        self.last_figure_plotted = None
+
     def setupUi(self, Form, interObject):
         self.medianBool = False
         self.modeBool = False
@@ -231,23 +236,23 @@ class Ui_Form1(object):
     def graphSubmit(self):
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.interObject, 1, 1)
+            self.ui = App(Dialog, self.interObject, 1, 1)
             Dialog.exec_()
         elif self.horBarBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.interObject, 1, 2)
+            self.ui = App(Dialog, self.interObject, 1, 2)
             Dialog.exec_()
         elif self.pieCharBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.interObject, 1, 3)
+            self.ui = App(Dialog, self.interObject, 1, 3)
             Dialog.exec_()
         elif self.xyPlotBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.interObject, 1, 4)
+            self.ui = App(Dialog, self.interObject, 1, 4)
             Dialog.exec_()
         elif self.normalCurBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.interObject, 1, 5)
+            self.ui = App(Dialog, self.interObject, 1, 5)
             Dialog.exec_()
 
     def setMedianBool(self):
@@ -520,3 +525,7 @@ class Ui_Form1(object):
 
     def calcReset(self):
         self.listWidget.clear()
+
+    def get_last_figure_plotted(self):
+        self.last_figure_plotted = self.ui.get_last_figure_plotted()
+        return self.last_figure_plotted
