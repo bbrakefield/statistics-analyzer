@@ -167,7 +167,6 @@ class Ui_Form(object):
         self.pieCharBool = True
         self.verBarBool = False
         self.horBarBool = False
-
     def graphSubmit(self):
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
@@ -197,6 +196,7 @@ class Ui_Form(object):
     def setProbabilityBool(self):
         if self.probabilityBool == True:
             self.probabilityBool = False
+
         elif self.probabilityBool == False:
             self.probabilityBool = True
 
