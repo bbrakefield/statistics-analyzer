@@ -1,5 +1,3 @@
-import sys
-
 from PyQt5.QtWidgets import QApplication, QDialog, QSizePolicy, QPushButton, QFileDialog
 from graphing import Plotter
 
@@ -87,7 +85,7 @@ class PlotCanvas(FigureCanvas):
 
     def save_graph(self):
         filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
-                                                  "PNG File (*.png)")
+                                                  "JPG File (*.jpg)")
         self.figure.savefig(filename)
 
     def setDataObject(self, dataObject, whichObject, whichGraph):

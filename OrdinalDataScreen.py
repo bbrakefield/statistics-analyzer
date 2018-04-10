@@ -84,9 +84,9 @@ class Ui_Form2(object):
         self.xyPlotRadioB = QtWidgets.QRadioButton(self.groupBox)
         self.xyPlotRadioB.setGeometry(QtCore.QRect(20, 130, 97, 18))
         self.xyPlotRadioB.setObjectName("xyPlotRadioB")
-        self.normalCurRadioB = QtWidgets.QRadioButton(self.groupBox)
-        self.normalCurRadioB.setGeometry(QtCore.QRect(20, 160, 111, 18))
-        self.normalCurRadioB.setObjectName("normalCurRadioB")
+        # self.normalCurRadioB = QtWidgets.QRadioButton(self.groupBox)
+        # self.normalCurRadioB.setGeometry(QtCore.QRect(20, 160, 111, 18))
+        # self.normalCurRadioB.setObjectName("normalCurRadioB")
         self.horizontalLayout.addWidget(self.groupBox)
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
@@ -113,7 +113,7 @@ class Ui_Form2(object):
         self.horBarRadioB.setText(_translate("Form", "Horizontal Bar Chart"))
         self.pieChartRadioB.setText(_translate("Form", "Pie Chart"))
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
-        self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
+        # self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
 
 
         self.modeCheckBox.stateChanged.connect(self.setModeBool)
@@ -126,7 +126,7 @@ class Ui_Form2(object):
         self.horBarRadioB.clicked.connect(self.setHorBarBool)
         self.pieChartRadioB.clicked.connect(self.setPieCharBool)
         self.xyPlotRadioB.clicked.connect(self.setXYPlotBool)
-        self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
+        # self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
         self.graphButtonBox.accepted.connect(self.graphSubmit)
 
 
