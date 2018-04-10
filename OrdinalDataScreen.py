@@ -125,7 +125,7 @@ class Ui_Form2(object):
         self.verBarRadioB.clicked.connect(self.setVerBarBool)
         self.horBarRadioB.clicked.connect(self.setHorBarBool)
         self.pieChartRadioB.clicked.connect(self.setPieCharBool)
-        self.xyPlotRadioB.clicked.connect(self.setPieCharBool)
+        self.xyPlotRadioB.clicked.connect(self.setXYPlotBool)
         self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
         self.graphButtonBox.accepted.connect(self.graphSubmit)
 

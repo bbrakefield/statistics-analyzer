@@ -80,57 +80,22 @@ class PlotCanvas(FigureCanvas):
 
 
     def setDataObject(self, dataObject, whichObject, whichGraph):
+
         self.whichObject = whichObject
+        self.whichGraph = whichGraph
+
         if whichObject == 1:
-            self.intervalObject = IntervalDataObject(dataObject)
-            self.intervalObject.unpack_data()
+            self.object = IntervalDataObject(dataObject)
             self.plot_next()
-            if whichGraph == 1:
-                #display vertical Bar chart
-                print("")
-            elif whichGraph == 2:
-                #display horizontal Bar chart
-                print("")
-            elif whichGraph == 3:
-                # display pie chart
-                print("")
-            elif whichGraph == 4:
-                # display xy graph
-                print("")
-            elif whichGraph == 5:
-                # display normal curve graph
-                print("")
+
         elif whichObject == 2:
-            self.frequencyObject = FrequencyDataObject(dataObject)
-
-            if whichGraph == 1:
-                #display vertical Bar chart
-                self.plot_next()
-
-            elif whichGraph == 2:
-                #display horizontal Bar chart
-                print("")
-            elif whichGraph == 3:
-                # display pie chart
-                print("")
-        elif whichObject == 3:
-            self.ordinalObject = OrdinalDataObject(dataObject)
+            self.object = FrequencyDataObject(dataObject)
             self.plot_next()
-            if whichGraph == 1:
-                #display vertical Bar chart
-                print("")
-            elif whichGraph == 2:
-                #display horizontal Bar chart
-                print("")
-            elif whichGraph == 3:
-                # display pie chart
-                print("")
-            elif whichGraph == 4:
-                # display xy graph
-                print("")
-            elif whichGraph == 5:
-                # display normal curve graph
-                print("")
+
+        elif whichObject == 3:
+            self.object = OrdinalDataObject(dataObject)
+            self.plot_next()
+
 
     def get_last_figure_plotted(self):
         print("")
@@ -138,60 +103,71 @@ class PlotCanvas(FigureCanvas):
 
     def plot_next(self):
 
-        # self.fig.clear()
-        # data = [1, 2, 3, 4, 5]
-        # ax = self.figure.add_subplot(111)
-        # ax.plot(data, 'r-')
-        # ax.set_title('') #Graph Title
-        # self.draw()
-        if self.whichObject == 2:
-            if (self.counter < len(self.frequencyObject.data) - 1):
-                self.counter = self.counter + 1
-            else:
-                self.counter = len(self.frequencyObject.data) - 1
+        if (self.counter < len(self.object.data) - 1):
+            self.counter = self.counter + 1
+        else:
+            self.counter = len(self.object.data) - 1
 
-            print(self.counter)
-            labels = self.frequencyObject.data[0][1:]
-            x_pos = np.arange(len(labels))
+        self.plot_graph()
 
-            self.fig.clear()
-            row = self.frequencyObject.data[self.counter]
-            print(row)
-            values = [int(x) for x in row[1:]]
-            print(values)
-            ax = self.figure.add_subplot(111)
-            ax.bar(x_pos, values, color='blue')
-            ax.set_title(row[0])  # Graph Title
-            #self.last_figure_plotted = self.fig.gca() #--??
-            self.draw()
+    def plot_graph(self):
+
+        print(self.whichObject)
+        print(self.whichGraph)
+        if self.whichObject == 1:
+            '''Interval'''
+            if self.whichGraph == 1:
+                self.plot_vertical_bar_chart()
+
+            elif self.whichGraph == 2:
+                self.plot_horizontal_bar_chart()
+
+            elif self.whichGraph == 3:
+                self.plot_pie_chart()
+
+            elif self.whichGraph == 4:
+                self.plot_xy_graph()
+
+            elif self.whichGraph == 5:
+                self.plot_normal_distribution_curve()
+
+        elif self.whichObject == 2:
+            '''Frequncy'''
+            if self.whichGraph == 1:
+                self.plot_vertical_bar_chart()
+
+            elif self.whichGraph == 2:
+                self.plot_horizontal_bar_chart()
+
+            elif self.whichGraph == 3:
+                self.plot_pie_chart()
+
+        elif self.whichObject == 3:
+            '''Ordinal'''
+            if self.whichGraph == 1:
+                self.plot_vertical_bar_chart()
+
+            elif self.whichGraph == 2:
+                self.plot_horizontal_bar_chart()
+
+            elif self.whichGraph == 3:
+                self.plot_pie_chart()
+
+            elif self.whichGraph == 4:
+                self.plot_xy_graph()
+
+            # elif self.whichGraph == 5:
+            #     self.plot_normal_distribution_curve()
 
     def plot_previous(self):
 
-        # self.fig.clear()
-        # data = [1, 2, 3, 4, 5]
-        # ax = self.figure.add_subplot(111)
-        # ax.plot(data, 'r-')
-        # ax.set_title('') #Graph Title
-        # self.draw()
         if self.whichObject == 2:
             if(self.counter > 1):
                 self.counter = self.counter - 1
             else:
                 self.counter = 1
 
-            print(self.counter)
-            labels = self.frequencyObject.data[0][1:]
-            x_pos = np.arange(len(labels))
-
-            self.fig.clear()
-            row = self.frequencyObject.data[self.counter]
-            print(row)
-            values = [int(x) for x in row[1:]]
-            print(values)
-            ax = self.figure.add_subplot(111)
-            ax.bar(x_pos, values, color='blue')
-            ax.set_title(row[0])  # Graph Title
-            self.draw()
+        self.plot_graph()
 
     def nextButtonHandler(self):
         #if statement for next graph
@@ -201,94 +177,77 @@ class PlotCanvas(FigureCanvas):
         # if statement for next graph
         print("")
 
-    def plot_horizontal_bar_chart(self, labels, y_pos, row):
+    def plot_horizontal_bar_chart(self):
+
         self.fig.clear()
-        """
-        plot.rcdefaults()
-        fig, ax = plot.subplots()
+        print(self.counter)
+        labels = self.object.data[0][1:]
+        y_pos = np.arange(len(labels))
+        row = self.object.data[self.counter]
+        print(row)
         values = [int(x) for x in row[1:]]
+        print(values)
+        ax = self.figure.add_subplot(111)
         ax.barh(y_pos, values, align='center')
-        ax.set_yticks(y_pos)
-        ax.set_yticklabels(labels)
-        ax.invert_yaxis()
-        ax.set_title(row[0])
+        ax.set_title(row[0])  # Graph Title
+        self.draw()
 
-        #self.last_figure_plotted = plot.gcf()  # save plot before showing
+    def plot_vertical_bar_chart(self):
 
-        z = plot.gcf()
-        #plot.close()
-
-        #return z
-        """
-
-    def plot_vertical_bar_chart(self, labels, x_pos, row):
+        print(self.counter)
+        labels = self.object.data[0][1:]
+        x_pos = np.arange(len(labels))
         self.fig.clear()
-        """
-        plot.rcdefaults()
-        fig, ax = plot.subplots()
+        row = self.object.data[self.counter]
+        print(row)
         values = [int(x) for x in row[1:]]
+        print(values)
+        ax = self.figure.add_subplot(111)
         ax.bar(x_pos, values, color='blue')
-        ax.set_title(row[0])
-        plot.xticks(x_pos, labels)
-        ax.set_xticklabels(labels)
+        ax.set_title(row[0])  # Graph Title
+        # self.last_figure_plotted = self.fig.gca() #--??
+        self.draw()
 
-        #self.last_figure_plotted = plot.gcf()  # save plot before showing
+    def plot_pie_chart(self):
 
-        z = plot.gcf()
-        plot.close()
-
-        return z
-        """
-
-    def plot_pie_chart(self, labels, row):
+        print(self.counter)
+        labels = self.object.data[0][1:]
+        x_pos = np.arange(len(labels))
         self.fig.clear()
-        """
-        plot.rcdefaults()
+        row = self.object.data[self.counter]
+        print(row)
         values = [int(x) for x in row[1:]]
         sizes = []
         valsum = sum(values)
-
         for value in values:
-            sizes.append(value/valsum)
+            sizes.append(value / valsum)
 
-        fig, ax = plot.subplots()
+        ax = self.figure.add_subplot(111)
         ax.pie(sizes, labels=labels, autopct='%1.1f%%')
         ax.axis('equal')
         ax.set_title(row[0])
-
-        # self.last_figure_plotted = plot.gcf()  # save plot before showing
-
-        z = plot.gcf()
-        plot.close()
-
-        return z
-        """
+        self.draw()
 
     def plot_normal_distribution_curve(self):
+
         self.fig.clear()
-        """
-        # collect required calculations
-        mean = 0
-        stdev = 1
+        object = IntervalDataObject(self.object.data)
+        mean = object.mean_x
+        stdev = object.standard_dev_x
 
-        # plot between -5 and 5 with .01 steps
-        range = np.arange(-5, 5, 0.01)
+        x = np.linspace(mean - 3*stdev, mean + 3*stdev, 100)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, norm.pdf(x, mean, stdev))
 
-        plot.plot(range, norm.pdf(range, mean, stdev))
-
-        self.last_figure_plotted = plot.gcf()  # save plot before showing
-
-        plot.show()
-        """
+        self.draw()
 
     def plot_xy_graph(self):
         self.fig.clear()
-        """
         values = []
         values2 = []
-        sampleCount = len(self.freqData[1:])
+        sampleCount = len(self.object.data[1:])
 
-        for row in self.freqData[1:]:
+        for row in self.object.data[1:]:
             values.append(int(row[1]))
             values2.append(int(row[2]))
 
@@ -297,15 +256,12 @@ class PlotCanvas(FigureCanvas):
 
         t = np.arange(0, sampleCount, 1)
 
-        plot.plot(t, line1)
-        plot.plot(t, line2)
-        plot.xlabel("Sample #")
-        plot.ylabel("Frequency")
-        plot.title("XY Graph")
-
-        self.last_figure_plotted = plot.gcf()  # save plot before showing
-
-        plot.show()
-        """
+        ax = self.figure.add_subplot(111)
+        ax.plot(t, line1)
+        ax.plot(t, line2)
+        # ax.xlabel("Sample #")
+        # ax.ylabel("Frequency")
+        ax.set_title("XY Graph")
+        self.draw()
 
 
