@@ -193,7 +193,7 @@ class Ui_Form1(object):
         self.VerBarRadioB.clicked.connect(self.setVerBarBool)
         self.horBarRadioB.clicked.connect(self.setHorBarBool)
         self.PieCharRadioB.clicked.connect(self.setPieCharBool)
-        self.xyPlotRadioB.clicked.connect(self.setPieCharBool)
+        self.xyPlotRadioB.clicked.connect(self.setXYPlotBool)
         self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
         self.graphButtonBox.accepted.connect(self.graphSubmit)
 
@@ -369,19 +369,35 @@ class Ui_Form1(object):
             medians = [self.intervalObject.median_x, self.intervalObject.median_y]
             stats.append(medians)
 
-        if self.modeBool == True:
-            modeText = "Mode X: {}\n" \
-                .format(str(self.intervalObject.mode_x))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
 
-            modeText = "Mode Y: {}\n" \
-                .format(str(self.intervalObject.mode_y))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+        if self.modeBool == True:
+            if self.intervalObject.mode_x != None:
+                modeText = "Mode X: {}\n" \
+                    .format(str(self.intervalObject.mode_x))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_x = self.intervalObject.mode_x
+            else:
+                modeText = "Mode X: There is no mode to be calculated.\n"
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_x = "None"
+
+            if self.intervalObject.mode_y != None:
+                modeText = "Mode Y: {}\n" \
+                    .format(str(self.intervalObject.mode_y))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_y = self.intervalObject.mode_y
+
+            else:
+                modeText = "Mode Y: There is no mode to be calculated.\n"
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_y = "None"
 
             headers.append("Mode")
-            modes = [self.intervalObject.mode_x, self.intervalObject.mode_y]
+            modes = [mode_text_x, mode_text_y]
             stats.append(modes)
 
         if self.stanDevBool == True:

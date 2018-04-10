@@ -84,9 +84,9 @@ class Ui_Form2(object):
         self.xyPlotRadioB = QtWidgets.QRadioButton(self.groupBox)
         self.xyPlotRadioB.setGeometry(QtCore.QRect(20, 130, 97, 18))
         self.xyPlotRadioB.setObjectName("xyPlotRadioB")
-        self.normalCurRadioB = QtWidgets.QRadioButton(self.groupBox)
-        self.normalCurRadioB.setGeometry(QtCore.QRect(20, 160, 111, 18))
-        self.normalCurRadioB.setObjectName("normalCurRadioB")
+        # self.normalCurRadioB = QtWidgets.QRadioButton(self.groupBox)
+        # self.normalCurRadioB.setGeometry(QtCore.QRect(20, 160, 111, 18))
+        # self.normalCurRadioB.setObjectName("normalCurRadioB")
         self.horizontalLayout.addWidget(self.groupBox)
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
@@ -113,7 +113,7 @@ class Ui_Form2(object):
         self.horBarRadioB.setText(_translate("Form", "Horizontal Bar Chart"))
         self.pieChartRadioB.setText(_translate("Form", "Pie Chart"))
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
-        self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
+        # self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
 
 
         self.modeCheckBox.stateChanged.connect(self.setModeBool)
@@ -125,8 +125,8 @@ class Ui_Form2(object):
         self.verBarRadioB.clicked.connect(self.setVerBarBool)
         self.horBarRadioB.clicked.connect(self.setHorBarBool)
         self.pieChartRadioB.clicked.connect(self.setPieCharBool)
-        self.xyPlotRadioB.clicked.connect(self.setPieCharBool)
-        self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
+        self.xyPlotRadioB.clicked.connect(self.setXYPlotBool)
+        # self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
         self.graphButtonBox.accepted.connect(self.graphSubmit)
 
 
@@ -256,35 +256,75 @@ class Ui_Form2(object):
             stats.append(medians)
 
         if self.modeBool == True:
-            modeText = "Mode A: {}\n" \
-                .format(str(self.ordinalObject.a_mode))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            if self.ordinalObject.a_mode != None:
+                modeText = "Mode A: {}\n" \
+                    .format(str(self.ordinalObject.a_mode))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_a = self.ordinalObject.a_mode
 
-            modeText = "Mode B: {}\n" \
-                .format(str(self.ordinalObject.b_mode))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            else:
+                f.write("Mode A: There is no mode to be calculated.\n")
+                modeText = "Mode A: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
+                mode_text_a = "None"
 
-            modeText = "Mode C: {}\n" \
-                .format(str(self.ordinalObject.c_mode))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            if self.ordinalObject.b_mode != None:
+                modeText = "Mode B: {}\n" \
+                    .format(str(self.ordinalObject.b_mode))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_b = self.ordinalObject.b_mode
 
-            modeText = "Mode D: {}\n" \
-                .format(str(self.ordinalObject.d_median))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            else:
+                f.write("Mode B: There is no mode to be calculated.\n")
+                modeText = "Mode B: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
+                mode_text_b = "None"
 
-            modeText = "Mode E: {}\n" \
-                .format(str(self.ordinalObject.e_mode))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            if self.ordinalObject.c_mode != None:
+                modeText = "Mode C: {}\n" \
+                    .format(str(self.ordinalObject.c_mode))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_c = self.ordinalObject.c_mode
+
+            else:
+                f.write("Mode C: There is no mode to be calculated.\n")
+                modeText = "Mode C: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
+                mode_text_c = "None"
+
+
+            if self.ordinalObject.d_mode != None:
+                modeText = "Mode D: {}\n" \
+                    .format(str(self.ordinalObject.d_median))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_d = self.ordinalObject.d_mode
+
+            else:
+                f.write("Mode D: There is no mode to be calculated.\n")
+                modeText = "Mode D: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
+                mode_text_d = "None"
+
+
+            if self.ordinalObject.e_mode != None:
+                modeText = "Mode E: {}\n" \
+                    .format(str(self.ordinalObject.e_mode))
+                f.write(modeText)
+                mode_text_e = self.ordinalObject.e_mode
+
+            else:
+                f.write("Mode E: There is no mode to be calculated.\n")
+                modeText = "Mode E: There is no mode to be calculated.\n"
+                self.listWidget.addItem(modeText)
+                mode_text_e = "None"
+
 
             headers.append("Mode")
-            modes = [self.ordinalObject.a_mode, self.ordinalObject.b_mode,
-                       self.ordinalObject.c_mode, self.ordinalObject.d_mode,
-                       self.ordinalObject.e_mode]
+            modes = [mode_text_a, mode_text_b, mode_text_c, mode_text_d, mode_text_e]
             stats.append(modes)
 
         if self.signBool == True:

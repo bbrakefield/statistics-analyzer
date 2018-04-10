@@ -10,7 +10,6 @@ from PyQt5 import QtCore, QtWidgets
 from matplottest import App
 import csv
 
-
 class Ui_Form(object):
 
     def __init__(self):
@@ -272,13 +271,25 @@ class Ui_Form(object):
 
         f.close()
         with open('frequencyResults.csv', 'w', newline='') as csv_file:
+
+            if self.frequencyObject.actual_mode == None:
+                actual_mode_text = "None"
+            else:
+                actual_mode_text = self.frequencyObject.actual_mode
+
+            if self.frequencyObject.expected_mode == None:
+                expected_mode_text = "None"
+            else:
+                expected_mode_text = self.frequencyObject.expected_mode
+
             writer = csv.writer(csv_file)
-            writer.writerow(['Mode', 'Chi Square', 'Prob. Dist.', 'Binom Dist.'])
-            writer.writerow([self.frequencyObject.actual_mode, self.frequencyObject.chi_square,
+            writer.writerow(['Type', 'Mode', 'Chi Square', 'Prob. Dist.', 'Binom Dist.'])
+            writer.writerow(['Actual', actual_mode_text, self.frequencyObject.chi_square,
                              self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
                              self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)])
-            writer.writerow([self.frequencyObject.actual_mode])
-
+            writer.writerow(['Expected', expected_mode_text, self.frequencyObject.chi_square,
+                             self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
+                             self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)])
 
     def calcReset(self):
         self.listWidget.clear()
