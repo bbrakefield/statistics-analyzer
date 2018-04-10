@@ -4,12 +4,12 @@ from PyQt5.QtWidgets import QLineEdit
 class textBoxWrapper(QLineEdit):
     def __init__(self):
         super(QLineEdit, self).__init__()
-        top = None
-        bottom = None
-        left = None
-        right = None
-        xLocation = None
-        yLocation = None
+        self.top = None
+        self.bottom = None
+        self.left = None
+        self.right = None
+        self.xLocation = None
+        self.yLocation = None
 
     def getTop(self):
         return self.top

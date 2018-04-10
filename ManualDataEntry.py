@@ -96,6 +96,7 @@ class ManualDataEntry(QDialog):
 
         self.ColumnPlusButton.clicked.connect(self.addColumnClicked)
         self.ColumnMinusButton.clicked.connect(self.removeColumnClicked)
+        self.RowPlusButton.clicked.connect(self.addRowClicked)
 
     def addColumnClicked(self):
         if self.DataType.currentText() == "Ordinal" and self.columnNumber < 6:
@@ -103,13 +104,30 @@ class ManualDataEntry(QDialog):
             for i in range(self.columnNumber - 1):
                 temp = temp.getRight()
             for i in range(self.rowNumber):
+                #Making text box appear magic happen
                 temp2 = textBoxWrapper()
                 temp2.setParent(self.scrollArea)
                 temp2.setText("Test" + str(i) + str(self.columnNumber))
                 temp2.move(temp.getXLocation()+self.columnDistance, temp.getYLocation())
-                temp2.setLocation(temp.getXLocation()+self.columnDistance, temp.getYLocation())
+                temp2.setLocation(temp.getXLocation() + self.columnDistance, temp.getYLocation())
                 temp2.show()
-
+                #Linking
+                #temp <-> temp2
+                temp.setRight(temp2)
+                temp2.setLeft(temp)
+                #Some element above
+                #<->
+                #temp2
+                if temp.getTop() is not None:
+                    temp = temp.getTop()
+                    temp = temp.getRight()
+                    temp.setBottom(temp2)
+                    temp2.setTop(temp)
+                    temp = temp2.getRight()
+                #move temp
+                if temp.getBottom() is not None:
+                    temp = temp.getBottom()
+            #increment counter
             self.columnNumber = self.columnNumber + 1
 
     def removeColumnClicked(self):
@@ -119,11 +137,39 @@ class ManualDataEntry(QDialog):
                 temp = temp.getRight()
             for i in range(self.rowNumber):
                 temp2 = temp.getRight()
-                temp2.setParent(None)
                 temp.setRight(None)
+                temp2.deleteLater()
                 temp = temp.getBottom()
-            self.columnNumber = self.ColumnNumber - 1
+            self.columnNumber = self.columnNumber - 1
 
+    def addRowClicked(self):
+        temp = self.pointerBox
+        for i in range(self.rowNumber - 1):
+            temp = temp.getBottom()
+        for i in range(self.columnNumber):
+            #Making text box appear magic happen
+            temp2 = textBoxWrapper()
+            temp2.setParent(self.scrollArea)
+            temp2.setText("Test" + str(self.rowNumber) + str(i))
+            temp2.move(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
+            temp2.setLocation(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
+            temp2.show()
+            #Linking
+            #temp
+            #<->
+            #temp2
+            temp.setBottom(temp2)
+            temp2.setTop(temp)
+            #some element to the left <-> temp2
+            if temp.getLeft() is not None:
+                temp = temp.getLeft()
+                temp = temp.getBottom()
+                temp.setRight(temp2)
+                temp2.setLeft(temp)
+                temp = temp2.getTop()
+            if temp.getRight() is not None:
+                temp = temp.getRight()
+        self.rowNumber = self.rowNumber + 1
 
 if __name__ == "__main__":
     import sys
