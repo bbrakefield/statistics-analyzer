@@ -33,7 +33,7 @@ class ManualDataEntry(QDialog):
         self.ordinalColumnMin = 3
         self.ordinalColumnMax = 6
         self.columnDistance = 100
-        self.rowDistance = 50
+        self.rowDistance = 30
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("UserInputDialog")
@@ -87,7 +87,7 @@ class ManualDataEntry(QDialog):
         self.initialBox3.move(210, 35)
         self.initialBox1.setLocation(10, 35)
         self.initialBox2.setLocation(110, 35)
-        self.initialBox3.setLocation(220, 35)
+        self.initialBox3.setLocation(210, 35)
 
         self.RowLabel.setFont(self.LabelFont)
         self.ColumnLabel.setFont(self.LabelFont)

@@ -10,6 +10,8 @@ class textBoxWrapper(QLineEdit):
         self.right = None
         self.xLocation = None
         self.yLocation = None
+        self.setFixedHeight(20)
+        self.setFixedWidth(100)
 
     def getTop(self):
         return self.top
