@@ -1,5 +1,7 @@
 from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit
 from PyQt5 import QtCore, QtGui, QtWidgets
+from textBoxWrapper import textBoxWrapper
+
 
 
 class ManualDataEntry(QDialog):
@@ -54,9 +56,7 @@ class ManualDataEntry(QDialog):
         self.ColumnLabel.move(110, 10)
         self.ColumnMinusButton.move(168, 5)
         self.ColumnPlusButton.move(193, 5)
-
         self.DataType.move(250, 7.5)
-
         self.Submit.move(350, 7.5)
 
         self.RowLabel.setFont(self.LabelFont)
