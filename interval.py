@@ -7,9 +7,9 @@ class IntervalDataObject(DataObject):
     def __init__(self, data):
         super().__init__()
         self.data = data
+        self.unpack_data()
         self.median_x = self.get_median(self.x)
         self.median_y = self.get_median(self.y)
-        self.unpack_data()
         self.mean_x = self.get_mean(self.x)
         self.mean_y = self.get_mean(self.y)
         self.mode_x = self.get_mode(self.x)

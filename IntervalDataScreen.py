@@ -369,6 +369,7 @@ class Ui_Form1(object):
             medians = [self.intervalObject.median_x, self.intervalObject.median_y]
             stats.append(medians)
 
+
         if self.modeBool == True:
             modeText = "Mode X: {}\n" \
                 .format(str(self.intervalObject.mode_x))

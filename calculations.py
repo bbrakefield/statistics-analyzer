@@ -23,7 +23,7 @@ class Calculations:
         if hits[0][0] > hits[1][0]:
             return hits[0][1]
         else:
-            # There is not a median.
+            # There is not a mode.
             return None
 
     @staticmethod
@@ -31,6 +31,7 @@ class Calculations:
 
         sortedList = sorted(data)
         length = len(data)
+
 
         if length < 1:
             return None
