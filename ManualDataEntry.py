@@ -95,24 +95,34 @@ class ManualDataEntry(QDialog):
         self.verticalLayout.addWidget(self.scrollArea)
 
         self.ColumnPlusButton.clicked.connect(self.addColumnClicked)
+        self.ColumnMinusButton.clicked.connect(self.removeColumnClicked)
 
     def addColumnClicked(self):
-        if self.DataType.currentText() == "Ordinal" and self.columnNumber < 5:
+        if self.DataType.currentText() == "Ordinal" and self.columnNumber < 6:
             temp = self.pointerBox
             for i in range(self.columnNumber - 1):
                 temp = temp.getRight()
             for i in range(self.rowNumber):
                 temp2 = textBoxWrapper()
-                temp2.setXLocation(temp.getXLocation() + self.columnDistance)
-                temp2.setYLocation(temp.getYLocation())
-                temp2.setText("Test Value" + str(i))
                 temp2.setParent(self.scrollArea)
-                temp2.move(temp2.getXLocation(), temp2.getYLocation())
-                temp2.setLeft(temp)
-                temp.setRight(temp2)
+                temp2.setText("Test" + str(i) + str(self.columnNumber))
+                temp2.move(temp.getXLocation()+self.columnDistance, temp.getYLocation())
+                temp2.setLocation(temp.getXLocation()+self.columnDistance, temp.getYLocation())
                 temp2.show()
 
-            self.columnNumber = self.columnNumber+1
+            self.columnNumber = self.columnNumber + 1
+
+    def removeColumnClicked(self):
+        if self.columnNumber > 3:
+            temp = self.pointerBox
+            for i in range(self.columnNumber - 2):
+                temp = temp.getRight()
+            for i in range(self.rowNumber):
+                temp2 = temp.getRight()
+                temp2.setParent(None)
+                temp.setRight(None)
+                temp = temp.getBottom()
+            self.columnNumber = self.ColumnNumber - 1
 
 
 if __name__ == "__main__":
