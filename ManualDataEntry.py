@@ -6,9 +6,8 @@ from textBoxWrapper import textBoxWrapper
 
 class ManualDataEntry(QDialog):
     def __init__(self):
-        super(QDialog, self).__init__()
+        super().__init__()
 
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         self.scrollArea = QtWidgets.QScrollArea()
         self.RowLabel = QLabel("Rows", self.scrollArea)
         self.ColumnLabel = QLabel("Columns", self.scrollArea)
@@ -36,6 +35,9 @@ class ManualDataEntry(QDialog):
         self.rowDistance = 30
 
     def setupUi(self, Dialog):
+
+
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         Dialog.setObjectName("UserInputDialog")
         Dialog.resize(800, 600)
 

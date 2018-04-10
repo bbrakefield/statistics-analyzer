@@ -9,6 +9,7 @@ from frequency import FrequencyDataObject
 from PyQt5 import QtCore, QtWidgets
 from matplottest import App
 import csv
+import sys
 
 class Ui_Form(object):
 
@@ -18,6 +19,7 @@ class Ui_Form(object):
 
     def setupUi(self, Form, freqObject):
 
+        self.ui = None
         self.chiSquarebool = False
         self.modeBool = False
         self.probabilityBool = False
@@ -294,6 +296,4 @@ class Ui_Form(object):
     def calcReset(self):
         self.listWidget.clear()
 
-    def get_last_figure_plotted(self):
-        self.last_figure_plotted = self.ui.get_last_figure_plotted()
-        return self.last_figure_plotted
+

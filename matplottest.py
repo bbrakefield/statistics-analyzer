@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import QApplication, QDialog, QSizePolicy, QPushButton, QFileDialog
+from PyQt5.QtWidgets import QDialog, QSizePolicy, QPushButton, QFileDialog
 from graphing import Plotter
-
 from interval import IntervalDataObject
 from frequency import FrequencyDataObject
 from ordinal import OrdinalDataObject
@@ -8,10 +7,9 @@ from ordinal import OrdinalDataObject
 import numpy as np
 from scipy.stats import norm
 
-import matplotlib.pyplot as plot
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-
+from matplotlib.pyplot import close
 
 class App(QDialog):
 
@@ -33,38 +31,44 @@ class App(QDialog):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        m = PlotCanvas(self, width=5, height=4)
-        m.setDataObject(dataObject, whichObject, whichGraph)
-        m.move(0, 0)
+        self.m = PlotCanvas(self, width=5, height=4)
+        self.m.setDataObject(dataObject, whichObject, whichGraph)
+        self.m.move(0, 0)
 
         button = QPushButton('Next\n>>', self)
         button.setToolTip('Next Graph')
         button.setStyleSheet('QPushButton {color: black;}')
         button.move(500, 0)
         button.resize(140, 100)
-        button.clicked.connect(m.plot_next)
+        button.clicked.connect(self.m.plot_next)
 
         button2 = QPushButton('Previous\n<<', self)
         button2.setToolTip('Previous Graph')
         button2.move(500, 110)
         button2.resize(140, 100)
-        button2.clicked.connect(m.plot_previous)
+        button2.clicked.connect(self.m.plot_previous)
 
         button3 = QPushButton('Save Graph As', self)
         button3.setToolTip('Save This Graph')
         button3.move(500, 220)
         button3.resize(140, 100)
-        button3.clicked.connect(m.save_graph)
+        button3.clicked.connect(self.m.save_graph)
 
         self.show()
-
-    def set_last_figure_plotted(self):
-        #send new plot down the line
-        print("")
 
     def get_last_figure_plotted(self):
         self.last_figure_plotted = self.m.get_last_figure_plotted
         return self.last_figure_plotted
+
+    def closeFigure(self):
+        self.m.closeFigure()
+
+    def closeEvent(self, event):
+        self.closeFigure()
+        close('all')
+        close(self.m.fig)
+        self.close()
+
 
 class PlotCanvas(FigureCanvas):
 
@@ -87,6 +91,7 @@ class PlotCanvas(FigureCanvas):
         filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "JPG File (*.jpg)")
         self.figure.savefig(filename)
+
 
     def setDataObject(self, dataObject, whichObject, whichGraph):
 
@@ -178,14 +183,6 @@ class PlotCanvas(FigureCanvas):
 
         self.plot_graph()
 
-    def nextButtonHandler(self):
-        #if statement for next graph
-        print("")
-
-    def prevButtonHandler(self):
-        # if statement for next graph
-        print("")
-
     def plot_horizontal_bar_chart(self):
 
         self.fig.clear()
@@ -273,4 +270,5 @@ class PlotCanvas(FigureCanvas):
         ax.set_title("XY Graph")
         self.draw()
 
-
+    def closeFigure(self):
+        close('all')

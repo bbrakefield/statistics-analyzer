@@ -15,6 +15,7 @@ class StatisticalAnalyzer(QMainWindow):
     def __init__(self):
         super().__init__()
         self.data = []
+        self.data = None
         self.history = []
         self.last_figure_plotted = None
 
@@ -65,6 +66,11 @@ class StatisticalAnalyzer(QMainWindow):
 
     def set_last_figure_plotted(self, plotted_figure):
         self.last_figure_plotted = plotted_figure
+
+    def closeEvent(self, event):
+        event.accept()
+        sys.exit(0)
+
 
 def exit_handler():
     try:

@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-
+from ManualDataEntry import ManualDataEntry
 import csv
 
 typeFlag = 0
@@ -18,6 +18,7 @@ class Ui_Dialog(QFileDialog):
     def __init__(self, Dialog):
         super(QFileDialog, self).__init__()
         self.setupUi(Dialog)
+        self.data = None
 
     def setupUi(self, Dialog):
 
@@ -63,11 +64,10 @@ class Ui_Dialog(QFileDialog):
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
+
+        self.pushButton_2.clicked.connect(self.manualEntry)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.history = []
-
-    def test(self):
-        print("test")
 
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
@@ -82,6 +82,12 @@ class Ui_Dialog(QFileDialog):
                 self.history.append("File Opened: {}".format(filename))
         except IOError:
             print("Could not open file: {}!".format(filename))
+
+    def manualEntry(self):
+        Dialog = QtWidgets.QDialog()
+        self.ui = ManualDataEntry()
+        self.ui.setupUi(Dialog)
+        Dialog.exec_()
 
     def isInterval(self):
         global typeFlag
@@ -114,3 +120,9 @@ class Ui_Dialog(QFileDialog):
         self.FreqRadioB.setText(_translate("Dialog", "Frequency"))
         self.pushButton_2.setText(_translate("Dialog", "Manual Input"))
         self.pushButton.setText(_translate("Dialog", "Open File"))
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    sys.exit(app.exec_())
