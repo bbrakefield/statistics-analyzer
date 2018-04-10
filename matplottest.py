@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QDialog, QSizePolicy, QPushButton
+from PyQt5.QtWidgets import QApplication, QDialog, QSizePolicy, QPushButton, QFileDialog
 from graphing import Plotter
 
 from interval import IntervalDataObject
@@ -9,6 +9,7 @@ from ordinal import OrdinalDataObject
 
 import numpy as np
 from scipy.stats import norm
+
 import matplotlib.pyplot as plot
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -55,7 +56,7 @@ class App(QDialog):
         button3.setToolTip('Save This Graph')
         button3.move(500, 220)
         button3.resize(140, 100)
-        #button3.clicked.connect()
+        button3.clicked.connect(m.save_graph)
 
         self.show()
 
@@ -84,6 +85,10 @@ class PlotCanvas(FigureCanvas):
                                    QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
 
+    def save_graph(self):
+        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+                                                  "PNG File (*.png)")
+        self.figure.savefig(filename)
 
     def setDataObject(self, dataObject, whichObject, whichGraph):
 
