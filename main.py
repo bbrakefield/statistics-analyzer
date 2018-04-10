@@ -15,7 +15,7 @@ class StatisticalAnalyzer(QMainWindow):
     def __init__(self):
         super().__init__()
         self.data = []
-        self.data = None
+        self.csv_data = []
         self.history = []
         self.last_figure_plotted = None
 
@@ -38,7 +38,7 @@ class StatisticalAnalyzer(QMainWindow):
         menu = self.menuBar().addMenu("File")
 
         action = menu.addAction("Save As...")
-        action.triggered.connect(self.save_file)
+        action.triggered.connect(self.save_csv)
 
         # Show UI
         self.show()
@@ -46,11 +46,21 @@ class StatisticalAnalyzer(QMainWindow):
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
                                                   "CSV File (*.csv);;All Files (*)")
-
         self.import_data(filename)
 
-    def save_file(self):
-        print("")
+    def save_csv(self):
+        print("We savin' now ya'll.")
+        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+                                                  "CSV File (*.csv)")
+
+        with open(filename, 'w', newline='') as csv_file:
+
+            writer = csv.writer(csv_file)
+            for row in self.csv_data:
+                writer.writerow(row)
+
+    def set_csv(self, csv_data):
+        self.csv_data = csv_data
 
     def print_data(self):
         for i, line in enumerate(self.data):
@@ -66,11 +76,6 @@ class StatisticalAnalyzer(QMainWindow):
 
     def set_last_figure_plotted(self, plotted_figure):
         self.last_figure_plotted = plotted_figure
-
-    def closeEvent(self, event):
-        event.accept()
-        sys.exit(0)
-
 
 def exit_handler():
     try:
@@ -109,7 +114,7 @@ if __name__ == '__main__':
         freq = QtWidgets.QWidget()
         application.data = ui.getData()
         ui = Ui_Form()
-        ui.setupUi(freq, application.data)
+        ui.setupUi(freq, application.data, application)
         application.setCentralWidget(freq)
         sys.exit(app.exec_())
 

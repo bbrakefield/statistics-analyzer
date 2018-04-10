@@ -9,7 +9,6 @@ from frequency import FrequencyDataObject
 from PyQt5 import QtCore, QtWidgets
 from matplottest import App
 import csv
-import sys
 
 class Ui_Form(object):
 
@@ -17,9 +16,8 @@ class Ui_Form(object):
         super().__init__()
         self.last_figure_plotted = None
 
-    def setupUi(self, Form, freqObject):
-
-        self.ui = None
+    def setupUi(self, Form, freqObject, mainScreenObj):
+        self.mainScreenObject = mainScreenObj
         self.chiSquarebool = False
         self.modeBool = False
         self.probabilityBool = False
@@ -272,28 +270,32 @@ class Ui_Form(object):
                 self.listWidget.addItem(binText)
 
         f.close()
-        with open('frequencyResults.csv', 'w', newline='') as csv_file:
 
-            if self.frequencyObject.actual_mode == None:
-                actual_mode_text = "None"
-            else:
-                actual_mode_text = self.frequencyObject.actual_mode
+        if self.frequencyObject.actual_mode == None:
+            actual_mode_text = "None"
+        else:
+            actual_mode_text = self.frequencyObject.actual_mode
 
-            if self.frequencyObject.expected_mode == None:
-                expected_mode_text = "None"
-            else:
-                expected_mode_text = self.frequencyObject.expected_mode
+        if self.frequencyObject.expected_mode == None:
+            expected_mode_text = "None"
+        else:
+            expected_mode_text = self.frequencyObject.expected_mode
 
-            writer = csv.writer(csv_file)
-            writer.writerow(['Type', 'Mode', 'Chi Square', 'Prob. Dist.', 'Binom Dist.'])
-            writer.writerow(['Actual', actual_mode_text, self.frequencyObject.chi_square,
-                             self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
-                             self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)])
-            writer.writerow(['Expected', expected_mode_text, self.frequencyObject.chi_square,
-                             self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
-                             self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)])
+
+        csv_data =  [['Type', 'Mode', 'Chi Square', 'Prob. Dist.', 'Binom Dist.'],
+                     ['Actual', actual_mode_text, self.frequencyObject.chi_square,
+                         self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
+                         self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)],
+                     ['Expected', expected_mode_text, self.frequencyObject.chi_square,
+                         self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
+                         self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)]]
+
+        self.mainScreenObject.set_csv(csv_data)
+
 
     def calcReset(self):
         self.listWidget.clear()
 
-
+    def get_last_figure_plotted(self):
+        self.last_figure_plotted = self.ui.get_last_figure_plotted()
+        return self.last_figure_plotted
