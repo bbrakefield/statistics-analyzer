@@ -105,25 +105,25 @@ class ManualDataEntry(QDialog):
                 temp = temp.getRight()
             for i in range(self.rowNumber):
                 #Making text box appear magic happen
-                temp2 = textBoxWrapper()
-                temp2.setParent(self.scrollArea)
-                temp2.setText("Test" + str(i) + str(self.columnNumber))
-                temp2.move(temp.getXLocation()+self.columnDistance, temp.getYLocation())
-                temp2.setLocation(temp.getXLocation() + self.columnDistance, temp.getYLocation())
-                temp2.show()
+                newBox = textBoxWrapper()
+                newBox.setParent(self.scrollArea)
+                newBox.setText("Test" + str(i) + str(self.columnNumber))
+                newBox.move(temp.getXLocation()+self.columnDistance, temp.getYLocation())
+                newBox.setLocation(temp.getXLocation() + self.columnDistance, temp.getYLocation())
+                newBox.show()
                 #Linking
                 #temp <-> temp2
-                temp.setRight(temp2)
-                temp2.setLeft(temp)
+                temp.setRight(newBox)
+                newBox.setLeft(temp)
                 #Some element above
                 #<->
-                #temp2
+                #newBox
                 if temp.getTop() is not None:
                     temp = temp.getTop()
                     temp = temp.getRight()
-                    temp.setBottom(temp2)
-                    temp2.setTop(temp)
-                    temp = temp2.getRight()
+                    temp.setBottom(newBox)
+                    newBox.setTop(temp)
+                    temp = newBox.getRight()
                 #move temp
                 if temp.getBottom() is not None:
                     temp = temp.getBottom()
@@ -148,25 +148,25 @@ class ManualDataEntry(QDialog):
             temp = temp.getBottom()
         for i in range(self.columnNumber):
             #Making text box appear magic happen
-            temp2 = textBoxWrapper()
-            temp2.setParent(self.scrollArea)
-            temp2.setText("Test" + str(self.rowNumber) + str(i))
-            temp2.move(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
-            temp2.setLocation(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
-            temp2.show()
+            newBox = textBoxWrapper()
+            newBox.setParent(self.scrollArea)
+            newBox.setText("Test" + str(self.rowNumber) + str(i))
+            newBox.move(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
+            newBox.setLocation(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
+            newBox.show()
             #Linking
             #temp
             #<->
-            #temp2
-            temp.setBottom(temp2)
-            temp2.setTop(temp)
+            #newBox
+            temp.setBottom(newBox)
+            newBox.setTop(temp)
             #some element to the left <-> temp2
             if temp.getLeft() is not None:
                 temp = temp.getLeft()
                 temp = temp.getBottom()
-                temp.setRight(temp2)
-                temp2.setLeft(temp)
-                temp = temp2.getTop()
+                temp.setRight(newBox)
+                newBox.setLeft(temp)
+                temp = newBox.getTop()
             if temp.getRight() is not None:
                 temp = temp.getRight()
         self.rowNumber = self.rowNumber + 1
