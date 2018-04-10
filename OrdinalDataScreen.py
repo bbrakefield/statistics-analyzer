@@ -13,6 +13,10 @@ import csv
 
 class Ui_Form2(object):
 
+    def __init__(self):
+        super().__init__()
+        self.last_figure_plotted = None
+
     def setupUi(self, Form, ordObject):
 
         self.percentileBool = False
@@ -159,23 +163,23 @@ class Ui_Form2(object):
     def graphSubmit(self):
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.ordObject, 3, 1)
+            self.ui = App(Dialog, self.ordObject, 3, 1)
             Dialog.exec_()
         elif self.horBarBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.ordObject, 3, 2)
+            self.ui = App(Dialog, self.ordObject, 3, 2)
             Dialog.exec_()
         elif self.pieCharBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.ordObject, 3, 3)
+            self.ui = App(Dialog, self.ordObject, 3, 3)
             Dialog.exec_()
         elif self.xyPlotBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.ordObject, 3, 4)
+            self.ui = App(Dialog, self.ordObject, 3, 4)
             Dialog.exec_()
         elif self.normalCurBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.ordObject, 3, 5)
+            self.ui = App(Dialog, self.ordObject, 3, 5)
             Dialog.exec_()
 
     def setVerBarBool(self):
@@ -325,4 +329,7 @@ class Ui_Form2(object):
     def calcReset(self):
         self.listWidget.clear()
 
+    def get_last_figure_plotted(self):
+        self.last_figure_plotted = self.ui.get_last_figure_plotted()
+        return self.last_figure_plotted
 

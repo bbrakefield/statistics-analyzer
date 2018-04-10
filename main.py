@@ -16,6 +16,7 @@ class StatisticalAnalyzer(QMainWindow):
         super().__init__()
         self.data = []
         self.history = []
+        self.last_figure_plotted = None
 
         self.calculator = Calculations()
         self.plotter = Plotter()
@@ -44,12 +45,6 @@ class StatisticalAnalyzer(QMainWindow):
         # Show UI
         self.show()
 
-    def on_radio_button_toggled(self):
-        radiobutton = self.sender()
-
-        if radiobutton.isChecked():
-            print("You selected %s" % radiobutton.country)
-
     def open_file(self):
         filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
                                                   "CSV File (*.csv);;All Files (*)")
@@ -60,10 +55,10 @@ class StatisticalAnalyzer(QMainWindow):
         filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "PNG File (*.png)")
 
-        if self.plotter.last_figure_plotted is not None:
-            self.plotter.last_figure_plotted.savefig(filename)
+        if self.last_figure_plotted is not None:
+            self.last_figure_plotted.savefig(filename)
 
-            self.plotter.last_figure_plotted.show()  # temp
+            self.last_figure_plotted.show()  # temp
         else:
             print("Nothing has been plotted; there is nothing to save!")
 
@@ -79,86 +74,8 @@ class StatisticalAnalyzer(QMainWindow):
         except IOError:
             print("Could not open file: {}!".format(filename))
 
-    def button_mean_event(self):
-        temp = self.calculator.calculate_mean(self.data)
-        self.history.append("Mean Calculated: " + str(temp))
-
-    def button_median_event(self):
-        temp = self.calculator.calculate_median(self.data)
-        self.history.append("Median Calculated: " + str(temp))
-
-    def button_mode_event(self):
-        temp = self.calculator.calculate_mode(self.data)
-        self.history.append("Mode Calculated: " + str(temp))
-
-    def button_standard_deviation_event(self):
-        temp = self.calculator.calculate_standard_deviation(self.data)
-        self.history.append("Standard Deviation Calculated: " + str(temp))
-
-    def button_variance_event(self):
-        temp = self.calculator.calculate_variance(self.data)
-        self.history.append("Variance Calculated: " + str(temp))
-
-    def button_coefficient_of_variance(self):
-        temp = self.calculator.calculate_coefficient_of_variance(self.data)
-        self.history.append("Coefficient of Variance Calculated: " + str(temp))
-
-    def button_percentiles_event(self):
-        temp = self.calculator.calculate_percentiles(self.data)
-        self.history.append("Percentiles Calculated: " + str(temp))
-
-    def button_probability_distribution_event(self):
-        temp = self.calculator.calculate_probability_distribution(self.data)
-        self.history.append("Probability Distribution Calculated: " + str(temp))
-
-    def button_binomial_distribution_event(self):
-        temp = self.calculator.calculate_binomial_distribution(self.data)
-        self.history.append("Binomial Distribution Calculated: " + str(temp))
-
-    def button_least_square_line_event(self):
-        temp = self.calculator.calculate_least_square_line(self.data)
-        self.history.append("Least Square Line Calculated: " + str(temp))
-
-    def button_chi_square_event(self):
-        temp = self.calculator.calculate_chi_square(self.data)
-        self.history.append("Chi Square Calculated: " + str(temp))
-
-    def button_correlation_coefficient_event(self):
-        temp = self.calculator.calculate_correlation_coefficient(self.data)
-        self.history.append("Correlation Coefficient Calculated: " + str(temp))
-
-    def button_sign_test_event(self):
-        temp = self.calculator.calculate_sign_test(self.data)
-        self.history.append("Sign Test Calculated: " + str(temp))
-
-    def button_rank_sum_test_event(self):
-        temp = self.calculator.calculate_rank_sum_test(self.data)
-        self.history.append("Rank Sum Test Calculated: " + str(temp))
-
-    def button_spearman_rank_event(self):
-        temp = self.calculator.calculate_spearman_rank(self.data)
-        self.history.append("Spearman Rank Calculated: " + str(temp))
-
-    def button_horizontal_bar_chart_event(self):
-        self.plotter.make_horizontal_bar_chart()
-        self.history.append("Made a horizontal bar chart.")
-
-    def button_vertical_bar_chart_event(self):
-        self.plotter.make_vertical_bar_chart()
-        self.history.append("Made a vertical bar chart.")
-
-    def button_pie_chart_event(self):
-        self.plotter.make_pie_chart()
-        self.history.append("Made a pie chart.")
-
-    def button_normal_distribution_curve_event(self):
-        self.plotter.make_normal_distribution_curve()
-        self.history.append("Made a normal distribution curve.")
-
-    def button_xy_graph_event(self):
-        self.plotter.make_xy_graph()
-        self.history.append("Made an XY graph.")
-
+    def set_last_figure_plotted(self, plotted_figure):
+        self.last_figure_plotted = plotted_figure
 
 def exit_handler():
     try:
@@ -201,5 +118,4 @@ if __name__ == '__main__':
         application.setCentralWidget(freq)
         sys.exit(app.exec_())
 
-    # def freqReport():
-    #     return )
+

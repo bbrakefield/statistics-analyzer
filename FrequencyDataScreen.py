@@ -10,9 +10,15 @@ from PyQt5 import QtCore, QtWidgets
 from matplottest import App
 import csv
 
+
 class Ui_Form(object):
 
+    def __init__(self):
+        super().__init__()
+        self.last_figure_plotted = None
+
     def setupUi(self, Form, freqObject):
+
         self.chiSquarebool = False
         self.modeBool = False
         self.probabilityBool = False
@@ -171,15 +177,15 @@ class Ui_Form(object):
     def graphSubmit(self):
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.freqObject, 2, 1)
+            self.ui = App(Dialog, self.freqObject, 2, 1)
             Dialog.exec_()
         elif self.horBarBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.freqObject, 2, 2)
+            self.ui = App(Dialog, self.freqObject, 2, 2)
             Dialog.exec_()
         elif self.pieCharBool == True:
             Dialog = QtWidgets.QDialog()
-            ui = App(Dialog, self.freqObject, 2, 3)
+            self.ui = App(Dialog, self.freqObject, 2, 3)
             Dialog.exec_()
 
     def setModeBool(self):
@@ -197,6 +203,7 @@ class Ui_Form(object):
     def setProbabilityBool(self):
         if self.probabilityBool == True:
             self.probabilityBool = False
+
         elif self.probabilityBool == False:
             self.probabilityBool = True
 
@@ -276,3 +283,6 @@ class Ui_Form(object):
     def calcReset(self):
         self.listWidget.clear()
 
+    def get_last_figure_plotted(self):
+        self.last_figure_plotted = self.ui.get_last_figure_plotted()
+        return self.last_figure_plotted
