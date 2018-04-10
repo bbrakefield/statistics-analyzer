@@ -97,6 +97,7 @@ class ManualDataEntry(QDialog):
         self.ColumnPlusButton.clicked.connect(self.addColumnClicked)
         self.ColumnMinusButton.clicked.connect(self.removeColumnClicked)
         self.RowPlusButton.clicked.connect(self.addRowClicked)
+        self.RowMinusButton.clicked.connect(self.removeRowClicked)
 
     def addColumnClicked(self):
         if self.DataType.currentText() == "Ordinal" and self.columnNumber < 6:
@@ -170,6 +171,18 @@ class ManualDataEntry(QDialog):
             if temp.getRight() is not None:
                 temp = temp.getRight()
         self.rowNumber = self.rowNumber + 1
+
+    def removeRowClicked(self):
+        if self.rowNumber > 1:
+            temp = self.pointerBox
+            for i in range(self.rowNumber - 2):
+                temp = temp.getBottom()
+            for i in range(self.columnNumber):
+                temp2 = temp.getBottom()
+                temp.setBottom(None)
+                temp2.deleteLater()
+                temp = temp.getRight()
+            self.rowNumber = self.rowNumber - 1
 
 if __name__ == "__main__":
     import sys
