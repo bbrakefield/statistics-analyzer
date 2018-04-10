@@ -36,10 +36,7 @@ class StatisticalAnalyzer(QMainWindow):
         # Create Menu
         menu = self.menuBar().addMenu("File")
 
-        action = menu.addAction("Open Input File")
-        action.triggered.connect(self.open_file)
-
-        action = menu.addAction("Save As PNG")
+        action = menu.addAction("Save As...")
         action.triggered.connect(self.save_file)
 
         # Show UI
@@ -52,15 +49,7 @@ class StatisticalAnalyzer(QMainWindow):
         self.import_data(filename)
 
     def save_file(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
-                                                  "PNG File (*.png)")
-
-        if self.last_figure_plotted is not None:
-            self.last_figure_plotted.savefig(filename)
-
-            self.last_figure_plotted.show()  # temp
-        else:
-            print("Nothing has been plotted; there is nothing to save!")
+        print("")
 
     def print_data(self):
         for i, line in enumerate(self.data):
