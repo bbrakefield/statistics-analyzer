@@ -19,8 +19,21 @@ class ManualDataEntry(QDialog):
         self.LabelFont = QtGui.QFont("Times", 10, QtGui.QFont.Bold)
         self.DataType = QtWidgets.QComboBox(self.scrollArea)
         self.Submit = QtWidgets.QPushButton(self.scrollArea)
+        self.initialBox1 = textBoxWrapper()
+        self.initialBox2 = textBoxWrapper()
+        self.initialBox3 = textBoxWrapper()
+        self.pointerBox = self.initialBox1
         self.rowNumber = 1
-        self.columnNumber = 1
+        self.columnNumber = 3
+
+        self.intervalColumnMin = 3
+        self.intervalColumnMax = 3
+        self.frequencyColumnMin = 3
+        self.frequencyColumnMax = 3
+        self.ordinalColumnMin = 3
+        self.ordinalColumnMax = 6
+        self.columnDistance = 100
+        self.rowDistance = 50
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("UserInputDialog")
@@ -35,11 +48,22 @@ class ManualDataEntry(QDialog):
         self.scrollArea.setObjectName("scrollArea")
         self.scrollArea.setEnabled(True)
 
-        self.DataType.addItem("Interval")
         self.DataType.addItem("Ordinal")
+        self.DataType.addItem("Interval")
         self.DataType.addItem("Frequency")
 
         self.Submit.setText("Submit")
+
+        self.initialBox1.setParent(self.scrollArea)
+        self.initialBox2.setParent(self.scrollArea)
+        self.initialBox3.setParent(self.scrollArea)
+        self.initialBox1.setRight(self.initialBox2)
+        self.initialBox2.setLeft(self.initialBox1)
+        self.initialBox2.setRight(self.initialBox3)
+        self.initialBox3.setLeft(self.initialBox2)
+        self.initialBox2.setText("Test Value1")
+        self.initialBox1.setText("Test Name")
+        self.initialBox3.setText("Test Value2")
 
         self.RowPlusButton.setText("+")
         self.RowMinusButton.setText("-")
@@ -58,12 +82,37 @@ class ManualDataEntry(QDialog):
         self.ColumnPlusButton.move(193, 5)
         self.DataType.move(250, 7.5)
         self.Submit.move(350, 7.5)
+        self.initialBox1.move(10, 35)
+        self.initialBox2.move(110, 35)
+        self.initialBox3.move(210, 35)
+        self.initialBox1.setLocation(10, 35)
+        self.initialBox2.setLocation(110, 35)
+        self.initialBox3.setLocation(220, 35)
 
         self.RowLabel.setFont(self.LabelFont)
         self.ColumnLabel.setFont(self.LabelFont)
 
         self.verticalLayout.addWidget(self.scrollArea)
 
+        self.ColumnPlusButton.clicked.connect(self.addColumnClicked)
+
+    def addColumnClicked(self):
+        if self.DataType.currentText() == "Ordinal" and self.columnNumber < 5:
+            temp = self.pointerBox
+            for i in range(self.columnNumber - 1):
+                temp = temp.getRight()
+            for i in range(self.rowNumber):
+                temp2 = textBoxWrapper()
+                temp2.setXLocation(temp.getXLocation() + self.columnDistance)
+                temp2.setYLocation(temp.getYLocation())
+                temp2.setText("Test Value" + str(i))
+                temp2.setParent(self.scrollArea)
+                temp2.move(temp2.getXLocation(), temp2.getYLocation())
+                temp2.setLeft(temp)
+                temp.setRight(temp2)
+                temp2.show()
+
+            self.columnNumber = self.columnNumber+1
 
 
 if __name__ == "__main__":
