@@ -16,7 +16,9 @@ class Ui_Form1(object):
         super().__init__()
         self.last_figure_plotted = None
 
-    def setupUi(self, Form, interObject):
+    def setupUi(self, Form, interObject, mainScreenObj):
+
+        self.mainScreenObject = mainScreenObj
         self.medianBool = False
         self.modeBool = False
         self.stanDevBool = False
@@ -350,8 +352,7 @@ class Ui_Form1(object):
             f.write(meanText)
             self.listWidget.addItem(meanText)
 
-            headers.append("Mean")
-            means = [self.intervalObject.mean_x, self.intervalObject.mean_y]
+            means = ['Mean', self.intervalObject.mean_x, self.intervalObject.mean_y]
             stats.append(means)
 
         if self.medianBool == True:
@@ -365,10 +366,8 @@ class Ui_Form1(object):
             f.write(medianText)
             self.listWidget.addItem(medianText)
 
-            headers.append("Median")
-            medians = [self.intervalObject.median_x, self.intervalObject.median_y]
+            medians = ['Median', self.intervalObject.median_x, self.intervalObject.median_y]
             stats.append(medians)
-
 
         if self.modeBool == True:
             if self.intervalObject.mode_x != None:
@@ -396,8 +395,7 @@ class Ui_Form1(object):
                 self.listWidget.addItem(modeText)
                 mode_text_y = "None"
 
-            headers.append("Mode")
-            modes = [mode_text_x, mode_text_y]
+            modes = ['Mode', mode_text_x, mode_text_y]
             stats.append(modes)
 
         if self.stanDevBool == True:
@@ -411,10 +409,8 @@ class Ui_Form1(object):
             f.write(stanDevText)
             self.listWidget.addItem(stanDevText)
 
-            headers.append("Standard Dev")
-            stddevs = [self.intervalObject.standard_dev_x, self.intervalObject.standard_dev_y]
+            stddevs = ['Standard Dev', self.intervalObject.standard_dev_x, self.intervalObject.standard_dev_y]
             stats.append(stddevs)
-
 
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
@@ -422,8 +418,7 @@ class Ui_Form1(object):
             f.write(rankSumText)
             self.listWidget.addItem(rankSumText)
 
-            headers.append("Rank Sum")
-            rank_sums = [self.intervalObject.rank_sum, self.intervalObject.rank_sum]
+            rank_sums = ['Rank Sum', self.intervalObject.rank_sum, self.intervalObject.rank_sum]
             stats.append(rank_sums)
 
         if self.pearCorBool == True:
@@ -432,8 +427,7 @@ class Ui_Form1(object):
             f.write(pearCorText)
             self.listWidget.addItem(pearCorText)
 
-            headers.append("Pearson")
-            pearsons = [self.intervalObject.pearson, self.intervalObject.pearson]
+            pearsons = ["Pearson", self.intervalObject.pearson, self.intervalObject.pearson]
             stats.append(pearsons)
 
         if self.coeffVarBool == True:
@@ -447,8 +441,7 @@ class Ui_Form1(object):
             f.write(coeffVarText)
             self.listWidget.addItem(coeffVarText)
 
-            headers.append("Coeff of Var")
-            coeffvars = [self.intervalObject.coefficient_of_var_x, self.intervalObject.coefficient_of_var_y]
+            coeffvars = ["Coeff of Var", self.intervalObject.coefficient_of_var_x, self.intervalObject.coefficient_of_var_y]
             stats.append(coeffvars)
 
         if self.spearRankBool == True:
@@ -457,8 +450,7 @@ class Ui_Form1(object):
             f.write(spearRankText)
             self.listWidget.addItem(spearRankText)
 
-            headers.append("Spearman")
-            spearmans = [self.intervalObject.spearman, self.intervalObject.spearman]
+            spearmans = ['Spearman', self.intervalObject.spearman, self.intervalObject.spearman]
             stats.append(spearmans)
 
         if self.corCoeffBool == True:
@@ -467,8 +459,7 @@ class Ui_Form1(object):
             f.write(corCoeffText)
             self.listWidget.addItem(corCoeffText)
 
-            headers.append("Correlation Coeff")
-            corcoeffs = [self.intervalObject.correlation_coeff, self.intervalObject.correlation_coeff]
+            corcoeffs = ['Correlation Coeff', self.intervalObject.correlation_coeff, self.intervalObject.correlation_coeff]
             stats.append(corcoeffs)
 
         if self.varBool == True:
@@ -482,8 +473,7 @@ class Ui_Form1(object):
             f.write(varText)
             self.listWidget.addItem(varText)
 
-            headers.append("Varience")
-            variences = [self.intervalObject.variance_x, self.intervalObject.variance_y]
+            variences = ['Varience', self.intervalObject.variance_x, self.intervalObject.variance_y]
             stats.append(variences)
 
         if self.covarBool == True:
@@ -492,9 +482,8 @@ class Ui_Form1(object):
             f.write(covarText)
             self.listWidget.addItem(covarText)
 
-            headers.append("Covarience")
-            covariences = [self.intervalObject.covariance, self.intervalObject.covariance]
-            stats.append(covariences)
+            covariances = ['Covariance', self.intervalObject.covariance, self.intervalObject.covariance]
+            stats.append(covariances)
 
         if self.leastSquareBool == True:
             leastSquareText = "Least Square Line: {}\n" \
@@ -502,8 +491,7 @@ class Ui_Form1(object):
             f.write(leastSquareText)
             self.listWidget.addItem(leastSquareText)
 
-            headers.append("Least Square Line")
-            least_squares = [self.intervalObject.least_square, self.intervalObject.least_square]
+            least_squares = ['Least Square Line', self.intervalObject.least_square, self.intervalObject.least_square]
             stats.append(least_squares)
 
         if self.percentileBool == True:
@@ -518,26 +506,17 @@ class Ui_Form1(object):
             f.write(percentileText2)
             self.listWidget.addItem(percentileText2)
 
-            headers.append("Percentiles")
-            percentiles = [self.intervalObject.get_percentileX(desiredpercent),
+            percentiles = ['Percentiles', self.intervalObject.get_percentileX(desiredpercent),
                            self.intervalObject.get_percentileY(desiredpercent)]
             stats.append(percentiles)
 
         f.close()
 
-        with open('intervalResult.csv', 'w', newline='') as csv_file:
-            writer = csv.writer(csv_file)
 
-            phases = ['Pretest', "Posttest"]
-            stats.insert(0, phases)
-            writer.writerow(headers)
+        phases = ['Stats', 'Pretest', "Posttest"]
+        stats.insert(0, phases)
 
-            sublist = []
-            for x in zip(*stats):
-                for y in x:
-                    sublist.append(y)
-                writer.writerow(sublist)
-                sublist = []
+        self.mainScreenObject.set_csv(stats)
 
     def calcReset(self):
         self.listWidget.clear()

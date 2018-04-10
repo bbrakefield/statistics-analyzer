@@ -17,8 +17,9 @@ class Ui_Form2(object):
         super().__init__()
         self.last_figure_plotted = None
 
-    def setupUi(self, Form, ordObject):
+    def setupUi(self, Form, ordObject, mainScreenObj):
 
+        self.mainScreenObject = mainScreenObj
         self.percentileBool = False
         self.medianbool = False
         self.modeBool = False
@@ -249,8 +250,7 @@ class Ui_Form2(object):
             f.write(medianText)
             self.listWidget.addItem(medianText)
 
-            headers.append("Median")
-            medians = [self.ordinalObject.a_median, self.ordinalObject.b_median,
+            medians = ["Median", self.ordinalObject.a_median, self.ordinalObject.b_median,
                        self.ordinalObject.c_median, self.ordinalObject.d_median,
                        self.ordinalObject.e_median]
             stats.append(medians)
@@ -322,9 +322,7 @@ class Ui_Form2(object):
                 self.listWidget.addItem(modeText)
                 mode_text_e = "None"
 
-
-            headers.append("Mode")
-            modes = [mode_text_a, mode_text_b, mode_text_c, mode_text_d, mode_text_e]
+            modes = ["Mode", mode_text_a, mode_text_b, mode_text_c, mode_text_d, mode_text_e]
             stats.append(modes)
 
         if self.signBool == True:
@@ -333,8 +331,7 @@ class Ui_Form2(object):
             f.write(signText)
             self.listWidget.addItem(signText)
 
-            headers.append("Sign Test")
-            signs = [self.ordinalObject.sign_test, self.ordinalObject.sign_test, self.ordinalObject.sign_test,
+            signs = ["Sign Test", self.ordinalObject.sign_test, self.ordinalObject.sign_test, self.ordinalObject.sign_test,
                      self.ordinalObject.sign_test, self.ordinalObject.sign_test]
             stats.append(signs)
 
@@ -344,27 +341,18 @@ class Ui_Form2(object):
             f.write(rankSumText)
             self.listWidget.addItem(rankSumText)
 
-            headers.append("Rank Sum")
-            ranks_sums = [self.ordinalObject.rank_sum, self.ordinalObject.rank_sum, self.ordinalObject.rank_sum,
+            ranks_sums = ["Rank Sum", self.ordinalObject.rank_sum, self.ordinalObject.rank_sum, self.ordinalObject.rank_sum,
                           self.ordinalObject.rank_sum, self.ordinalObject.rank_sum]
             stats.append(ranks_sums)
 
         f.close()
 
-        with open('ordinalResults.csv', 'w', newline='') as csv_file:
+        choices = ['Stats', 'A', 'B', 'C', 'D', 'E']
+        stats.insert(0, choices)
+        #writer.writerow(headers)
 
-            writer = csv.writer(csv_file)
+        self.mainScreenObject.set_csv(stats)
 
-            choices = ['A', 'B', 'C', 'D', 'E']
-            stats.insert(0, choices)
-            writer.writerow(headers)
-
-            sublist = []
-            for x in zip(*stats):
-                for y in x:
-                    sublist.append(y)
-                writer.writerow(sublist)
-                sublist = []
 
     def calcReset(self):
         self.listWidget.clear()

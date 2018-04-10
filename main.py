@@ -49,7 +49,6 @@ class StatisticalAnalyzer(QMainWindow):
         self.import_data(filename)
 
     def save_csv(self):
-        print("We savin' now ya'll.")
         filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "CSV File (*.csv)")
 
@@ -100,14 +99,14 @@ if __name__ == '__main__':
         inter = QtWidgets.QWidget()
         application.data = ui.getData()
         ui = Ui_Form1()
-        ui.setupUi(inter, application.data)
+        ui.setupUi(inter, application.data, application)
         application.setCentralWidget(inter)
         sys.exit(app.exec_())
     elif typeFlag == 2:
         ordn = QtWidgets.QWidget()
         application.data = ui.getData()
         ui = Ui_Form2()
-        ui.setupUi(ordn, application.data)
+        ui.setupUi(ordn, application.data, application)
         application.setCentralWidget(ordn)
         sys.exit(app.exec_())
     elif typeFlag == 3:

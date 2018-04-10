@@ -175,11 +175,10 @@ class PlotCanvas(FigureCanvas):
 
     def plot_previous(self):
 
-        if self.whichObject == 2:
-            if(self.counter > 1):
-                self.counter = self.counter - 1
-            else:
-                self.counter = 1
+        if(self.counter > 1):
+            self.counter = self.counter - 1
+        else:
+            self.counter = 1
 
         self.plot_graph()
 
