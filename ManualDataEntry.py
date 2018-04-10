@@ -98,6 +98,7 @@ class ManualDataEntry(QDialog):
         self.ColumnMinusButton.clicked.connect(self.removeColumnClicked)
         self.RowPlusButton.clicked.connect(self.addRowClicked)
         self.RowMinusButton.clicked.connect(self.removeRowClicked)
+        self.Submit.clicked.connect(self.submitButtonClicked)
 
     def addColumnClicked(self):
         if self.DataType.currentText() == "Ordinal" and self.columnNumber < 6:
@@ -183,6 +184,21 @@ class ManualDataEntry(QDialog):
                 temp2.deleteLater()
                 temp = temp.getRight()
             self.rowNumber = self.rowNumber - 1
+
+    def submitButtonClicked(self):
+        str = ""
+        column = self.pointerBox
+        row = self.pointerBox
+        for i in range(self.rowNumber):
+            for i in range(self.columnNumber):
+                if i != self.columnNumber-1:
+                    str = str + column.text() + ", "
+                else:
+                    str = str + column.text() + "\n"
+                column = column.getRight()
+            row = row.getBottom()
+            column = row
+
 
 if __name__ == "__main__":
     import sys
