@@ -4,8 +4,6 @@
     <list default="true" id="c3d881e7-e4c7-467f-b84f-fd15415a93c0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/IntervalDataScreen.py" afterPath="$PROJECT_DIR$/IntervalDataScreen.py" />
-      <change beforePath="$PROJECT_DIR$/calculations.py" afterPath="$PROJECT_DIR$/calculations.py" />
-      <change beforePath="$PROJECT_DIR$/interval.py" afterPath="$PROJECT_DIR$/interval.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +15,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/statistics_analyzer1$main.coverage" NAME="main Coverage Results" MODIFIED="1523291605161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/statistics_analyzer1$FrequencyDataScreen.coverage" NAME="FrequencyDataScreen Coverage Results" MODIFIED="1522703286472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/statistics_analyzer$main.coverage" NAME="main Coverage Results" MODIFIED="1523337269876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/statistics_analyzer$main.coverage" NAME="main Coverage Results" MODIFIED="1523337881694" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/senior_project$main.coverage" NAME="main Coverage Results" MODIFIED="1522685605260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
@@ -72,11 +70,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="IntervalDataScreen.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="IntervalDataScreen.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/IntervalDataScreen.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="159">
-                  <caret line="512" column="0" lean-forward="false" selection-start-line="512" selection-start-column="0" selection-end-line="512" selection-end-column="0" />
+                <state relative-caret-position="220">
+                  <caret line="394" column="33" lean-forward="true" selection-start-line="394" selection-start-column="33" selection-end-line="394" selection-end-column="33" />
                   <folding>
                     <element signature="e#206#241#0" expanded="true" />
                   </folding>
@@ -118,10 +116,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="interval.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="interval.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/interval.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="126">
+                <state relative-caret-position="189">
                   <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
                   <folding>
                     <element signature="e#0#34#0" expanded="true" />
@@ -144,11 +142,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="OrdinalDataScreen.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="OrdinalDataScreen.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/OrdinalDataScreen.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1519">
-                  <caret line="315" column="33" lean-forward="true" selection-start-line="315" selection-start-column="33" selection-end-line="315" selection-end-column="33" />
+                <state relative-caret-position="238">
+                  <caret line="266" column="16" lean-forward="true" selection-start-line="266" selection-start-column="16" selection-end-line="268" selection-end-column="49" />
                   <folding>
                     <element signature="e#199#234#0" expanded="true" />
                   </folding>
@@ -156,11 +154,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="calculations.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="calculations.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/calculations.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="42">
-                  <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+                <state relative-caret-position="672">
+                  <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -216,9 +214,9 @@
         <option value="$PROJECT_DIR$/ManualDataEntry.py" />
         <option value="$PROJECT_DIR$/FrequencyDataScreen.py" />
         <option value="$PROJECT_DIR$/OrdinalDataScreen.py" />
-        <option value="$PROJECT_DIR$/IntervalDataScreen.py" />
         <option value="$PROJECT_DIR$/calculations.py" />
         <option value="$PROJECT_DIR$/interval.py" />
+        <option value="$PROJECT_DIR$/IntervalDataScreen.py" />
       </list>
     </option>
   </component>
@@ -485,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523335738056</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixed bug with median in Interval data object.">
+      <created>1523337357009</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1523337357009</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -572,17 +577,11 @@
     <MESSAGE value="Can now preview graphs in GUI." />
     <MESSAGE value="Improved Frequency CSV report." />
     <MESSAGE value="Improved Ordinal CSV report." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved Ordinal CSV report." />
+    <MESSAGE value="Fixed bug with median in Interval data object." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with median in Interval data object." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/calculations.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
@@ -885,16 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OrdinalDataScreen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1519">
-          <caret line="315" column="33" lean-forward="true" selection-start-line="315" selection-start-column="33" selection-end-line="315" selection-end-column="33" />
-          <folding>
-            <element signature="e#199#234#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FrequencyDataScreen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3682">
@@ -905,19 +894,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IntervalDataScreen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="512" column="0" lean-forward="false" selection-start-line="512" selection-start-column="0" selection-end-line="512" selection-end-column="0" />
-          <folding>
-            <element signature="e#206#241#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="189">
           <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
@@ -927,9 +906,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/calculations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        <state relative-caret-position="672">
+          <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OrdinalDataScreen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="230" column="0" lean-forward="true" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding>
+            <element signature="e#199#234#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IntervalDataScreen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="394" column="33" lean-forward="true" selection-start-line="394" selection-start-column="33" selection-end-line="394" selection-end-column="33" />
+          <folding>
+            <element signature="e#206#241#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

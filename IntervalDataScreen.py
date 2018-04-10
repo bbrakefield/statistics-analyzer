@@ -371,18 +371,33 @@ class Ui_Form1(object):
 
 
         if self.modeBool == True:
-            modeText = "Mode X: {}\n" \
-                .format(str(self.intervalObject.mode_x))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            if self.intervalObject.mode_x != None:
+                modeText = "Mode X: {}\n" \
+                    .format(str(self.intervalObject.mode_x))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_x = self.intervalObject.mode_x
+            else:
+                modeText = "Mode X: There is no mode to be calculated.\n"
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_x = "None"
 
-            modeText = "Mode Y: {}\n" \
-                .format(str(self.intervalObject.mode_y))
-            f.write(modeText)
-            self.listWidget.addItem(modeText)
+            if self.intervalObject.mode_y != None:
+                modeText = "Mode Y: {}\n" \
+                    .format(str(self.intervalObject.mode_y))
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_y = self.intervalObject.mode_y
+
+            else:
+                modeText = "Mode Y: There is no mode to be calculated.\n"
+                f.write(modeText)
+                self.listWidget.addItem(modeText)
+                mode_text_y = "None"
 
             headers.append("Mode")
-            modes = [self.intervalObject.mode_x, self.intervalObject.mode_y]
+            modes = [mode_text_x, mode_text_y]
             stats.append(modes)
 
         if self.stanDevBool == True:
