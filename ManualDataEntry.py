@@ -123,7 +123,7 @@ class ManualDataEntry(QDialog):
                     temp = temp.getRight()
                     temp.setBottom(newBox)
                     newBox.setTop(temp)
-                    temp = newBox.getRight()
+                    temp = newBox.getLeft()
                 #move temp
                 if temp.getBottom() is not None:
                     temp = temp.getBottom()
