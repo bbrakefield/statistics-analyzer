@@ -51,6 +51,12 @@ class App(QDialog):
         button2.resize(140, 100)
         button2.clicked.connect(m.plot_previous)
 
+        button3 = QPushButton('Save Graph As', self)
+        button3.setToolTip('Save This Graph')
+        button3.move(500, 220)
+        button3.resize(140, 100)
+        #button3.clicked.connect()
+
         self.show()
 
     def set_last_figure_plotted(self):
