@@ -85,9 +85,6 @@ class Ui_Form2(object):
         self.xyPlotRadioB = QtWidgets.QRadioButton(self.groupBox)
         self.xyPlotRadioB.setGeometry(QtCore.QRect(20, 130, 97, 18))
         self.xyPlotRadioB.setObjectName("xyPlotRadioB")
-        # self.normalCurRadioB = QtWidgets.QRadioButton(self.groupBox)
-        # self.normalCurRadioB.setGeometry(QtCore.QRect(20, 160, 111, 18))
-        # self.normalCurRadioB.setObjectName("normalCurRadioB")
         self.horizontalLayout.addWidget(self.groupBox)
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
         self.groupBox_3 = QtWidgets.QGroupBox(Form)
@@ -97,6 +94,13 @@ class Ui_Form2(object):
         self.listWidget.setGeometry(QtCore.QRect(10, 10, 601, 661))
         self.listWidget.setObjectName("listWidget")
         self.gridLayout.addWidget(self.groupBox_3, 0, 1, 1, 1)
+        self.selectAllButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.selectAllButton.setGeometry(QtCore.QRect(10, 140, 100, 30))
+        self.selectAllButton.setObjectName("selectAllButton")
+
+        self.deselectAllButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.deselectAllButton.setGeometry(QtCore.QRect(110, 140, 100, 30))
+        self.deselectAllButton.setObjectName("deselectAllButton")
         self.retranslateUi(Form)
 
 
@@ -114,8 +118,8 @@ class Ui_Form2(object):
         self.horBarRadioB.setText(_translate("Form", "Horizontal Bar Chart"))
         self.pieChartRadioB.setText(_translate("Form", "Pie Chart"))
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
-        # self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
-
+        self.selectAllButton.setText(_translate("Form", "Select All"))
+        self.deselectAllButton.setText(_translate("Form", "Deselect All"))
 
         self.modeCheckBox.stateChanged.connect(self.setModeBool)
         self.MediancheckBox.stateChanged.connect(self.setMedianBool)
@@ -127,9 +131,21 @@ class Ui_Form2(object):
         self.horBarRadioB.clicked.connect(self.setHorBarBool)
         self.pieChartRadioB.clicked.connect(self.setPieCharBool)
         self.xyPlotRadioB.clicked.connect(self.setXYPlotBool)
-        # self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
         self.graphButtonBox.accepted.connect(self.graphSubmit)
+        self.selectAllButton.clicked.connect(self.selectAll)
+        self.deselectAllButton.clicked.connect(self.deselectAll)
 
+    def selectAll(self):
+        self.modeCheckBox.setChecked(True)
+        self.RankSumCheck.setChecked(True)
+        self.MediancheckBox.setChecked(True)
+        self.SignTestCheck.setChecked(True)
+
+    def deselectAll(self):
+        self.modeCheckBox.setChecked(False)
+        self.RankSumCheck.setChecked(False)
+        self.MediancheckBox.setChecked(False)
+        self.SignTestCheck.setChecked(False)
 
     def setMedianBool(self):
         if self.medianbool == True:

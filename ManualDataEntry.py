@@ -41,6 +41,8 @@ class ManualDataEntry(QDialog):
         Dialog.setObjectName("UserInputDialog")
         Dialog.resize(800, 600)
 
+        self.scrollArea.setWidgetResizable(True)
+
         self.verticalLayout.setObjectName("VerticalLayout")
 
         self.scrollArea.setGeometry(QtCore.QRect(0, 0, 800, 600))
@@ -49,10 +51,15 @@ class ManualDataEntry(QDialog):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollArea.setEnabled(True)
-
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy)
         self.DataType.addItem("Ordinal")
         self.DataType.addItem("Interval")
         self.DataType.addItem("Frequency")
+
         if self.typeFlag is not None:
             self.DataType.setCurrentIndex(self.typeFlag-1)
 

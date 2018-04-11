@@ -125,6 +125,13 @@ class Ui_Form(object):
         self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.gridLayout.addWidget(self.groupBox_3, 1, 1, 1, 1)
+        self.selectAllButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.selectAllButton.setGeometry(QtCore.QRect(10, 320, 100, 30))
+        self.selectAllButton.setObjectName("selectAllButton")
+
+        self.deselectAllButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.deselectAllButton.setGeometry(QtCore.QRect(110, 320, 100, 30))
+        self.deselectAllButton.setObjectName("deselectAllButton")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -147,6 +154,8 @@ class Ui_Form(object):
         self.bdTrialLabel.setText(_translate("Form", "Trials"))
         self.bdSuccessLabel.setText(_translate("Form", "Successes"))
         self.bdProbSuccess.setText(_translate("Form", "Probability of Success:"))
+        self.selectAllButton.setText(_translate("Form", "Select All"))
+        self.deselectAllButton.setText(_translate("Form", "Deselect All"))
         self.checkBox.stateChanged.connect(self.setModeBool)
         self.checkBox_2.stateChanged.connect(self.setChiSquareBool)
         self.checkBox_3.stateChanged.connect(self.setProbabilityBool)
@@ -157,6 +166,20 @@ class Ui_Form(object):
         self.horBarRadioB.clicked.connect(self.setHorBarBool)
         self.pieCharRadioB.clicked.connect(self.setPieCharBool)
         self.buttonBox_2.accepted.connect(self.graphSubmit)
+        self.selectAllButton.clicked.connect(self.selectAll)
+        self.deselectAllButton.clicked.connect(self.deselectAll)
+
+    def selectAll(self):
+        self.checkBox.setChecked(True)
+        self.checkBox_2.setChecked(True)
+        self.checkBox_3.setChecked(True)
+        self.checkBox_4.setChecked(True)
+
+    def deselectAll(self):
+        self.checkBox.setChecked(False)
+        self.checkBox_2.setChecked(False)
+        self.checkBox_3.setChecked(False)
+        self.checkBox_4.setChecked(False)
 
     def setVerBarBool(self):
         self.verBarBool = True

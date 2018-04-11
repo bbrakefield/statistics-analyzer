@@ -147,6 +147,13 @@ class Ui_Form1(object):
         self.listWidget.setGeometry(QtCore.QRect(10, 10, 601, 661))
         self.listWidget.setObjectName("listWidget")
         self.gridLayout.addWidget(self.groupBox_3, 0, 1, 1, 1)
+        self.selectAllButton = QtWidgets.QPushButton(self.calcGroupBox)
+        self.selectAllButton.setGeometry(QtCore.QRect(10, 440, 100, 30))
+        self.selectAllButton.setObjectName("selectAllButton")
+
+        self.deselectAllButton = QtWidgets.QPushButton(self.calcGroupBox)
+        self.deselectAllButton.setGeometry(QtCore.QRect(110, 440, 100, 30))
+        self.deselectAllButton.setObjectName("deselectAllButton")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -175,7 +182,8 @@ class Ui_Form1(object):
         self.xyPlotRadioB.setText(_translate("Form", "XY Plot"))
         self.normalCurRadioB.setText(_translate("Form", "Normal Curve"))
         self.percentileLabel.setText(_translate("Form", "Desired Percentile:"))
-
+        self.selectAllButton.setText(_translate("Form", "Select All"))
+        self.deselectAllButton.setText(_translate("Form", "Deselect All"))
 
         self.medianCheckBox.stateChanged.connect(self.setMedianBool)
         self.modeCheckBox.stateChanged.connect(self.setModeBool)
@@ -198,7 +206,38 @@ class Ui_Form1(object):
         self.xyPlotRadioB.clicked.connect(self.setXYPlotBool)
         self.normalCurRadioB.clicked.connect(self.setNormalCurBool)
         self.graphButtonBox.accepted.connect(self.graphSubmit)
+        self.selectAllButton.clicked.connect(self.selectAll)
+        self.deselectAllButton.clicked.connect(self.deselectAll)
 
+    def selectAll(self):
+        self.meanCheckBox.setChecked(True)
+        self.modeCheckBox.setChecked(True)
+        self.medianCheckBox.setChecked(True)
+        self.StanDevCheck.setChecked(True)
+        self.RankSumCheck.setChecked(True)
+        self.PercentileCheck.setChecked(True)
+        self.CoeffVarCheck.setChecked(True)
+        self.CorCoeffCheck.setChecked(True)
+        self.VarCheckBox.setChecked(True)
+        self.CovarCheckBox.setChecked(True)
+        self.SpearRankCheck.setChecked(True)
+        self.LeastSquareCheck.setChecked(True)
+        self.PearCorCheck.setChecked(True)
+
+    def deselectAll(self):
+        self.meanCheckBox.setChecked(False)
+        self.modeCheckBox.setChecked(False)
+        self.medianCheckBox.setChecked(False)
+        self.StanDevCheck.setChecked(False)
+        self.RankSumCheck.setChecked(False)
+        self.PercentileCheck.setChecked(False)
+        self.CoeffVarCheck.setChecked(False)
+        self.CorCoeffCheck.setChecked(False)
+        self.VarCheckBox.setChecked(False)
+        self.CovarCheckBox.setChecked(False)
+        self.SpearRankCheck.setChecked(False)
+        self.LeastSquareCheck.setChecked(False)
+        self.PearCorCheck.setChecked(False)
 
     def setVerBarBool(self):
         self.verBarBool = True
