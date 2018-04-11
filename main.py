@@ -111,7 +111,7 @@ if __name__ == '__main__':
     application = StatisticalAnalyzer()
     tempData = getDataVar()
     typeFlag = ui.getType()
-    if typeFlag == 1:
+    if typeFlag == 2:
         try:
             inter = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -121,7 +121,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 2:
+    elif typeFlag == 1:
         try:
             ordn = QtWidgets.QWidget()
             application.data = ui.getData()

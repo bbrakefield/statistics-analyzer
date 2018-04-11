@@ -148,19 +148,13 @@ class Ui_Dialog(QFileDialog):
     def set_theData(self, theData):
         self.data = theData
 
-    def manualEntry(self):
-        Dialog = QtWidgets.QDialog()
-        self.ui = ManualDataEntry()
-        self.ui.setupUi(Dialog, self)
-        Dialog.exec_()
-
     def isInterval(self):
         global typeFlag
-        typeFlag = 1
+        typeFlag = 2
 
     def isOrdinal(self):
         global typeFlag
-        typeFlag = 2
+        typeFlag = 1
 
     def isFrequency(self):
         global typeFlag
@@ -172,6 +166,11 @@ class Ui_Dialog(QFileDialog):
     def getData(self):
         return self.data
 
+    def manualEntry(self):
+        Dialog = QtWidgets.QDialog()
+        self.ui = ManualDataEntry()
+        self.ui.setupUi(Dialog, self, typeFlag)
+        Dialog.exec_()
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
