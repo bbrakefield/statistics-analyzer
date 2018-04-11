@@ -10,7 +10,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from ManualDataEntry import ManualDataEntry
 import csv
-
+import pandas as pd
 typeFlag = 0
 
 class Ui_Dialog(QFileDialog):
@@ -113,9 +113,34 @@ class Ui_Dialog(QFileDialog):
         self.import_data(filename)
 
     def import_data(self, filename):
+
+        startrow = self.rowBeginSpinBox.value()
+        endrow = self.rowEndSpinBox.value()
+        startcol = self.colBeginSpinBox.value()
+        endcol = self.colEndSpinBox.value()
+
+        if startrow == 0:
+            startrow = None
+        if endrow == 0:
+            endrow = None
+        if startcol == 0:
+            startcol = None
+        if endcol == 0:
+            endcol = None
+
+        startrow = None
+        endrow = None
+        startcol = None
+        endcol = None
+
         try:
             with open(filename) as input_file:
-                self.data = list(csv.reader(input_file))
+                #self.data = list(csv.reader(input_file))
+                df = pd.read_csv(input_file, header=None)
+                df2 = df.iloc[startrow:endrow, startcol:endcol]
+                data = df2.values.tolist()
+                print(data)
+                self.data = df2.values.tolist()
                 self.history.append("File Opened: {}".format(filename))
         except IOError:
             print("Could not open file: {}!".format(filename))
