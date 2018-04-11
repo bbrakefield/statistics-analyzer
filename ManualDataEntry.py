@@ -188,18 +188,21 @@ class ManualDataEntry(QDialog):
             self.rowNumber = self.rowNumber - 1
 
     def submitButtonClicked(self):
-        str = ""
+        str = []
         column = self.pointerBox
         row = self.pointerBox
         for i in range(self.rowNumber):
+            sub_list = []
             for i in range(self.columnNumber):
                 if i != self.columnNumber-1:
-                    str = str + column.text() + ", "
+                    sub_list.append(column.text())
                 else:
-                    str = str + column.text() + "\n"
+                    sub_list.append(column.text())
+                    str.append(sub_list)
                 column = column.getRight()
             row = row.getBottom()
             column = row
+        print(str)
 
 
 if __name__ == "__main__":
