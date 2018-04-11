@@ -83,7 +83,7 @@ class ManualDataEntry(QDialog):
         self.ColumnMinusButton.move(168, 5)
         self.ColumnPlusButton.move(193, 5)
         self.DataType.move(250, 7.5)
-        self.Submit.move(350, 7.5)
+        self.Submit.move(375, 4)
         self.initialBox1.move(10, 35)
         self.initialBox2.move(110, 35)
         self.initialBox3.move(210, 35)
@@ -101,6 +101,9 @@ class ManualDataEntry(QDialog):
         self.RowPlusButton.clicked.connect(self.addRowClicked)
         self.RowMinusButton.clicked.connect(self.removeRowClicked)
         self.Submit.clicked.connect(self.submitButtonClicked)
+
+        self.DataType.activated[str].connect(self.onActivated)
+
 
     def addColumnClicked(self):
         if self.DataType.currentText() == "Ordinal" and self.columnNumber < 6:
@@ -206,6 +209,25 @@ class ManualDataEntry(QDialog):
         self.dataTypeDialog.set_theData(str)
         self.Dialog.accept()
 
+    def setOrdinalFlag(self):
+        self.dataTypeDialog.isOrdinal()
+        self.dataTypeDialog.OrdinalRadioB.toggle()
+
+    def setIntervalFlag(self):
+        self.dataTypeDialog.isInterval()
+        self.dataTypeDialog.IntervalRadioB.toggle()
+
+    def setFrequencyFlag(self):
+        self.dataTypeDialog.isFrequency()
+        self.dataTypeDialog.FreqRadioB.toggle()
+
+    def onActivated(self, text):
+        if text == "Ordinal":
+            self.setOrdinalFlag()
+        elif text == "Interval":
+            self.setIntervalFlag()
+        elif text == "Frequency":
+            self.setFrequencyFlag()
 
 if __name__ == "__main__":
     import sys

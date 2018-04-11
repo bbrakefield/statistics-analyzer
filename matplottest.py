@@ -56,10 +56,6 @@ class App(QDialog):
 
         self.show()
 
-    def get_last_figure_plotted(self):
-        self.last_figure_plotted = self.m.get_last_figure_plotted
-        return self.last_figure_plotted
-
     def closeFigure(self):
         self.m.closeFigure()
 
@@ -109,11 +105,6 @@ class PlotCanvas(FigureCanvas):
         elif whichObject == 3:
             self.object = OrdinalDataObject(dataObject)
             self.plot_next()
-
-
-    def get_last_figure_plotted(self):
-        print("")
-        return self.last_figure_plotted
 
     def plot_next(self):
 
