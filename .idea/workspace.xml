@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3d881e7-e4c7-467f-b84f-fd15415a93c0" name="Default" comment="">
+    <list default="true" id="c3d881e7-e4c7-467f-b84f-fd15415a93c0" name="Default" comment="Added buttons to let user choose which columns/rows in files to import into the program.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/DataTypeDialogBox.py" afterPath="$PROJECT_DIR$/DataTypeDialogBox.py" />
-      <change beforePath="$PROJECT_DIR$/IntervalDataScreen.py" afterPath="$PROJECT_DIR$/IntervalDataScreen.py" />
+      <change beforePath="$PROJECT_DIR$/ManualDataEntry.py" afterPath="$PROJECT_DIR$/ManualDataEntry.py" />
+      <change beforePath="$PROJECT_DIR$/frequency.py" afterPath="$PROJECT_DIR$/frequency.py" />
+      <change beforePath="$PROJECT_DIR$/interval.py" afterPath="$PROJECT_DIR$/interval.py" />
+      <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +19,8 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/statistics_analyzer$main.coverage" NAME="main Coverage Results" MODIFIED="1523454024070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/senior_project$main.coverage" NAME="main Coverage Results" MODIFIED="1522685605260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/statistics_analyzer1$main.coverage" NAME="main Coverage Results" MODIFIED="1523481837144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/statistics_analyzer1$testing.coverage" NAME="testing Coverage Results" MODIFIED="1523485156584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/statistics_analyzer1$main.coverage" NAME="main Coverage Results" MODIFIED="1523485081332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/statistics_analyzer1$FrequencyDataScreen.coverage" NAME="FrequencyDataScreen Coverage Results" MODIFIED="1522703286472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/statistics_analyzer1$ManualDataEntry.coverage" NAME="ManualDataEntry Coverage Results" MODIFIED="1523394447417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -37,8 +41,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="548">
-              <caret line="109" column="10" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="10" />
+            <state relative-caret-position="1845">
+              <caret line="123" column="22" lean-forward="false" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="22" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -46,21 +50,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataTypeDialogBox.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DataTypeDialogBox.py">
+      <file leaf-file-name="calculations.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/calculations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="93" column="39" lean-forward="false" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
+            <state relative-caret-position="945">
+              <caret line="63" column="17" lean-forward="false" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testing.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testing.py">
+      <file leaf-file-name="DataTypeDialogBox.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataTypeDialogBox.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="81" />
+            <state relative-caret-position="248">
+              <caret line="144" column="36" lean-forward="true" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="errorWindow.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/errorWindow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -69,7 +83,7 @@
       <file leaf-file-name="FrequencyDataScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FrequencyDataScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1346">
+            <state relative-caret-position="1798">
               <caret line="299" column="0" lean-forward="false" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
               <folding>
                 <element signature="e#207#248#0" expanded="true" />
@@ -81,7 +95,7 @@
       <file leaf-file-name="IntervalDataScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IntervalDataScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
+            <state relative-caret-position="152">
               <caret line="337" column="0" lean-forward="false" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
               <folding>
                 <element signature="e#206#241#0" expanded="true" />
@@ -93,11 +107,31 @@
       <file leaf-file-name="ManualDataEntry.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ManualDataEntry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
-              <caret line="85" column="31" lean-forward="false" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
+            <state relative-caret-position="733">
+              <caret line="56" column="57" lean-forward="false" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="someBULL.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/someBULL.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ordinal.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ordinal.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="36" column="8" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="37" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -149,19 +183,20 @@
         <option value="$PROJECT_DIR$/test_data_objects.py" />
         <option value="$PROJECT_DIR$/ordinal.py" />
         <option value="$PROJECT_DIR$/testing123.py" />
-        <option value="$PROJECT_DIR$/frequency.py" />
         <option value="$PROJECT_DIR$/graphing.py" />
-        <option value="$PROJECT_DIR$/interval.py" />
         <option value="$PROJECT_DIR$/Window.py" />
         <option value="$PROJECT_DIR$/textBoxWrapper.py" />
         <option value="$PROJECT_DIR$/calculations.py" />
         <option value="$PROJECT_DIR$/OrdinalDataScreen.py" />
         <option value="$PROJECT_DIR$/FrequencyDataScreen.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/matplottest.py" />
-        <option value="$PROJECT_DIR$/ManualDataEntry.py" />
         <option value="$PROJECT_DIR$/IntervalDataScreen.py" />
+        <option value="$PROJECT_DIR$/interval.py" />
+        <option value="$PROJECT_DIR$/frequency.py" />
+        <option value="$PROJECT_DIR$/testing.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/DataTypeDialogBox.py" />
+        <option value="$PROJECT_DIR$/ManualDataEntry.py" />
       </list>
     </option>
   </component>
@@ -171,8 +206,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="727" />
@@ -193,6 +227,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,8 +240,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -247,7 +281,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.testing">
     <configuration name="FrequencyDataScreen" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -305,10 +339,30 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Python.main" />
-      <item index="1" class="java.lang.String" itemvalue="Python.FrequencyDataScreen" />
-      <item index="2" class="java.lang.String" itemvalue="Python.ManualDataEntry" />
+    <configuration name="testing" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../senior-project3/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="senior-project2" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/errorWindow.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Python.testing" />
+      <item index="1" class="java.lang.String" itemvalue="Python.main" />
+      <item index="2" class="java.lang.String" itemvalue="Python.FrequencyDataScreen" />
+      <item index="3" class="java.lang.String" itemvalue="Python.ManualDataEntry" />
     </list>
     <recent_temporary>
       <list size="3">
@@ -521,20 +575,33 @@
       <option name="project" value="LOCAL" />
       <updated>1523477412752</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Added buttons to let user choose which columns/rows in files to import into the program.">
+      <created>1523481880233</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1523481880233</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Created an error window for only accessing portions of data file">
+      <created>1523485201491</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1523485201491</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1280" height="727" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="24" width="1280" height="727" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3085443" sideWeight="0.5549273" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3370253" sideWeight="0.5791599" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3370253" sideWeight="0.5791599" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3085443" sideWeight="0.4450727" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37974682" sideWeight="0.49785176" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1898223" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19224556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -581,8 +648,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Data subclasses actually use DataObject constructor now. &#10;Moved interval.py out of Test Data directory. Idk how that got there." />
-    <MESSAGE value="Corrected errors with instantiating Interval object." />
     <MESSAGE value="Managed to print some frequency data on the screen." />
     <MESSAGE value="Made checkboxes work in Frequency screen" />
     <MESSAGE value="Replaced the ScrollArea with ListWidget in data type screens and adjusted submit function and added listeners for checkboxes." />
@@ -606,7 +671,9 @@
     <MESSAGE value="Interval text reports improved." />
     <MESSAGE value="Made manual entry input data." />
     <MESSAGE value="Manual Entry now gives program data to run math on :D" />
-    <option name="LAST_COMMIT_MESSAGE" value="Manual Entry now gives program data to run math on :D" />
+    <MESSAGE value="Added buttons to let user choose which columns/rows in files to import into the program." />
+    <MESSAGE value="Created an error window for only accessing portions of data file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created an error window for only accessing portions of data file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -615,13 +682,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ordinal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1326">
@@ -803,20 +863,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testing123.py" />
     <entry file="file://$PROJECT_DIR$/ordinalResults.csv" />
-    <entry file="file://$PROJECT_DIR$/frequency.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="50" lean-forward="false" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ordinal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graphing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -871,16 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/interval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#34#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OrdinalDataScreen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1662">
@@ -901,13 +937,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ManualDataEntry.py">
+    <entry file="file://$PROJECT_DIR$/interval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="85" column="31" lean-forward="false" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="690">
+          <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frequency.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="32" column="23" lean-forward="false" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ordinal.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="36" column="8" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="37" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -921,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="109" column="10" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="10" />
+        <state relative-caret-position="1845">
+          <caret line="123" column="22" lean-forward="false" selection-start-line="123" selection-start-column="22" selection-end-line="123" selection-end-column="22" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -931,7 +981,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IntervalDataScreen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
+        <state relative-caret-position="152">
           <caret line="337" column="0" lean-forward="false" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
           <folding>
             <element signature="e#206#241#0" expanded="true" />
@@ -941,7 +991,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FrequencyDataScreen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1346">
+        <state relative-caret-position="1798">
           <caret line="299" column="0" lean-forward="false" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
           <folding>
             <element signature="e#207#248#0" expanded="true" />
@@ -949,18 +999,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing.py">
+    <entry file="file://$PROJECT_DIR$/DataTypeDialogBox.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="81" />
+        <state relative-caret-position="248">
+          <caret line="144" column="36" lean-forward="true" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataTypeDialogBox.py">
+    <entry file="file://$PROJECT_DIR$/someBULL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="93" column="39" lean-forward="false" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
+        <state relative-caret-position="312">
+          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManualDataEntry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="56" column="57" lean-forward="false" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/errorWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="28" lean-forward="false" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding />
         </state>
       </provider>

@@ -7,7 +7,6 @@ from textBoxWrapper import textBoxWrapper
 class ManualDataEntry(QDialog):
     def __init__(self):
         super().__init__()
-
         self.scrollArea = QtWidgets.QScrollArea()
         self.RowLabel = QLabel("Rows", self.scrollArea)
         self.ColumnLabel = QLabel("Columns", self.scrollArea)
@@ -34,7 +33,8 @@ class ManualDataEntry(QDialog):
         self.columnDistance = 100
         self.rowDistance = 30
 
-    def setupUi(self, Dialog, dataTypeDialog):
+    def setupUi(self, Dialog, dataTypeDialog, typeFlag):
+        self.typeFlag = typeFlag
         self.dataTypeDialog = dataTypeDialog
         self.Dialog = Dialog
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -53,6 +53,8 @@ class ManualDataEntry(QDialog):
         self.DataType.addItem("Ordinal")
         self.DataType.addItem("Interval")
         self.DataType.addItem("Frequency")
+        if self.typeFlag is not None:
+            self.DataType.setCurrentIndex(self.typeFlag-1)
 
         self.Submit.setText("Submit")
 

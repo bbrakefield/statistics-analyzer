@@ -17,16 +17,20 @@ class FrequencyDataObject(DataObject):
 
     def unpack_x(self):
         x = []
-
-        for row in self.data[1:]:
-            x.append(float(row[1]))
+        try:
+            for row in self.data[1:]:
+                x.append(float(row[1]))
+        except IndexError:
+            return None
         return x
 
     def unpack_y(self):
         y = []
-
-        for row in self.data[1:]:
-            y.append(float(row[2]))
+        try:
+            for row in self.data[1:]:
+                y.append(float(row[2]))
+        except IndexError:
+            return None
         return y
 
     def unpack_data(self):
