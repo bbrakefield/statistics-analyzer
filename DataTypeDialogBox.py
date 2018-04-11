@@ -128,11 +128,6 @@ class Ui_Dialog(QFileDialog):
         if endcol == 0:
             endcol = None
 
-        startrow = None
-        endrow = None
-        startcol = None
-        endcol = None
-
         try:
             with open(filename) as input_file:
                 #self.data = list(csv.reader(input_file))
