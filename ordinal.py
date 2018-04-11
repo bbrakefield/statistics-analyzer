@@ -23,9 +23,10 @@ class OrdinalDataObject(DataObject):
 
         self.sign_test = self.get_sign_test()
         self.rank_sum = self.get_rank_sum()
-        self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
-        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
-        self.pie_graphs = self.get_pie_charts(self.data)
+
+        # self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
+        # self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
+        # self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_a(self):
 

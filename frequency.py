@@ -11,9 +11,9 @@ class FrequencyDataObject(DataObject):
         self.chi_square = self.get_chi_square()
         self.expected_mode = self.get_mode(self.x)
         self.actual_mode = self.get_mode(self.y)
-        self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
-        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
-        self.pie_graphs = self.get_pie_charts(self.data)
+        # self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
+        # self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
+        # self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_x(self):
         x = []

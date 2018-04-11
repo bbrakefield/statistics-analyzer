@@ -26,9 +26,10 @@ class IntervalDataObject(DataObject):
         self.least_square = self.get_least_square_line()
         self.rank_sum = self.get_rank_sum()
         self.spearman = self.get_spearman_rank()
-        self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
-        self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
-        self.pie_graphs = self.get_pie_charts(self.data)
+
+        # self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
+        # self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
+        # self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_x(self):
         x = []
