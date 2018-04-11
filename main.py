@@ -16,6 +16,7 @@ class StatisticalAnalyzer(QMainWindow):
         super().__init__()
         self.data = []
         self.csv_data = []
+        self.text_report = []
         self.history = []
         self.last_figure_plotted = None
 
@@ -40,6 +41,8 @@ class StatisticalAnalyzer(QMainWindow):
         action = menu.addAction("Save As...")
         action.triggered.connect(self.save_csv)
 
+        action2 = menu.addAction("Generate Report...")
+        action2.triggered.connect(self.write_report)
         # Show UI
         self.show()
 
@@ -58,12 +61,19 @@ class StatisticalAnalyzer(QMainWindow):
             for row in self.csv_data:
                 writer.writerow(row)
 
+    def write_report(self):
+        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+                                                  "TXT File (*.txt)")
+
+        with open(filename, 'w', newline='') as new_report:
+            for item in self.text_report:
+                new_report.write('%s\n' % item)
+
     def set_csv(self, csv_data):
         self.csv_data = csv_data
 
-    def print_data(self):
-        for i, line in enumerate(self.data):
-            print("row %s. %s" % (i + 1, line))
+    def set_report(self, report):
+        self.text_report = report
 
     def import_data(self, filename):
         try:

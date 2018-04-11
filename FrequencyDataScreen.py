@@ -218,58 +218,60 @@ class Ui_Form(object):
         bdSuccesses = self.bdSuccessSpinBox.value()
         bdTrials = self.bdTrialSpinBox.value()
         bdProbSucc = self.doubleSpinBox.value()
-        f= open("frequencyDataReport.txt", "w")
-        f.write("===Frequency Data Report===\n\n")
+        report = []
+
+        report.append("===Frequency Data Report===\n\n")
         if self.modeBool == True:
             if self.frequencyObject.expected_mode == None:
-                f.write("Expected Mode: There is no mode to be calculated.\n")
                 modeText = "Expected Mode: There is no mode to be calculated.\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
             else:
-                f.write("Expected Mode: " + str(self.frequencyObject.expected_mode) + "\n")
                 modeText = "Expected Mode: " + str(self.frequencyObject.expected_mode) + "\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
 
             if self.frequencyObject.actual_mode == None:
-                f.write("Actual Mode: There is no mode to be calculated.\n")
                 modeText = "Actual Mode: There is no mode to be calculated.\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
             else:
-                f.write("Actual Mode: " + str(self.frequencyObject.actual_mode) + "\n")
                 modeText = modeText + "Actual Mode: " + str(self.frequencyObject.actual_mode) + "\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
 
         if self.chiSquarebool==True:
             if self.frequencyObject.chi_square == None:
-                f.write("Chi Square: Value could not be calculated.\n")
                 chiSquareText = "Chi Square: Value could not be calculated.\n"
+                report.append(chiSquareText)
                 self.listWidget.addItem(chiSquareText)
             else:
-                f.write("Chi Square: " + str(self.frequencyObject.chi_square) + "\n")
                 chiSquareText = "Chi Square: " + str(self.frequencyObject.chi_square) + "\n"
+                report.append(chiSquareText)
                 self.listWidget.addItem(chiSquareText)
 
         if self.probabilityBool==True:
             if pbTrials < pbSuccesses:
-                f.write("Probability Distribution: invalid data provided. Successes cannot exceed trials.")
                 probText = "Probability Distribution: invalid data provided. Successes cannot exceed trials."
+                report.append(probText)
                 self.listWidget.addItem(probText)
             else:
-                f.write("Probability Distribution: " + str(self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials)) + "\n")
                 probText = "Probability Distribution: " + str(self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials)) + "\n"
+                report.append(probText)
                 self.listWidget.addItem(probText)
 
         if self.binomialBool==True:
             if bdTrials < bdSuccesses:
-                f.write("Binomial Distribution: Invalid data provided. Successes cannot exceed trials.")
                 binText = "Binomial Distribution: Invalid data provided. Successes cannot exceed trials."
+                report.append(binText)
                 self.listWidget.addItem(binText)
             else:
-                f.write("Binomial Distribution: " + str(self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)) + "\n")
                 binText = "Binomial Distribution: " + str(self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)) + "\n"
+                report.append(binText)
                 self.listWidget.addItem(binText)
 
-        f.close()
+        # call main function for setting report list in Application class
+        self.mainScreenObject.set_report(report)
 
         if self.frequencyObject.actual_mode == None:
             actual_mode_text = "None"

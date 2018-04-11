@@ -185,13 +185,10 @@ class PlotCanvas(FigureCanvas):
     def plot_horizontal_bar_chart(self):
 
         self.fig.clear()
-        print(self.counter)
         labels = self.object.data[0][1:]
         y_pos = np.arange(len(labels))
         row = self.object.data[self.counter]
-        print(row)
         values = [int(x) for x in row[1:]]
-        print(values)
         ax = self.figure.add_subplot(111)
         ax.barh(y_pos, values, align='center')
         ax.set_title(row[0])  # Graph Title
@@ -199,14 +196,11 @@ class PlotCanvas(FigureCanvas):
 
     def plot_vertical_bar_chart(self):
 
-        print(self.counter)
         labels = self.object.data[0][1:]
         x_pos = np.arange(len(labels))
         self.fig.clear()
         row = self.object.data[self.counter]
-        print(row)
         values = [int(x) for x in row[1:]]
-        print(values)
         ax = self.figure.add_subplot(111)
         ax.bar(x_pos, values, color='blue')
         ax.set_title(row[0])  # Graph Title
