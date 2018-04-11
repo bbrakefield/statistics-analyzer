@@ -298,6 +298,3 @@ class Ui_Form(object):
     def calcReset(self):
         self.listWidget.clear()
 
-    def get_last_figure_plotted(self):
-        self.last_figure_plotted = self.ui.get_last_figure_plotted()
-        return self.last_figure_plotted

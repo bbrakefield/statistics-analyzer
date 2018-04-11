@@ -34,9 +34,9 @@ class ManualDataEntry(QDialog):
         self.columnDistance = 100
         self.rowDistance = 30
 
-    def setupUi(self, Dialog):
-
-
+    def setupUi(self, Dialog, dataTypeDialog):
+        self.dataTypeDialog = dataTypeDialog
+        self.Dialog = Dialog
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         Dialog.setObjectName("UserInputDialog")
         Dialog.resize(800, 600)
@@ -203,6 +203,8 @@ class ManualDataEntry(QDialog):
             row = row.getBottom()
             column = row
         print(str)
+        self.dataTypeDialog.set_theData(str)
+        self.Dialog.accept()
 
 
 if __name__ == "__main__":

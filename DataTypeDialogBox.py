@@ -18,7 +18,7 @@ class Ui_Dialog(QFileDialog):
     def __init__(self, Dialog):
         super(QFileDialog, self).__init__()
         self.setupUi(Dialog)
-        self.data = None
+        self.data = [[None, None, None], [None, None, None]]
 
     def setupUi(self, Dialog):
 
@@ -83,10 +83,13 @@ class Ui_Dialog(QFileDialog):
         except IOError:
             print("Could not open file: {}!".format(filename))
 
+    def set_theData(self, theData):
+        self.data = theData
+
     def manualEntry(self):
         Dialog = QtWidgets.QDialog()
         self.ui = ManualDataEntry()
-        self.ui.setupUi(Dialog)
+        self.ui.setupUi(Dialog, self)
         Dialog.exec_()
 
     def isInterval(self):
@@ -100,9 +103,6 @@ class Ui_Dialog(QFileDialog):
     def isFrequency(self):
         global typeFlag
         typeFlag = 3
-
-    def end(self):
-        print(typeFlag)
 
     def getType(self):
         return typeFlag

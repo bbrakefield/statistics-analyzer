@@ -1,7 +1,6 @@
 import atexit
-import sys
 from PyQt5.QtWidgets import *
-
+import sys
 from DataTypeDialogBox import *
 from calculations import Calculations
 from graphing import Plotter
@@ -15,6 +14,7 @@ class StatisticalAnalyzer(QMainWindow):
     def __init__(self):
         super().__init__()
         self.data = []
+        self.data = None
         self.csv_data = []
         self.text_report = []
         self.history = []
@@ -83,8 +83,9 @@ class StatisticalAnalyzer(QMainWindow):
         except IOError:
             print("Could not open file: {}!".format(filename))
 
-    def set_last_figure_plotted(self, plotted_figure):
-        self.last_figure_plotted = plotted_figure
+    def closeEvent(self, event):
+        event.accept()
+        sys.exit(0)
 
 def exit_handler():
     try:
@@ -96,6 +97,10 @@ def exit_handler():
     except PermissionError:
         print("Could not write application history at exit because of a permissions error!")
 
+def getDataVar():
+    thisData = application.data
+    return thisData
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
@@ -103,28 +108,38 @@ if __name__ == '__main__':
     Dialog = QtWidgets.QDialog()
     ui = Ui_Dialog(Dialog)
     Dialog.exec_()
-    typeFlag = ui.getType()
     application = StatisticalAnalyzer()
+    tempData = getDataVar()
+    typeFlag = ui.getType()
     if typeFlag == 1:
-        inter = QtWidgets.QWidget()
-        application.data = ui.getData()
-        ui = Ui_Form1()
-        ui.setupUi(inter, application.data, application)
-        application.setCentralWidget(inter)
-        sys.exit(app.exec_())
+        try:
+            inter = QtWidgets.QWidget()
+            application.data = ui.getData()
+            ui = Ui_Form1()
+            ui.setupUi(inter, application.data, application)
+            application.setCentralWidget(inter)
+            sys.exit(app.exec_())
+        except IOError:
+            print("No Data Given")
     elif typeFlag == 2:
-        ordn = QtWidgets.QWidget()
-        application.data = ui.getData()
-        ui = Ui_Form2()
-        ui.setupUi(ordn, application.data, application)
-        application.setCentralWidget(ordn)
-        sys.exit(app.exec_())
+        try:
+            ordn = QtWidgets.QWidget()
+            application.data = ui.getData()
+            ui = Ui_Form2()
+            ui.setupUi(ordn, application.data, application)
+            application.setCentralWidget(ordn)
+            sys.exit(app.exec_())
+        except IOError:
+            print("No Data Given")
     elif typeFlag == 3:
-        freq = QtWidgets.QWidget()
-        application.data = ui.getData()
-        ui = Ui_Form()
-        ui.setupUi(freq, application.data, application)
-        application.setCentralWidget(freq)
-        sys.exit(app.exec_())
+        try:
+            freq = QtWidgets.QWidget()
+            application.data = ui.getData()
+            ui = Ui_Form()
+            ui.setupUi(freq, application.data, application)
+            application.setCentralWidget(freq)
+            sys.exit(app.exec_())
+        except IOError:
+            print("No Data Given")
 
 
