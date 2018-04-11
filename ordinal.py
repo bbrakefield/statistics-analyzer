@@ -31,40 +31,54 @@ class OrdinalDataObject(DataObject):
 
         a = []
 
-        for row in self.data[1:]:
-            a.append(float(row[1]))
+        try:
+            for row in self.data[1:]:
+                a.append(float(row[1]))
+        except IndexError:
+            return None
         return a
 
     def unpack_b(self):
 
         b = []
 
-        for row in self.data[1:]:
-            b.append(float(row[2]))
+        try:
+            for row in self.data[1:]:
+                    b.append(float(row[2]))
+        except IndexError:
+            return None
         return b
 
     def unpack_c(self):
 
         c = []
 
-        for row in self.data[1:]:
-            c.append(float(row[3]))
+        try:
+            for row in self.data[1:]:
+                    c.append(float(row[3]))
+        except IndexError:
+            return None
         return c
 
     def unpack_d(self):
 
         d = []
 
-        for row in self.data[1:]:
-            d.append(float(row[4]))
+        try:
+            for row in self.data[1:]:
+                    d.append(float(row[4]))
+        except IndexError:
+            return None
         return d
 
     def unpack_e(self):
 
         e = []
-
-        for row in self.data[1:]:
-            e.append(float(row[5]))
+        try:
+            for row in self.data[1:]:
+                    e.append(float(row[5]))
+        except IndexError:
+            return None
         return e
 
     def unpack_data(self):

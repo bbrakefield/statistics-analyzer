@@ -12,33 +12,38 @@ class Calculations:
     def calculate_mode(data):
 
         hits = []
-        for item in data:
-                tally = data.count(item)
-                values = (tally, item)
-                if values not in hits:
-                    hits.append(values)
+        if(data != None):
+            for item in data:
+                    tally = data.count(item)
+                    values = (tally, item)
+                    if values not in hits:
+                        hits.append(values)
 
-        hits.sort(reverse=True)
+            hits.sort(reverse=True)
 
-        if hits[0][0] > hits[1][0]:
-            return hits[0][1]
+            if hits[0][0] > hits[1][0]:
+                return hits[0][1]
+            else:
+                # There is not a mode.
+                return None
         else:
-            # There is not a mode.
             return None
 
     @staticmethod
     def calculate_median(data):
 
-        sortedList = sorted(data)
-        length = len(data)
+        if data != None:
+            sortedList = sorted(data)
+            length = len(data)
 
-
-        if length < 1:
-            return None
-        if length % 2 == 1:
-            return sortedList[length//2]
+            if length < 1:
+                return None
+            if length % 2 == 1:
+                return sortedList[length//2]
+            else:
+                return sum(sortedList[length//2-1:length//2+1])/2.0
         else:
-            return sum(sortedList[length//2-1:length//2+1])/2.0
+            return None
 
     @staticmethod
     def calculate_standard_deviation(data):

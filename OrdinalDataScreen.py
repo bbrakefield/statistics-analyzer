@@ -223,7 +223,6 @@ class Ui_Form2(object):
         headers = ["Choices"]
         stats = []
         report = []
-        f = open("ordinalDataReport.txt", "w")
         report.append("===Ordinal Data Report===\n\n")
         if self.medianbool == True:
             medianText = "Median A: {}\n" \
