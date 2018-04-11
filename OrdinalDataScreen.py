@@ -222,32 +222,33 @@ class Ui_Form2(object):
 
         headers = ["Choices"]
         stats = []
+        report = []
         f = open("ordinalDataReport.txt", "w")
-        f.write("===Ordinal Data Report===\n\n")
+        report.append("===Ordinal Data Report===\n\n")
         if self.medianbool == True:
             medianText = "Median A: {}\n" \
                 .format(str(self.ordinalObject.a_median))
-            f.write(medianText)
+            report.append(medianText)
             self.listWidget.addItem(medianText)
 
             medianText = "Median B: {}\n" \
                 .format(str(self.ordinalObject.b_median))
-            f.write(medianText)
+            report.append(medianText)
             self.listWidget.addItem(medianText)
 
             medianText = "Median C: {}\n" \
                 .format(str(self.ordinalObject.c_median))
-            f.write(medianText)
+            report.append(medianText)
             self.listWidget.addItem(medianText)
 
             medianText = "Median D: {}\n" \
                 .format(str(self.ordinalObject.d_median))
-            f.write(medianText)
+            report.append(medianText)
             self.listWidget.addItem(medianText)
 
             medianText = "Median E: {}\n" \
                 .format(str(self.ordinalObject.e_median))
-            f.write(medianText)
+            report.append(medianText)
             self.listWidget.addItem(medianText)
 
             medians = ["Median", self.ordinalObject.a_median, self.ordinalObject.b_median,
@@ -259,39 +260,39 @@ class Ui_Form2(object):
             if self.ordinalObject.a_mode != None:
                 modeText = "Mode A: {}\n" \
                     .format(str(self.ordinalObject.a_mode))
-                f.write(modeText)
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_a = self.ordinalObject.a_mode
 
             else:
-                f.write("Mode A: There is no mode to be calculated.\n")
                 modeText = "Mode A: There is no mode to be calculated.\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_a = "None"
 
             if self.ordinalObject.b_mode != None:
                 modeText = "Mode B: {}\n" \
                     .format(str(self.ordinalObject.b_mode))
-                f.write(modeText)
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_b = self.ordinalObject.b_mode
 
             else:
-                f.write("Mode B: There is no mode to be calculated.\n")
                 modeText = "Mode B: There is no mode to be calculated.\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_b = "None"
 
             if self.ordinalObject.c_mode != None:
                 modeText = "Mode C: {}\n" \
                     .format(str(self.ordinalObject.c_mode))
-                f.write(modeText)
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_c = self.ordinalObject.c_mode
 
             else:
-                f.write("Mode C: There is no mode to be calculated.\n")
                 modeText = "Mode C: There is no mode to be calculated.\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_c = "None"
 
@@ -299,26 +300,26 @@ class Ui_Form2(object):
             if self.ordinalObject.d_mode != None:
                 modeText = "Mode D: {}\n" \
                     .format(str(self.ordinalObject.d_median))
-                f.write(modeText)
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_d = self.ordinalObject.d_mode
 
             else:
-                f.write("Mode D: There is no mode to be calculated.\n")
                 modeText = "Mode D: There is no mode to be calculated.\n"
                 self.listWidget.addItem(modeText)
+                report.append(modeText)
                 mode_text_d = "None"
 
 
             if self.ordinalObject.e_mode != None:
                 modeText = "Mode E: {}\n" \
                     .format(str(self.ordinalObject.e_mode))
-                f.write(modeText)
+                report.append(modeText)
                 mode_text_e = self.ordinalObject.e_mode
 
             else:
-                f.write("Mode E: There is no mode to be calculated.\n")
                 modeText = "Mode E: There is no mode to be calculated.\n"
+                report.append(modeText)
                 self.listWidget.addItem(modeText)
                 mode_text_e = "None"
 
@@ -328,7 +329,7 @@ class Ui_Form2(object):
         if self.signBool == True:
             signText = "Sign Test: {}\n" \
                .format(str(self.ordinalObject.sign_test))
-            f.write(signText)
+            report.append(signText)
             self.listWidget.addItem(signText)
 
             signs = ["Sign Test", self.ordinalObject.sign_test, self.ordinalObject.sign_test, self.ordinalObject.sign_test,
@@ -338,14 +339,14 @@ class Ui_Form2(object):
         if self.rankSumBool == True:
             rankSumText = "Rank Sum: {}\n" \
                .format(str(self.ordinalObject.rank_sum))
-            f.write(rankSumText)
+            report.append(rankSumText)
             self.listWidget.addItem(rankSumText)
 
             ranks_sums = ["Rank Sum", self.ordinalObject.rank_sum, self.ordinalObject.rank_sum, self.ordinalObject.rank_sum,
                           self.ordinalObject.rank_sum, self.ordinalObject.rank_sum]
             stats.append(ranks_sums)
 
-        f.close()
+        self.mainScreenObject.set_report(report)
 
         choices = ['Stats', 'A', 'B', 'C', 'D', 'E']
         stats.insert(0, choices)
