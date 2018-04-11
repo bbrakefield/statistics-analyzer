@@ -64,7 +64,6 @@ class Calculations:
     @staticmethod
     def calculate_percentiles(percentile, data):
         data = sorted(data)
-        print(data)
         index = len(data) * percentile
         index = int(index)
         thepercentile = data[0+(index-1)]
