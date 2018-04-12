@@ -127,16 +127,24 @@ class Ui_Dialog(QFileDialog):
             startcol = None
         if endcol == 0:
             endcol = None
+            
+        print('start row: ' + str(startrow))
+        print('end row: ' + str(endrow))
+        print('start column: ' + str(startcol))
+        print('end column: ' + str(endcol))
 
         try:
             with open(filename) as input_file:
                 #self.data = list(csv.reader(input_file))
                 df = pd.read_csv(input_file, header=None)
+
+                #df = pd.read_csv(input_file)
+
                 df2 = df.iloc[startrow:endrow, startcol:endcol]
                 data = df2.values.tolist()
-                print(data)
-                self.data = df2.values.tolist()
-                self.history.append("File Opened: {}".format(filename))
+                self.data = data
+                print(self.data)
+
         except IOError:
             print("Could not open file: {}!".format(filename))
 
