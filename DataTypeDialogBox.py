@@ -127,7 +127,7 @@ class Ui_Dialog(QFileDialog):
             startcol = None
         if endcol == 0:
             endcol = None
-            
+
         print('start row: ' + str(startrow))
         print('end row: ' + str(endrow))
         print('start column: ' + str(startcol))

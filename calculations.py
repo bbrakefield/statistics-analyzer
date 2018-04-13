@@ -132,18 +132,21 @@ class Calculations:
     @staticmethod
     def calculate_chi_square(x, y):
 
-        sum_col_x = sum(x)
-        sum_col_y = sum(y)
-        sum_rows = [a + b for a, b in zip(x, y) ]
-        sum_sums = sum(sum_rows)
+        if y is not None:
+            sum_col_x = sum(x)
+            sum_col_y = sum(y)
+            sum_rows = [a + b for a, b in zip(x, y) ]
+            sum_sums = sum(sum_rows)
 
-        expected_x = [(a * sum_col_x) / sum_sums for a in sum_rows]
-        expected_y = [(a * sum_col_y) / sum_sums for a in sum_rows]
+            expected_x = [(a * sum_col_x) / sum_sums for a in sum_rows]
+            expected_y = [(a * sum_col_y) / sum_sums for a in sum_rows]
 
-        x_squared_x = sum([((a - b) ** 2) / b for a, b in zip(x, expected_x)])
-        x_squared_y = sum([((a - b) ** 2) / b for a, b in zip(y, expected_y)])
-        x_squared = x_squared_y + x_squared_x
-        return x_squared
+            x_squared_x = sum([((a - b) ** 2) / b for a, b in zip(x, expected_x)])
+            x_squared_y = sum([((a - b) ** 2) / b for a, b in zip(y, expected_y)])
+            x_squared = x_squared_y + x_squared_x
+            return x_squared
+        else:
+            return None
 
     @staticmethod
     def calculate_correlation_coefficient(x, y):
@@ -165,60 +168,70 @@ class Calculations:
     @staticmethod
     def calculate_sign_test(x, y):
 
-        positives = 0
-        negatives = 0
-        zeroes = 0
-        differences = [a - b for a, b in zip(x,y)]
+        if y is not None:
+            positives = 0
+            negatives = 0
+            zeroes = 0
+            differences = [a - b for a, b in zip(x,y)]
 
-        for item in differences:
-            if item > 0:
-                positives += 1
-            if item < 0:
-                negatives += 1
+            for item in differences:
+                if item > 0:
+                    positives += 1
+                if item < 0:
+                    negatives += 1
+                else:
+                    zeroes += 1
+
+            sum = positives + negatives - zeroes
+            pval = Calculations.calculate_binomial_distribution(.5, sum, positives)
+
+            if pval < 0.05:
+                return "Reject"
             else:
-                zeroes += 1
-
-        sum = positives + negatives - zeroes
-        pval = Calculations.calculate_binomial_distribution(.5, sum, positives)
-
-        if pval < 0.05:
-            return "Reject"
+                return "Accept"
         else:
-            return "Accept"
+            return None
 
     @staticmethod
     def calculate_rank_sum_test(x, y):
-        merged_list = x + y
-        ranks = Calculations.get_rank(merged_list)
-        ranks_x = ranks[:len(x)]
-        ranks_y = ranks[len(x):]
-        count_x = len(ranks_x)
-        count_y = len(ranks_y)
-        rank_sum_x = sum(ranks_x)
-        rank_sum_y = sum(ranks_y)
 
-        w = min(rank_sum_x, rank_sum_y)
+        if y is not None:
+            merged_list = x + y
+            ranks = Calculations.get_rank(merged_list)
+            ranks_x = ranks[:len(x)]
+            ranks_y = ranks[len(x):]
+            count_x = len(ranks_x)
+            count_y = len(ranks_y)
+            rank_sum_x = sum(ranks_x)
+            rank_sum_y = sum(ranks_y)
 
-        if count_x < count_y:
-            n_s = count_x
-            n_l = count_y
+            w = min(rank_sum_x, rank_sum_y)
+
+            if count_x < count_y:
+                n_s = count_x
+                n_l = count_y
+            else:
+                n_s = count_y
+                n_l = count_x
+
+            mean_w = (n_s *(n_s + n_l + 1)) / 2
+            std_w = ((n_s * n_l *(n_s + n_l + 1)) / 12) ** 0.5
+            z = (w - mean_w) / std_w
+
+            return z
         else:
-            n_s = count_y
-            n_l = count_x
-
-        mean_w = (n_s *(n_s + n_l + 1)) / 2
-        std_w = ((n_s * n_l *(n_s + n_l + 1)) / 12) ** 0.5
-        z = (w - mean_w) / std_w
-
-        return z
+            return None
 
     @staticmethod
     def calculate_spearman_rank(x, y):
 
-        rank_x = Calculations.get_rank(x)
-        rank_y = Calculations.get_rank(y)
-        spearman = Calculations.calculate_pearson_correlation(rank_x, rank_y)
-        return spearman
+        if y is not None:
+            rank_x = Calculations.get_rank(x)
+            rank_y = Calculations.get_rank(y)
+            spearman = Calculations.calculate_pearson_correlation(rank_x, rank_y)
+            return spearman
+        else:
+            return None
 
     @staticmethod
     def get_rank(data):
