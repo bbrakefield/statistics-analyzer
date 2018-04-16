@@ -141,7 +141,8 @@ class Ui_Dialog(QFileDialog):
                 #self.data = list(csv.reader(input_file))
                 df = pd.read_csv(input_file, header=None)
                 #df = pd.read_csv(input_file)
-                self.row_headers = df.iloc[startrow:endrow, :1].values.tolist()
+                rows = df.iloc[startrow:endrow, :1].values.tolist()
+                self.row_headers = [item for sublist in rows for item in sublist]
                 self.col_headers = df.iloc[:1, startcol:endcol].values.tolist()[0]
                 corner = df.iloc[:1,:1].values.tolist()[0]
 
