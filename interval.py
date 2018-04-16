@@ -35,7 +35,8 @@ class IntervalDataObject(DataObject):
         x = []
         try:
             for row in self.data[0:]:
-                x.append(float(row[0]))
+                if row[0] is not None:
+                    x.append(float(row[0]))
         except IndexError:
             return None
         return x
@@ -44,7 +45,8 @@ class IntervalDataObject(DataObject):
         y = []
         try:
             for row in self.data[0:]:
-                y.append(float(row[1]))
+                if row[1] is not None:
+                    y.append(float(row[1]))
         except IndexError:
             return None
         return y

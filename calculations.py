@@ -20,12 +20,14 @@ class Calculations:
                         hits.append(values)
 
             hits.sort(reverse=True)
-
-            if hits[0][0] > hits[1][0]:
-                return hits[0][1]
+            if hits != []:
+                if hits[0][0] > hits[1][0]:
+                    return hits[0][1]
+                else:
+                    # There is not a mode.
+                    return None
             else:
-                # There is not a mode.
-                return None
+                exit(0)
         else:
             return None
 
@@ -174,8 +176,6 @@ class Calculations:
     @staticmethod
     def calculate_sign_test(x, y):
 
-        print(len(x))
-        print(len(y))
         if x is None or y is None:
             return None
         else:

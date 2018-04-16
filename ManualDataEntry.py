@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QDialog, QLabel, QLineEdit
+from PyQt5.QtWidgets import QDialog, QLabel
 from PyQt5 import QtCore, QtGui, QtWidgets
 from textBoxWrapper import textBoxWrapper
 
@@ -72,9 +72,9 @@ class ManualDataEntry(QDialog):
         self.initialBox2.setLeft(self.initialBox1)
         self.initialBox2.setRight(self.initialBox3)
         self.initialBox3.setLeft(self.initialBox2)
-        self.initialBox2.setText("Test Value1")
-        self.initialBox1.setText("Test Name")
-        self.initialBox3.setText("Test Value2")
+        self.initialBox2.setText("Value 1")
+        self.initialBox1.setText("Row Title")
+        self.initialBox3.setText("Value 2")
 
         self.RowPlusButton.setText("+")
         self.RowMinusButton.setText("-")
@@ -123,7 +123,7 @@ class ManualDataEntry(QDialog):
                 #Making text box appear magic happen
                 newBox = textBoxWrapper()
                 newBox.setParent(self.scrollArea)
-                newBox.setText("Test" + str(i) + str(self.columnNumber))
+                #newBox.setText("Test" + str(i) + str(self.columnNumber))
                 newBox.move(temp.getXLocation()+self.columnDistance, temp.getYLocation())
                 newBox.setLocation(temp.getXLocation() + self.columnDistance, temp.getYLocation())
                 newBox.show()
@@ -166,7 +166,7 @@ class ManualDataEntry(QDialog):
             #Making text box appear magic happen
             newBox = textBoxWrapper()
             newBox.setParent(self.scrollArea)
-            newBox.setText("Test" + str(self.rowNumber) + str(i))
+            #newBox.setText("Test" + str(self.rowNumber) + str(i))
             newBox.move(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
             newBox.setLocation(temp.getXLocation(), temp.getYLocation() + self.rowDistance)
             newBox.show()
