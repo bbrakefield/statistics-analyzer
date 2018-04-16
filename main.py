@@ -15,6 +15,9 @@ class StatisticalAnalyzer(QMainWindow):
         super().__init__()
         self.data = []
         self.data = None
+        self.col_headers = []
+        self.row_headers = []
+
         self.csv_data = []
         self.text_report = []
         self.history = []
@@ -78,7 +81,7 @@ class StatisticalAnalyzer(QMainWindow):
     def import_data(self, filename):
         try:
             with open(filename) as input_file:
-                self.data = list(csv.reader(input_file))
+                #self.data = list(csv.reader(input_file))
                 self.history.append("File Opened: {}".format(filename))
         except IOError:
             print("Could not open file: {}!".format(filename))
@@ -109,12 +112,15 @@ if __name__ == '__main__':
     ui = Ui_Dialog(Dialog)
     Dialog.exec_()
     application = StatisticalAnalyzer()
+
     tempData = getDataVar()
     typeFlag = ui.getType()
     if typeFlag == 2:
         try:
             inter = QtWidgets.QWidget()
             application.data = ui.getData()
+            application.col_headers = ui.get_col_headers()
+            application.row_headers = ui.get_row_headers()
             ui = Ui_Form1()
             ui.setupUi(inter, application.data, application)
             application.setCentralWidget(inter)
@@ -125,6 +131,8 @@ if __name__ == '__main__':
         try:
             ordn = QtWidgets.QWidget()
             application.data = ui.getData()
+            application.col_headers = ui.get_col_headers()
+            application.row_headers = ui.get_row_headers()
             ui = Ui_Form2()
             ui.setupUi(ordn, application.data, application)
             application.setCentralWidget(ordn)
@@ -135,6 +143,8 @@ if __name__ == '__main__':
         try:
             freq = QtWidgets.QWidget()
             application.data = ui.getData()
+            application.col_headers = ui.get_col_headers()
+            application.row_headers = ui.get_row_headers()
             ui = Ui_Form()
             ui.setupUi(freq, application.data, application)
             application.setCentralWidget(freq)

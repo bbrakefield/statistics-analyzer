@@ -17,8 +17,11 @@ class Ui_Dialog(QFileDialog):
 
     def __init__(self, Dialog):
         super(QFileDialog, self).__init__()
+        self.col_headers = []
+        self.row_headers = []
         self.setupUi(Dialog)
         self.data = [[None, None, None], [None, None, None]]
+
 
     def setupUi(self, Dialog):
 
@@ -120,11 +123,11 @@ class Ui_Dialog(QFileDialog):
         endcol = self.colEndSpinBox.value()
 
         if startrow == 0:
-            startrow = None
+            startrow = 1
         if endrow == 0:
             endrow = None
         if startcol == 0:
-            startcol = None
+            startcol = 1
         if endcol == 0:
             endcol = None
 
@@ -137,13 +140,18 @@ class Ui_Dialog(QFileDialog):
             with open(filename) as input_file:
                 #self.data = list(csv.reader(input_file))
                 df = pd.read_csv(input_file, header=None)
-
                 #df = pd.read_csv(input_file)
+                self.row_headers = df.iloc[startrow:endrow, :1].values.tolist()
+                self.col_headers = df.iloc[:1, startcol:endcol].values.tolist()[0]
+                corner = df.iloc[:1,:1].values.tolist()[0]
 
                 df2 = df.iloc[startrow:endrow, startcol:endcol]
                 data = df2.values.tolist()
                 self.data = data
-                print(self.data)
+
+                print("Col Headers: " + str(self.col_headers))
+                print("Row Headers: " + str(self.row_headers))
+                print("Data: " + str(self.data))
 
         except IOError:
             print("Could not open file: {}!".format(filename))
@@ -168,6 +176,12 @@ class Ui_Dialog(QFileDialog):
 
     def getData(self):
         return self.data
+
+    def get_col_headers(self):
+        return self.col_headers
+
+    def get_row_headers(self):
+        return self.row_headers
 
     def manualEntry(self):
         Dialog = QtWidgets.QDialog()

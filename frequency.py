@@ -8,6 +8,8 @@ class FrequencyDataObject(DataObject):
         super().__init__()
         self.data = data
         self.unpack_data()
+        print(self.x)
+        print(self.y)
         self.chi_square = self.get_chi_square()
         self.expected_mode = self.get_mode(self.x)
         self.actual_mode = self.get_mode(self.y)
@@ -18,8 +20,8 @@ class FrequencyDataObject(DataObject):
     def unpack_x(self):
         x = []
         try:
-            for row in self.data[1:]:
-                x.append(float(row[1]))
+            for row in self.data[0:]:
+                x.append(float(row[0]))
         except IndexError:
             return None
         return x
@@ -27,8 +29,8 @@ class FrequencyDataObject(DataObject):
     def unpack_y(self):
         y = []
         try:
-            for row in self.data[1:]:
-                y.append(float(row[2]))
+            for row in self.data[0:]:
+                y.append(float(row[1]))
         except IndexError:
             return None
         return y

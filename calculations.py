@@ -5,7 +5,7 @@ class Calculations:
 
     @staticmethod
     def calculate_mean(data):
-
+        data = list(map(float, data))
         return float(sum(data)) / max(len(data), 1)
 
     @staticmethod
@@ -132,7 +132,7 @@ class Calculations:
     @staticmethod
     def calculate_chi_square(x, y):
 
-        if y is not None:
+        if y is not None and x is not None:
             sum_col_x = sum(x)
             sum_col_y = sum(y)
             sum_rows = [a + b for a, b in zip(x, y) ]
@@ -168,11 +168,15 @@ class Calculations:
     @staticmethod
     def calculate_sign_test(x, y):
 
-        if y is not None:
+        print(len(x))
+        print(len(y))
+        if x is None or y is None:
+            return None
+        else:
             positives = 0
             negatives = 0
             zeroes = 0
-            differences = [a - b for a, b in zip(x,y)]
+            differences = [a - b for a, b in zip(x, y)]
 
             for item in differences:
                 if item > 0:
@@ -189,13 +193,12 @@ class Calculations:
                 return "Reject"
             else:
                 return "Accept"
-        else:
-            return None
+
 
     @staticmethod
     def calculate_rank_sum_test(x, y):
 
-        if y is not None:
+        if y is not None and x is not None:
             merged_list = x + y
             ranks = Calculations.get_rank(merged_list)
             ranks_x = ranks[:len(x)]
@@ -225,7 +228,7 @@ class Calculations:
     @staticmethod
     def calculate_spearman_rank(x, y):
 
-        if y is not None:
+        if y is not None and x is not None:
             rank_x = Calculations.get_rank(x)
             rank_y = Calculations.get_rank(y)
             spearman = Calculations.calculate_pearson_correlation(rank_x, rank_y)

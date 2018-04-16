@@ -18,6 +18,8 @@ class Ui_Form(object):
 
     def setupUi(self, Form, freqObject, mainScreenObj):
         self.mainScreenObject = mainScreenObj
+        self.col_headers = mainScreenObj.col_headers
+        self.row_headers = mainScreenObj.row_headers
         self.chiSquarebool = False
         self.modeBool = False
         self.probabilityBool = False
@@ -199,15 +201,15 @@ class Ui_Form(object):
     def graphSubmit(self):
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.freqObject, 2, 1)
+            self.ui = App(Dialog, self.freqObject, 2, 1, self.col_headers, self.row_headers)
             Dialog.exec_()
         elif self.horBarBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.freqObject, 2, 2)
+            self.ui = App(Dialog, self.freqObject, 2, 2, self.col_headers, self.row_headers)
             Dialog.exec_()
         elif self.pieCharBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.freqObject, 2, 3)
+            self.ui = App(Dialog, self.freqObject, 2, 3, self.col_headers, self.row_headers)
             Dialog.exec_()
 
     def setModeBool(self):

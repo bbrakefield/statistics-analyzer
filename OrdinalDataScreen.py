@@ -20,6 +20,8 @@ class Ui_Form2(object):
     def setupUi(self, Form, ordObject, mainScreenObj):
 
         self.mainScreenObject = mainScreenObj
+        self.col_headers = mainScreenObj.col_headers
+        self.row_headers = mainScreenObj.row_headers
         self.percentileBool = False
         self.medianbool = False
         self.modeBool = False
@@ -180,23 +182,23 @@ class Ui_Form2(object):
     def graphSubmit(self):
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.ordObject, 3, 1)
+            self.ui = App(Dialog, self.ordObject, 3, 1, self.col_headers, self.row_headers)
             Dialog.exec_()
         elif self.horBarBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.ordObject, 3, 2)
+            self.ui = App(Dialog, self.ordObject, 3, 2, self.col_headers, self.row_headers)
             Dialog.exec_()
         elif self.pieCharBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.ordObject, 3, 3)
+            self.ui = App(Dialog, self.ordObject, 3, 3, self.col_headers, self.row_headers)
             Dialog.exec_()
         elif self.xyPlotBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.ordObject, 3, 4)
+            self.ui = App(Dialog, self.ordObject, 3, 4, self.col_headers, self.row_headers)
             Dialog.exec_()
         elif self.normalCurBool == True:
             Dialog = QtWidgets.QDialog()
-            self.ui = App(Dialog, self.ordObject, 3, 5)
+            self.ui = App(Dialog, self.ordObject, 3, 5, self.col_headers, self.row_headers)
             Dialog.exec_()
 
     def setVerBarBool(self):

@@ -13,7 +13,7 @@ from matplotlib.pyplot import close
 
 class App(QDialog):
 
-    def __init__(self, Dialog, dataObject, whichObject, whichGraph):
+    def __init__(self, Dialog, dataObject, whichObject, whichGraph, col_headers, row_headers):
         super().__init__()
         self.left = 625
         self.top = 200
@@ -22,7 +22,11 @@ class App(QDialog):
         self.height = 400
         self.whichObject = whichObject
         self.last_figure_plotted = None
+        self.col_headers = col_headers
+        self.row_headers = row_headers
+
         self.initUI(Dialog, dataObject, whichObject, whichGraph)
+
 
     def initUI(self, Dialog, dataObject, whichObject, whichGraph):
 
@@ -31,7 +35,7 @@ class App(QDialog):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        self.m = PlotCanvas(self, width=5, height=4)
+        self.m = PlotCanvas(self.col_headers, self.row_headers, self, width=5, height=4)
         self.m.setDataObject(dataObject, whichObject, whichGraph)
         self.m.move(0, 0)
 
@@ -68,12 +72,14 @@ class App(QDialog):
 
 class PlotCanvas(FigureCanvas):
 
-    def __init__(self, parent=None, width=5, height=4, dpi=100):
+    def __init__(self, col_headers, row_headers, parent=None, width=5, height=4, dpi=100):
         self.last_figure_plotted = None
         self.plotter = Plotter()
         self.fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = self.fig.add_subplot(111)
         self.counter = 0
+        self.col_headers = col_headers
+        self.row_headers = row_headers
 
         FigureCanvas.__init__(self, self.fig)
         self.setParent(parent)
@@ -108,10 +114,10 @@ class PlotCanvas(FigureCanvas):
 
     def plot_next(self):
 
-        if (self.counter < len(self.object.data) - 1):
+        if (self.counter < len(self.object.data)):
             self.counter = self.counter + 1
         else:
-            self.counter = len(self.object.data) - 1
+            self.counter = len(self.object.data)
 
         self.plot_graph()
 
@@ -176,46 +182,40 @@ class PlotCanvas(FigureCanvas):
     def plot_horizontal_bar_chart(self):
 
         self.fig.clear()
-        labels = self.object.data[0][1:]
+        labels = self.col_headers
         y_pos = np.arange(len(labels))
-        row = self.object.data[self.counter]
-        values = [int(x) for x in row[1:]]
+        row = list(map(int, self.object.data[self.counter - 1]))
+        print(row)
         ax = self.figure.add_subplot(111)
-        ax.barh(y_pos, values, align='center')
-        ax.set_title(row[0])  # Graph Title
+        ax.barh(y_pos, row, align='center')
+        ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
         self.draw()
 
     def plot_vertical_bar_chart(self):
 
-        labels = self.object.data[0][1:]
-        x_pos = np.arange(len(labels))
         self.fig.clear()
-        row = self.object.data[self.counter]
-        values = [int(x) for x in row[1:]]
+        labels = self.col_headers
+        x_pos = np.arange(len(labels))
+        row = list(map(int, self.object.data[self.counter - 1]))
         ax = self.figure.add_subplot(111)
-        ax.bar(x_pos, values, color='blue')
-        ax.set_title(row[0])  # Graph Title
-        # self.last_figure_plotted = self.fig.gca() #--??
+        ax.bar(x_pos, row, color='blue')
+        ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
         self.draw()
 
     def plot_pie_chart(self):
 
-        print(self.counter)
-        labels = self.object.data[0][1:]
-        x_pos = np.arange(len(labels))
         self.fig.clear()
-        row = self.object.data[self.counter]
+        labels = self.col_headers
+        row = list(map(int, self.object.data[self.counter-1]))
         print(row)
-        values = [int(x) for x in row[1:]]
         sizes = []
-        valsum = sum(values)
-        for value in values:
+        valsum = sum(row)
+        for value in row:
             sizes.append(value / valsum)
-
         ax = self.figure.add_subplot(111)
         ax.pie(sizes, labels=labels, autopct='%1.1f%%')
         ax.axis('equal')
-        ax.set_title(row[0])
+        ax.set_title(self.row_headers[self.counter-1][0])
         self.draw()
 
     def plot_normal_distribution_curve(self):
@@ -238,8 +238,8 @@ class PlotCanvas(FigureCanvas):
         sampleCount = len(self.object.data[1:])
 
         for row in self.object.data[1:]:
-            values.append(int(row[1]))
-            values2.append(int(row[2]))
+            values.append(int(row[0]))
+            values2.append(int(row[1]))
 
         line1 = np.array(values)
         line2 = np.array(values2)

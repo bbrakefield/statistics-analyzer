@@ -34,8 +34,8 @@ class IntervalDataObject(DataObject):
     def unpack_x(self):
         x = []
         try:
-            for row in self.data[1:]:
-                x.append(float(row[1]))
+            for row in self.data[0:]:
+                x.append(float(row[0]))
         except IndexError:
             return None
         return x
@@ -43,8 +43,8 @@ class IntervalDataObject(DataObject):
     def unpack_y(self):
         y = []
         try:
-            for row in self.data[1:]:
-                y.append(float(row[2]))
+            for row in self.data[0:]:
+                y.append(float(row[1]))
         except IndexError:
             return None
         return y

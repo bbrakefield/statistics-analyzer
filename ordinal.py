@@ -33,7 +33,7 @@ class OrdinalDataObject(DataObject):
         a = []
 
         try:
-            for row in self.data[1:]:
+            for row in self.data[0:]:
                 a.append(float(row[1]))
         except IndexError:
             return None
@@ -44,7 +44,7 @@ class OrdinalDataObject(DataObject):
         b = []
 
         try:
-            for row in self.data[1:]:
+            for row in self.data[0:]:
                     b.append(float(row[2]))
         except IndexError:
             return None
