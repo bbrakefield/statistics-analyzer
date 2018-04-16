@@ -1,4 +1,5 @@
 import atexit
+import sys
 from PyQt5.QtWidgets import *
 import csv
 from DataTypeDialogBox import *

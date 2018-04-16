@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from ManualDataEntry import ManualDataEntry
-import sys
+
 import pandas as pd
 typeFlag = 0
 
@@ -161,7 +161,7 @@ class Ui_Dialog(QFileDialog):
         self.mainApp.setData(self.data)
 
     def closeIt(self):
-        exit(0)
+        self.closeEvent(0)
 
     def closeEvent(self, event):
         exit(0)
