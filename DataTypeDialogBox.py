@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from ManualDataEntry import ManualDataEntry
-import csv
+import sys
 import pandas as pd
 typeFlag = 0
 

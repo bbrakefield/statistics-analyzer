@@ -474,7 +474,7 @@ class Ui_Form1(object):
             stats.append(pearsons)
 
         if self.coeffVarBool == True:
-            coeffVarText = "Coefficient of Variance Y: {}\n" \
+            coeffVarText = "Coefficient of Variance X: {}\n" \
                    .format(str(self.intervalObject.coefficient_of_var_x))
             self.listWidget.addItem(coeffVarText)
             report.append((coeffVarText))

@@ -76,10 +76,16 @@ class Calculations:
 
     @staticmethod
     def fact(n):
-        if n == 0:
-            return 1
-        else:
-            return n * Calculations.fact(n - 1)
+        # if n == 0:
+        #     return 1
+        # else:
+        #     return n * Calculations.fact(n - 1)
+
+        x = 1
+        li = list(range(2, n+1))
+        for each in li:
+            x = x*each
+        return x
 
     @staticmethod
     def calculate_probability_distribution(successes, trials):
