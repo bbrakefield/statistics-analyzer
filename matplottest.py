@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import QDialog, QSizePolicy, QPushButton, QFileDialog
+from PyQt5.QtWidgets import QDialog, QSizePolicy, QPushButton, QFileDialog, QLineEdit, QLabel
+from PyQt5 import QtCore
 from graphing import Plotter
 from interval import IntervalDataObject
 from frequency import FrequencyDataObject
@@ -35,7 +36,11 @@ class App(QDialog):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
 
-        self.m = PlotCanvas(self.col_headers, self.row_headers, self, width=5, height=4)
+        self.titleBox = QLineEdit(self)
+        self.titleBox.setGeometry(QtCore.QRect(510, 280, 120, 25))
+        self.titleBox.setObjectName("titleBox")
+
+        self.m = PlotCanvas(self.col_headers, self.row_headers, self.titleBox, self, width=5, height=4)
         self.m.setDataObject(dataObject, whichObject, whichGraph)
         self.m.move(0, 0)
 
@@ -43,20 +48,32 @@ class App(QDialog):
         button.setToolTip('Next Graph')
         button.setStyleSheet('QPushButton {color: black;}')
         button.move(500, 0)
-        button.resize(140, 100)
+        button.resize(140, 80)
         button.clicked.connect(self.m.plot_next)
 
         button2 = QPushButton('Previous\n<<', self)
         button2.setToolTip('Previous Graph')
-        button2.move(500, 110)
-        button2.resize(140, 100)
+        button2.move(500, 90)
+        button2.resize(140, 80)
         button2.clicked.connect(self.m.plot_previous)
 
         button3 = QPushButton('Save Graph As', self)
         button3.setToolTip('Save This Graph')
-        button3.move(500, 220)
-        button3.resize(140, 100)
+        button3.move(500, 180)
+        button3.resize(140, 80)
         button3.clicked.connect(self.m.save_graph)
+
+        _translate = QtCore.QCoreApplication.translate
+        self.label1 = QLabel(self)
+        self.label1.setGeometry(QtCore.QRect(510, 260, 80, 20))
+        self.label1.setObjectName("label1")
+        self.label1.setText(_translate("Dialog", "Change Title:"))
+
+        button4 = QPushButton('Change Title', self)
+        button4.setToolTip('Change Title')
+        button4.move(500, 310)
+        button4.resize(140, 50)
+        button4.clicked.connect(self.m.changeTitle)
 
         self.show()
 
@@ -72,7 +89,8 @@ class App(QDialog):
 
 class PlotCanvas(FigureCanvas):
 
-    def __init__(self, col_headers, row_headers, parent=None, width=5, height=4, dpi=100):
+    def __init__(self, col_headers, row_headers, titleBox, parent=None, width=5, height=4, dpi=100):
+        self.titleBox = titleBox
         self.last_figure_plotted = None
         self.plotter = Plotter()
         self.fig = Figure(figsize=(width, height), dpi=dpi)
@@ -122,53 +140,86 @@ class PlotCanvas(FigureCanvas):
         self.plot_graph()
 
     def plot_graph(self):
-
         print(self.whichObject)
         print(self.whichGraph)
         if self.whichObject == 1:
             '''Interval'''
             if self.whichGraph == 1:
-                self.plot_vertical_bar_chart()
+                graphTitle = "Vertical Bar Chart " + str(self.counter)
+                self.plot_vertical_bar_chart(graphTitle)
 
             elif self.whichGraph == 2:
-                self.plot_horizontal_bar_chart()
+                graphTitle = "Horizontal Bar Chart " + str(self.counter)
+                self.plot_horizontal_bar_chart(graphTitle)
 
             elif self.whichGraph == 3:
-                self.plot_pie_chart()
+                graphTitle = "Pie Chart " + str(self.counter)
+                self.plot_pie_chart(graphTitle)
 
             elif self.whichGraph == 4:
-                self.plot_xy_graph()
+                graphTitle = "XY Graph " + str(self.counter)
+                self.plot_xy_graph(graphTitle)
 
             elif self.whichGraph == 5:
-                self.plot_normal_distribution_curve()
+                graphTitle = "Normal Distribution Curve  " + str(self.counter)
+                self.plot_normal_distribution_curve(graphTitle)
 
         elif self.whichObject == 2:
             '''Frequncy'''
             if self.whichGraph == 1:
-                self.plot_vertical_bar_chart()
+                graphTitle = "Vertical Bar Chart " + str(self.counter)
+                self.plot_vertical_bar_chart(graphTitle)
 
             elif self.whichGraph == 2:
-                self.plot_horizontal_bar_chart()
+                graphTitle = "Horizontal Bar Chart " + str(self.counter)
+                self.plot_horizontal_bar_chart(graphTitle)
 
             elif self.whichGraph == 3:
-                self.plot_pie_chart()
+                graphTitle = "Pie Chart " + str(self.counter)
+                self.plot_pie_chart(graphTitle)
 
         elif self.whichObject == 3:
             '''Ordinal'''
             if self.whichGraph == 1:
-                self.plot_vertical_bar_chart()
+                graphTitle = "Vertical Bar Chart " + str(self.counter)
+                self.plot_vertical_bar_chart(graphTitle)
 
             elif self.whichGraph == 2:
-                self.plot_horizontal_bar_chart()
+                graphTitle = "Horizontal Bar Chart " + str(self.counter)
+                self.plot_horizontal_bar_chart(graphTitle)
 
             elif self.whichGraph == 3:
-                self.plot_pie_chart()
+                graphTitle = "Pie Chart " + str(self.counter)
+                self.plot_pie_chart(graphTitle)
 
             elif self.whichGraph == 4:
-                self.plot_xy_graph()
+                graphTitle = "XY Graph " + str(self.counter)
+                self.plot_xy_graph(graphTitle)
 
             # elif self.whichGraph == 5:
             #     self.plot_normal_distribution_curve()
+
+    def changeTitle(self):
+        title = self.titleBox.text()
+        if self.whichGraph == 1:
+            graphTitle = title
+            self.plot_vertical_bar_chart(graphTitle)
+
+        elif self.whichGraph == 2:
+            graphTitle = title
+            self.plot_horizontal_bar_chart(graphTitle)
+
+        elif self.whichGraph == 3:
+            graphTitle = title
+            self.plot_pie_chart(graphTitle)
+
+        elif self.whichGraph == 4:
+            graphTitle = title
+            self.plot_xy_graph(graphTitle)
+
+        elif self.whichGraph == 5:
+            graphTitle = title
+            self.plot_normal_distribution_curve(graphTitle)
 
     def plot_previous(self):
 
@@ -179,7 +230,7 @@ class PlotCanvas(FigureCanvas):
 
         self.plot_graph()
 
-    def plot_horizontal_bar_chart(self):
+    def plot_horizontal_bar_chart(self, title):
 
         self.fig.clear()
         labels = self.col_headers
@@ -188,10 +239,11 @@ class PlotCanvas(FigureCanvas):
         print(row)
         ax = self.figure.add_subplot(111)
         ax.barh(y_pos, row, align='center')
-        ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
+        #ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
+        ax.set_title(title)
         self.draw()
 
-    def plot_vertical_bar_chart(self):
+    def plot_vertical_bar_chart(self, title):
 
         self.fig.clear()
         labels = self.col_headers
@@ -199,10 +251,11 @@ class PlotCanvas(FigureCanvas):
         row = list(map(int, self.object.data[self.counter - 1]))
         ax = self.figure.add_subplot(111)
         ax.bar(x_pos, row, color='blue')
-        ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
+        #ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
+        ax.set_title(title)
         self.draw()
 
-    def plot_pie_chart(self):
+    def plot_pie_chart(self, title):
 
         self.fig.clear()
         labels = self.col_headers
@@ -215,10 +268,11 @@ class PlotCanvas(FigureCanvas):
         ax = self.figure.add_subplot(111)
         ax.pie(sizes, labels=labels, autopct='%1.1f%%')
         ax.axis('equal')
-        ax.set_title(self.row_headers[self.counter-1][0])
+        #ax.set_title(self.row_headers[self.counter-1][0])
+        ax.set_title(title)
         self.draw()
 
-    def plot_normal_distribution_curve(self):
+    def plot_normal_distribution_curve(self, title):
 
         self.fig.clear()
         object = IntervalDataObject(self.object.data)
@@ -229,9 +283,10 @@ class PlotCanvas(FigureCanvas):
         ax = self.figure.add_subplot(111)
         ax.plot(x, norm.pdf(x, mean, stdev))
 
+        ax.set_title(title)
         self.draw()
 
-    def plot_xy_graph(self):
+    def plot_xy_graph(self, title):
         self.fig.clear()
         values = []
         values2 = []
@@ -251,7 +306,7 @@ class PlotCanvas(FigureCanvas):
         ax.plot(t, line2)
         # ax.xlabel("Sample #")
         # ax.ylabel("Frequency")
-        ax.set_title("XY Graph")
+        ax.set_title(title)
         self.draw()
 
     def closeFigure(self):
