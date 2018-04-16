@@ -11,6 +11,8 @@ class Calculations:
     @staticmethod
     def calculate_mode(data):
 
+        print("Mode Function Input: " + str(data))
+
         hits = []
         if(data != None):
             for item in data:
@@ -19,15 +21,17 @@ class Calculations:
                     if values not in hits:
                         hits.append(values)
 
+            print("Hits: " + str(hits))
+
             hits.sort(reverse=True)
-            if hits != []:
+            if hits != [] and len(hits) > 1:
                 if hits[0][0] > hits[1][0]:
                     return hits[0][1]
                 else:
                     # There is not a mode.
                     return None
             else:
-                exit(0)
+                return hits[0][1]
         else:
             return None
 
