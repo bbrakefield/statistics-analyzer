@@ -1,6 +1,6 @@
 import atexit
 from PyQt5.QtWidgets import *
-import sys
+import csv
 from DataTypeDialogBox import *
 from calculations import Calculations
 from graphing import Plotter

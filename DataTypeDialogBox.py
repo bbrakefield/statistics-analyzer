@@ -159,6 +159,12 @@ class Ui_Dialog(QFileDialog):
     def set_theData(self, theData):
         self.data = theData
 
+    def set_row_headers(self, rows):
+        self.row_headers = rows
+
+    def set_col_headers(self, cols):
+        self.col_headers = cols
+
     def isInterval(self):
         global typeFlag
         typeFlag = 2

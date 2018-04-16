@@ -214,8 +214,18 @@ class ManualDataEntry(QDialog):
                 column = column.getRight()
             row = row.getBottom()
             column = row
+
+        col_headers = str[0][1:]
+        row_headers = [item[0] for item in str[1:]]
+        str = [item[1:] for item in str[1:]]
+
+        print(row_headers)
+        print(col_headers)
         print(str)
+
         self.dataTypeDialog.set_theData(str)
+        self.dataTypeDialog.set_row_headers(row_headers)
+        self.dataTypeDialog.set_col_headers(col_headers)
         self.Dialog.accept()
 
     def setOrdinalFlag(self):
