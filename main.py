@@ -55,22 +55,28 @@ class StatisticalAnalyzer(QMainWindow):
         self.import_data(filename)
 
     def save_csv(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+        try:
+            filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "CSV File (*.csv)")
 
-        with open(filename, 'w', newline='') as csv_file:
+            with open(filename, 'w', newline='') as csv_file:
 
-            writer = csv.writer(csv_file)
-            for row in self.csv_data:
-                writer.writerow(row)
+                writer = csv.writer(csv_file)
+                for row in self.csv_data:
+                    writer.writerow(row)
+        except IOError:
+            print("File was not saved.")
 
     def write_report(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+        try:
+            filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "TXT File (*.txt)")
 
-        with open(filename, 'w', newline='') as new_report:
-            for item in self.text_report:
-                new_report.write('%s\n' % item)
+            with open(filename, 'w', newline='') as new_report:
+                for item in self.text_report:
+                    new_report.write('%s\n' % item)
+        except IOError:
+            print("File was not saved.")
 
     def set_csv(self, csv_data):
         self.csv_data = csv_data
