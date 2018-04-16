@@ -90,6 +90,9 @@ class StatisticalAnalyzer(QMainWindow):
         event.accept()
         sys.exit(0)
 
+    def setData(self, Data):
+        self.data = Data
+
 def exit_handler():
     try:
         with open("history.txt", "w") as file:
@@ -104,18 +107,16 @@ def getDataVar():
     thisData = application.data
     return thisData
 
-
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    atexit.register(exit_handler)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog(Dialog)
-    Dialog.exec_()
     application = StatisticalAnalyzer()
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog(Dialog, application)
+    Dialog.exec_()
 
     tempData = getDataVar()
     typeFlag = ui.getType()
-    if typeFlag == 2:
+    if typeFlag == 2 and tempData is not None:
         try:
             inter = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -127,7 +128,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 1:
+    elif typeFlag == 1 and tempData is not None:
         try:
             ordn = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -139,7 +140,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 3:
+    elif typeFlag == 3 and tempData is not None:
         try:
             freq = QtWidgets.QWidget()
             application.data = ui.getData()

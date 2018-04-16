@@ -15,8 +15,9 @@ typeFlag = 0
 
 class Ui_Dialog(QFileDialog):
 
-    def __init__(self, Dialog):
+    def __init__(self, Dialog, mainApp):
         super(QFileDialog, self).__init__()
+        self.mainApp = mainApp
         self.col_headers = []
         self.row_headers = []
         self.setupUi(Dialog)
@@ -103,7 +104,7 @@ class Ui_Dialog(QFileDialog):
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
+        self.buttonBox.rejected.connect(self.closeIt)
 
         self.pushButton_2.clicked.connect(self.manualEntry)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -156,6 +157,14 @@ class Ui_Dialog(QFileDialog):
 
         except IOError:
             print("Could not open file: {}!".format(filename))
+
+        self.mainApp.setData(self.data)
+
+    def closeIt(self):
+        exit(0)
+
+    def closeEvent(self, event):
+        exit(0)
 
     def set_theData(self, theData):
         self.data = theData

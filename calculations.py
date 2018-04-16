@@ -30,8 +30,10 @@ class Calculations:
                 else:
                     # There is not a mode.
                     return None
-            else:
+            elif hits != []:
                 return hits[0][1]
+            else:
+                return None
         else:
             return None
 

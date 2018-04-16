@@ -120,24 +120,24 @@ class PlotCanvas(FigureCanvas):
 
         if whichObject == 1:
             self.object = IntervalDataObject(dataObject)
-            self.plot_next()
+            self.plot_graph()
 
         elif whichObject == 2:
             self.object = FrequencyDataObject(dataObject)
-            self.plot_next()
+            self.plot_graph()
 
         elif whichObject == 3:
             self.object = OrdinalDataObject(dataObject)
-            self.plot_next()
+            self.plot_graph()
 
     def plot_next(self):
+        if self.whichGraph != 4 and self.whichGraph != 5:
+            if (self.counter < len(self.object.data)):
+                self.counter = self.counter + 1
+            else:
+                self.counter = len(self.object.data)
 
-        if (self.counter < len(self.object.data)):
-            self.counter = self.counter + 1
-        else:
-            self.counter = len(self.object.data)
-
-        self.plot_graph()
+            self.plot_graph()
 
     def plot_graph(self):
         print(self.whichObject)
@@ -157,11 +157,11 @@ class PlotCanvas(FigureCanvas):
                 self.plot_pie_chart(graphTitle)
 
             elif self.whichGraph == 4:
-                graphTitle = "XY Graph " + str(self.counter)
+                graphTitle = "XY Graph "
                 self.plot_xy_graph(graphTitle)
 
             elif self.whichGraph == 5:
-                graphTitle = "Normal Distribution Curve  " + str(self.counter)
+                graphTitle = "Normal Distribution Curve  "
                 self.plot_normal_distribution_curve(graphTitle)
 
         elif self.whichObject == 2:
@@ -193,7 +193,7 @@ class PlotCanvas(FigureCanvas):
                 self.plot_pie_chart(graphTitle)
 
             elif self.whichGraph == 4:
-                graphTitle = "XY Graph " + str(self.counter)
+                graphTitle = "XY Graph "
                 self.plot_xy_graph(graphTitle)
 
             # elif self.whichGraph == 5:
@@ -222,13 +222,13 @@ class PlotCanvas(FigureCanvas):
             self.plot_normal_distribution_curve(graphTitle)
 
     def plot_previous(self):
+        if self.whichGraph is not 4 and self.whichGraph is not 5:
+            if(self.counter > 1):
+                self.counter = self.counter - 1
+            else:
+                self.counter = 1
 
-        if(self.counter > 1):
-            self.counter = self.counter - 1
-        else:
-            self.counter = 1
-
-        self.plot_graph()
+            self.plot_graph()
 
     def plot_horizontal_bar_chart(self, title):
 
