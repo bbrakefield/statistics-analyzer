@@ -34,7 +34,7 @@ class OrdinalDataObject(DataObject):
 
         try:
             for row in self.data[0:]:
-                if row[1] is not None:
+                if row[0] is not None:
                     a.append(float(row[0]))
         except IndexError:
             return None
@@ -46,7 +46,7 @@ class OrdinalDataObject(DataObject):
 
         try:
             for row in self.data[0:]:
-                if row[2] is not None:
+                if row[1] is not None:
                     b.append(float(row[1]))
         except IndexError:
             return None
@@ -58,7 +58,7 @@ class OrdinalDataObject(DataObject):
 
         try:
             for row in self.data[1:]:
-                if row[3] is not None:
+                if row[2] is not None:
                     c.append(float(row[2]))
         except IndexError:
             return None
@@ -70,7 +70,7 @@ class OrdinalDataObject(DataObject):
 
         try:
             for row in self.data[1:]:
-                if row[4] is not None:
+                if row[3] is not None:
                     d.append(float(row[3]))
         except IndexError:
             return None
@@ -81,7 +81,7 @@ class OrdinalDataObject(DataObject):
         e = []
         try:
             for row in self.data[1:]:
-                if row[5] is not None:
+                if row[4] is not None:
                     e.append(float(row[4]))
         except IndexError:
             return None
