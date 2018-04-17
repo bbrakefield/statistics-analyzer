@@ -9,14 +9,15 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from ManualDataEntry import ManualDataEntry
-import csv
+
 import pandas as pd
 typeFlag = 0
 
 class Ui_Dialog(QFileDialog):
 
-    def __init__(self, Dialog):
+    def __init__(self, Dialog, mainApp):
         super(QFileDialog, self).__init__()
+        self.mainApp = mainApp
         self.col_headers = []
         self.row_headers = []
         self.setupUi(Dialog)
@@ -103,7 +104,7 @@ class Ui_Dialog(QFileDialog):
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
+        self.buttonBox.rejected.connect(self.closeIt)
 
         self.pushButton_2.clicked.connect(self.manualEntry)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -141,7 +142,8 @@ class Ui_Dialog(QFileDialog):
                 #self.data = list(csv.reader(input_file))
                 df = pd.read_csv(input_file, header=None)
                 #df = pd.read_csv(input_file)
-                self.row_headers = df.iloc[startrow:endrow, :1].values.tolist()
+                rows = df.iloc[startrow:endrow, :1].values.tolist()
+                self.row_headers = [item for sublist in rows for item in sublist]
                 self.col_headers = df.iloc[:1, startcol:endcol].values.tolist()[0]
                 corner = df.iloc[:1,:1].values.tolist()[0]
 
@@ -156,8 +158,22 @@ class Ui_Dialog(QFileDialog):
         except IOError:
             print("Could not open file: {}!".format(filename))
 
+        self.mainApp.setData(self.data)
+
+    def closeIt(self):
+        self.closeEvent(0)
+
+    def closeEvent(self, event):
+        exit(0)
+
     def set_theData(self, theData):
         self.data = theData
+
+    def set_row_headers(self, rows):
+        self.row_headers = rows
+
+    def set_col_headers(self, cols):
+        self.col_headers = cols
 
     def isInterval(self):
         global typeFlag

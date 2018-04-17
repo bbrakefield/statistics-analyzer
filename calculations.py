@@ -28,6 +28,8 @@ class Calculations:
     @staticmethod
     def calculate_mode(data):
 
+        print("Mode Function Input: " + str(data))
+
         hits = []
         if data is not None:
             for item in data:
@@ -36,12 +38,18 @@ class Calculations:
                     if values not in hits:
                         hits.append(values)
 
-            hits.sort(reverse=True)
+            print("Hits: " + str(hits))
 
-            if hits[0][0] > hits[1][0]:
+            hits.sort(reverse=True)
+            if hits != [] and len(hits) > 1:
+                if hits[0][0] > hits[1][0]:
+                    return hits[0][1]
+                else:
+                    # There is not a mode.
+                    return None
+            elif hits != []:
                 return hits[0][1]
             else:
-                # There is not a mode.
                 return None
         else:
             return None
@@ -93,10 +101,16 @@ class Calculations:
 
     @staticmethod
     def fact(n):
-        if n == 0:
-            return 1
-        else:
-            return n * Calculations.fact(n - 1)
+        # if n == 0:
+        #     return 1
+        # else:
+        #     return n * Calculations.fact(n - 1)
+
+        x = 1
+        li = list(range(2, n+1))
+        for each in li:
+            x = x*each
+        return x
 
     @staticmethod
     def calculate_probability_distribution(successes, trials):

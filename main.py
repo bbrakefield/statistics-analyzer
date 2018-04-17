@@ -1,6 +1,7 @@
 import atexit
-from PyQt5.QtWidgets import *
 import sys
+from PyQt5.QtWidgets import *
+import csv
 from DataTypeDialogBox import *
 from calculations import Calculations
 from graphing import Plotter
@@ -55,22 +56,28 @@ class StatisticalAnalyzer(QMainWindow):
         self.import_data(filename)
 
     def save_csv(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+        try:
+            filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "CSV File (*.csv)")
 
-        with open(filename, 'w', newline='') as csv_file:
+            with open(filename, 'w', newline='') as csv_file:
 
-            writer = csv.writer(csv_file)
-            for row in self.csv_data:
-                writer.writerow(row)
+                writer = csv.writer(csv_file)
+                for row in self.csv_data:
+                    writer.writerow(row)
+        except IOError:
+            print("File was not saved.")
 
     def write_report(self):
-        filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
+        try:
+            filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "TXT File (*.txt)")
 
-        with open(filename, 'w', newline='') as new_report:
-            for item in self.text_report:
-                new_report.write('%s\n' % item)
+            with open(filename, 'w', newline='') as new_report:
+                for item in self.text_report:
+                    new_report.write('%s\n' % item)
+        except IOError:
+            print("File was not saved.")
 
     def set_csv(self, csv_data):
         self.csv_data = csv_data
@@ -90,6 +97,9 @@ class StatisticalAnalyzer(QMainWindow):
         event.accept()
         sys.exit(0)
 
+    def setData(self, Data):
+        self.data = Data
+
 def exit_handler():
     try:
         with open("history.txt", "w") as file:
@@ -104,18 +114,16 @@ def getDataVar():
     thisData = application.data
     return thisData
 
-
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    atexit.register(exit_handler)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog(Dialog)
-    Dialog.exec_()
     application = StatisticalAnalyzer()
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog(Dialog, application)
+    Dialog.exec_()
 
     tempData = getDataVar()
     typeFlag = ui.getType()
-    if typeFlag == 2:
+    if typeFlag == 2 and tempData is not None:
         try:
             inter = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -127,7 +135,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 1:
+    elif typeFlag == 1 and tempData is not None:
         try:
             ordn = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -139,7 +147,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 3:
+    elif typeFlag == 3 and tempData is not None:
         try:
             freq = QtWidgets.QWidget()
             application.data = ui.getData()
