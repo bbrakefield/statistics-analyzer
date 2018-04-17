@@ -1,7 +1,24 @@
+"""
+This module gathers all calculation functions that will be used on imported data.
+"""
+
+# Authors: Brannon Brakefield
+#          Jenna McCown
+#          Mitch Stephenson
+
 import math
 
+# =============================================================================
+# Calculations
+# =============================================================================
 
 class Calculations:
+    """Class that contains all functions that will perform calculations
+    on imported data from csv file.
+
+    This class will be instantiated inside every data object class
+    i.e. Frequency, Interval, Ordinal
+    """
 
     @staticmethod
     def calculate_mean(data):
@@ -12,7 +29,7 @@ class Calculations:
     def calculate_mode(data):
 
         hits = []
-        if(data != None):
+        if data is not None:
             for item in data:
                     tally = data.count(item)
                     values = (tally, item)
@@ -32,47 +49,47 @@ class Calculations:
     @staticmethod
     def calculate_median(data):
 
-        if data != None:
-            sortedList = sorted(data)
+        if data is not None:
+            sorted_list = sorted(data)
             length = len(data)
 
             if length < 1:
                 return None
             if length % 2 == 1:
-                return sortedList[length//2]
+                return sorted_list[length // 2]
             else:
-                return sum(sortedList[length//2-1:length//2+1])/2.0
+                return sum(sorted_list[length // 2 - 1:length // 2 + 1])/ 2.0
         else:
             return None
 
     @staticmethod
     def calculate_standard_deviation(data):
-        standardDtemp = Calculations.calculate_variance(data)
-        standardD = math.sqrt(standardDtemp)
-        return standardD
+        variance = Calculations.calculate_variance(data)
+        std_dev = math.sqrt(variance)
+        return std_dev
 
     @staticmethod
     def calculate_variance(data):
         variance = 0
-        amean = Calculations.calculate_mean(data)
+        mean = Calculations.calculate_mean(data)
         for item in data:
-            variance += (item-amean)**2 / (len(data) - 1)
+            variance += (item - mean) ** 2 / (len(data) - 1)
         return variance
 
     @staticmethod
     def calculate_coefficient_of_variance(data):
         sd = Calculations.calculate_standard_deviation(data)
-        thismean = Calculations.calculate_mean(data)
-        coeffofVar = sd / thismean
-        return coeffofVar
+        mean = Calculations.calculate_mean(data)
+        coeff_of_var = sd / mean
+        return coeff_of_var
 
     @staticmethod
     def calculate_percentiles(percentile, data):
         data = sorted(data)
         index = len(data) * percentile
         index = int(index)
-        thepercentile = data[0+(index-1)]
-        return thepercentile
+        percentile = data[0 + (index - 1)]
+        return percentile
 
     @staticmethod
     def fact(n):
@@ -83,18 +100,20 @@ class Calculations:
 
     @staticmethod
     def calculate_probability_distribution(successes, trials):
-        #successes is the number you want to find probability of getting.
-        #trials could receive len(data)
-        #if user wants cumulative, can acheive by calling this in for loop.
-        fail = trials-successes
-        probDist = successes / (successes+fail)
-        return probDist
+        # successes is the number you want to find probability of getting.
+        # trials could receive len(data)
+        # if user wants cumulative, can achieve by calling this in for loop.
+        fail = trials - successes
+        prob_dist = successes / (successes + fail)
+        return prob_dist
 
     @staticmethod
     def calculate_binomial_distribution(prob, trials, succ):
-        fail = 1-prob
-        binDist = ((Calculations.fact(trials))/(Calculations.fact(trials-succ)*Calculations.fact(succ)))*((prob**succ)*(fail**(trials-succ)))
-        return binDist
+        fail = 1 - prob
+        bin_dist = ((Calculations.fact(trials)) / (Calculations.fact(trials - succ) *
+                                                   Calculations.fact(succ))) * ((prob ** succ) *
+                                                                                (fail ** (trials - succ)))
+        return bin_dist
 
     @staticmethod
     def calculate_covariance(x, y):
@@ -168,8 +187,6 @@ class Calculations:
     @staticmethod
     def calculate_sign_test(x, y):
 
-        print(len(x))
-        print(len(y))
         if x is None or y is None:
             return None
         else:
@@ -186,10 +203,10 @@ class Calculations:
                 else:
                     zeroes += 1
 
-            sum = positives + negatives - zeroes
-            pval = Calculations.calculate_binomial_distribution(.5, sum, positives)
+            sign_sum = positives + negatives - zeroes
+            p_val = Calculations.calculate_binomial_distribution(.5, sign_sum, positives)
 
-            if pval < 0.05:
+            if p_val < 0.05:
                 return "Reject"
             else:
                 return "Accept"
