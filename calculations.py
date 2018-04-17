@@ -12,13 +12,17 @@ import math
 # Calculations
 # =============================================================================
 
+
 class Calculations:
     """Class that contains all functions that will perform calculations
-    on imported data from csv file.
+        on imported data from csv file.
 
-    This class will be instantiated inside every data object class
-    i.e. Frequency, Interval, Ordinal
+        This class will be instantiated inside every data object class
+        i.e. Frequency, Interval, Ordinal
     """
+
+    def __init__(self):
+        pass
 
     @staticmethod
     def calculate_mean(data):
@@ -101,11 +105,6 @@ class Calculations:
 
     @staticmethod
     def fact(n):
-        # if n == 0:
-        #     return 1
-        # else:
-        #     return n * Calculations.fact(n - 1)
-
         x = 1
         li = list(range(2, n+1))
         for each in li:
