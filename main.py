@@ -1,3 +1,5 @@
+import atexit
+import sys
 """
 Module responsible for driving the application.
 """
