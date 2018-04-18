@@ -1,10 +1,9 @@
 """
-This module gathers all calculation functions that will be used on imported data.
+Module containing the implementation of all calculation functions.
 """
 
 # Authors: Brannon Brakefield
-#          Jenna McCown
-#          Mitch Stephenson
+#             Jenna McCown
 
 import math
 
