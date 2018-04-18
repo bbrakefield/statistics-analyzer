@@ -1,10 +1,13 @@
 # Statistical Analyzer
 
-A cross-platform open source statistics application built using Python's csv, matplotlib, numpy, PyQt5, and scipy
-libraries.
+This application is written in Python 3.6!
 
-`calculations.py` Contains statistics functions
+A cross-platform open source statistics application built using Python's pandas, matplotlib,
+numpy, PyQt5, and scipy libraries.
 
-`main.py` Creates a PyQt GUI
+This project is also dependent on Pillow, an extension of the python image library.
+This is needed to save images as JPGs.
 
-`test_calculations.py` calculations.py unit testing
+# Running the Application
+To run this program, navigate to the .\statistics-analyzer folder and run:
+`python main.py`
