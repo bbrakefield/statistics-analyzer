@@ -31,8 +31,6 @@ class Calculations:
     @staticmethod
     def calculate_mode(data):
 
-        print("Mode Function Input: " + str(data))
-
         hits = []
         if data is not None:
             for item in data:
@@ -40,8 +38,6 @@ class Calculations:
                     values = (tally, item)
                     if values not in hits:
                         hits.append(values)
-
-            print("Hits: " + str(hits))
 
             hits.sort(reverse=True)
             if hits != [] and len(hits) > 1:
