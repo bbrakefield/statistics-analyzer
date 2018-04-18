@@ -1,9 +1,15 @@
-import atexit
+"""
+Module responsible for driving the application.
+"""
+
+# Authors: Jenna McCown
+#         Brannon Brakefield
+#         Mitch Stephenson
+
 from PyQt5.QtWidgets import *
 import csv
 from DataTypeDialogBox import *
 from calculations import Calculations
-from graphing import Plotter
 from OrdinalDataScreen import Ui_Form2
 from IntervalDataScreen import Ui_Form1
 from FrequencyDataScreen import Ui_Form
@@ -24,7 +30,6 @@ class StatisticalAnalyzer(QMainWindow):
         self.last_figure_plotted = None
 
         self.calculator = Calculations()
-        self.plotter = Plotter()
 
         self.title = "Statistical Analyzer"
         self.left = 200
@@ -99,19 +104,11 @@ class StatisticalAnalyzer(QMainWindow):
     def setData(self, Data):
         self.data = Data
 
-def exit_handler():
-    try:
-        with open("history.txt", "w") as file:
-            try:
-                file.writelines(application.history)
-            except NameError:
-                print("Could not write application history at exit!")
-    except PermissionError:
-        print("Could not write application history at exit because of a permissions error!")
 
 def getDataVar():
     thisData = application.data
     return thisData
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
@@ -158,5 +155,3 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-
-
