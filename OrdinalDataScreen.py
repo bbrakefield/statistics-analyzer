@@ -1,15 +1,16 @@
-# -*- coding: utf-8 -*-
+"""
+Module responsible for the generating the view for operating on Ordinal data objects.
+"""
 
-# Form implementation generated from reading ui file 'testing123.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
+# Authors: Jenna McCown
+#          Brannon Brakefield
+
 
 from PyQt5 import QtCore, QtWidgets
 from ordinal import OrdinalDataObject
 from matplottest import App
 import csv
+
 
 class Ui_Form2(object):
 
@@ -367,7 +368,6 @@ class Ui_Form2(object):
 
         choices = ['Stats', 'A', 'B', 'C', 'D', 'E']
         stats.insert(0, choices)
-        #writer.writerow(headers)
 
         self.mainScreenObject.set_csv(stats)
 

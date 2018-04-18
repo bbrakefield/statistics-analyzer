@@ -1,3 +1,9 @@
+"""
+This module is used in compliance with the ManualDataEntry class.
+"""
+
+# Authors: Mitch Stephenson
+
 from PyQt5.QtWidgets import QLineEdit
 
 

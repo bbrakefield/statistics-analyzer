@@ -1,23 +1,32 @@
+"""
+Module containing the implementation of an frequency data object.
+"""
+
+# Authors: Brannon Brakefield
+
 from data_object import DataObject
-import numpy as np
+
+# =============================================================================
+# Frequency data object
+# =============================================================================
 
 
 class FrequencyDataObject(DataObject):
+    """Frequency data object that contains all relevant statistical calculations on
+    imported data.
+    """
 
     def __init__(self, data):
         super().__init__()
         self.data = data
         self.unpack_data()
-        print(self.x)
-        print(self.y)
         self.chi_square = self.get_chi_square()
         self.expected_mode = self.get_mode(self.x)
         self.actual_mode = self.get_mode(self.y)
-        # self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
-        # self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
-        # self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_x(self):
+        """Extract first column from data frame."""
+
         x = []
         try:
             for row in self.data[0:]:
@@ -28,6 +37,8 @@ class FrequencyDataObject(DataObject):
         return x
 
     def unpack_y(self):
+        """Extract second column from data frame."""
+
         y = []
         try:
             for row in self.data[0:]:
@@ -38,6 +49,7 @@ class FrequencyDataObject(DataObject):
         return y
 
     def unpack_data(self):
+        """Extract data from data frame and flatten into singular lists."""
 
         self.x = FrequencyDataObject.unpack_x(self)
         self.y = FrequencyDataObject.unpack_y(self)

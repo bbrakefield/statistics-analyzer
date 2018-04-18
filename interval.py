@@ -1,8 +1,20 @@
+"""
+Module containing the implementation of an interval data object.
+"""
+
+# Authors: Brannon Brakefield
+
 from data_object import DataObject
-import numpy as np
+
+# =============================================================================
+# Interval data object
+# =============================================================================
 
 
 class IntervalDataObject(DataObject):
+    """Interval data object that contains all relevant statistical calculations on
+    imported data.
+    """
 
     def __init__(self, data):
         super().__init__()
@@ -27,11 +39,10 @@ class IntervalDataObject(DataObject):
         self.rank_sum = self.get_rank_sum()
         self.spearman = self.get_spearman_rank()
 
-        # self.vertical_bar_graphs = self.get_vertical_bar_graphs(self.data)
-        # self.horizontal_bar_graphs = self.get_horizontal_bar_graphs(self.data)
-        # self.pie_graphs = self.get_pie_charts(self.data)
 
     def unpack_x(self):
+        """Extract first column from data frame."""
+
         x = []
         try:
             for row in self.data[0:]:
@@ -42,6 +53,8 @@ class IntervalDataObject(DataObject):
         return x
 
     def unpack_y(self):
+        """Extract second column from data frame."""
+
         y = []
         try:
             for row in self.data[0:]:
@@ -52,6 +65,7 @@ class IntervalDataObject(DataObject):
         return y
 
     def unpack_data(self):
+        """Extract data from data frame and flatten into singular lists."""
 
         self.x = IntervalDataObject.unpack_x(self)
         self.y = IntervalDataObject.unpack_y(self)

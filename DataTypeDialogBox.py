@@ -1,19 +1,27 @@
-# -*- coding: utf-8 -*-
+"""
+Module containing the code that will generate the view for selecting data.
+"""
 
-# Form implementation generated from reading ui file 'DataTypeDialogBox.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
+# Authors: Jenna McCown
+#           Brannon Brakefield
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 from ManualDataEntry import ManualDataEntry
-
 import pandas as pd
-typeFlag = 0
+
+typeFlag = 0  # global flag for keeping track of which data object is going to be created.
+
+# =============================================================================
+# Data specification dialog screen.
+# =============================================================================
 
 class Ui_Dialog(QFileDialog):
+    """This is the screen that will allow users to select which
+    data type they wish to work with. The user will also be able to
+    choose the file, invoke manual entry, or specify which columns and/or
+    rows they whish to operate on within the data file.
+    """
 
     def __init__(self, Dialog, mainApp):
         super(QFileDialog, self).__init__()
@@ -111,18 +119,22 @@ class Ui_Dialog(QFileDialog):
         self.history = []
 
     def open_file(self):
+        """Choose file to import using file dialog, then import it"""
         filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "",
                                                       "CSV File (*.csv);;All Files (*)")
 
         self.import_data(filename)
 
     def import_data(self, filename):
+        """Import data from csv file given filename."""
 
+        # The dimensions of the data frame we want to extract from the file.
         startrow = self.rowBeginSpinBox.value()
         endrow = self.rowEndSpinBox.value()
         startcol = self.colBeginSpinBox.value()
         endcol = self.colEndSpinBox.value()
 
+        # Prevent the user from selecting the first row and first column.
         if startrow == 0:
             startrow = 1
         if endrow == 0:
@@ -132,36 +144,27 @@ class Ui_Dialog(QFileDialog):
         if endcol == 0:
             endcol = None
 
-        print('start row: ' + str(startrow))
-        print('end row: ' + str(endrow))
-        print('start column: ' + str(startcol))
-        print('end column: ' + str(endcol))
-
+        # Extract the data.
         try:
             with open(filename) as input_file:
-                #self.data = list(csv.reader(input_file))
                 df = pd.read_csv(input_file, header=None)
-                #df = pd.read_csv(input_file)
                 rows = df.iloc[startrow:endrow, :1].values.tolist()
+
                 self.row_headers = [item for sublist in rows for item in sublist]
                 self.col_headers = df.iloc[:1, startcol:endcol].values.tolist()[0]
-                corner = df.iloc[:1,:1].values.tolist()[0]
 
                 df2 = df.iloc[startrow:endrow, startcol:endcol]
                 data = df2.values.tolist()
                 self.data = data
 
-                print("Col Headers: " + str(self.col_headers))
-                print("Row Headers: " + str(self.row_headers))
-                print("Data: " + str(self.data))
-
         except IOError:
             print("Could not open file: {}!".format(filename))
 
+        # send data to the main class.
         self.mainApp.setData(self.data)
 
     def closeIt(self):
-        self.closeEvent(0)
+        exit(0)
 
     def closeEvent(self, event):
         exit(0)
@@ -200,6 +203,8 @@ class Ui_Dialog(QFileDialog):
         return self.row_headers
 
     def manualEntry(self):
+        """Invoke the manual entry data screen."""
+
         Dialog = QtWidgets.QDialog()
         self.ui = ManualDataEntry()
         self.ui.setupUi(Dialog, self, typeFlag)
@@ -219,9 +224,3 @@ class Ui_Dialog(QFileDialog):
         self.colsToLabel.setText(_translate("Dialog", "to"))
         self.colsLabel.setText(_translate("Dialog", "Columns"))
         self.groupBox2.setTitle(_translate("Dialog", "Select Data for Analysis:"))
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    sys.exit(app.exec_())

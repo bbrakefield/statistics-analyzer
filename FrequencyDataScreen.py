@@ -1,16 +1,20 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'FrequencyDataScreen.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
+"""
+Module responsible for generating the view when operating on frequency data objects.
+"""
 from frequency import FrequencyDataObject
 from PyQt5 import QtCore, QtWidgets
 from matplottest import App
 import csv
 
+# =============================================================================
+# Frequency data screen
+# =============================================================================
+
+
 class Ui_Form(object):
+    """The view that is shown when operating on freqency data.
+    User will be able to select which stats they wish to see in the report,
+    Generate charts, and export data and reports."""
 
     def __init__(self):
         super().__init__()
@@ -238,6 +242,8 @@ class Ui_Form(object):
             self.binomialBool = True
 
     def calcSubmit(self):
+        """Write calculation report and show it on the GUI."""
+
         pbSuccesses = self.pbSuccessSpinBox.value()
         pbTrials = self.pbTrialSpinBox.value()
         bdSuccesses = self.bdSuccessSpinBox.value()
@@ -308,7 +314,7 @@ class Ui_Form(object):
         else:
             expected_mode_text = self.frequencyObject.expected_mode
 
-
+        # Gather up information for csv_report
         csv_data =  [['Type', 'Mode', 'Chi Square', 'Prob. Dist.', 'Binom Dist.'],
                      ['Actual', actual_mode_text, self.frequencyObject.chi_square,
                          self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
@@ -317,6 +323,7 @@ class Ui_Form(object):
                          self.frequencyObject.get_probability_distribution(pbSuccesses, pbTrials),
                          self.frequencyObject.get_binomial_distribution(bdProbSucc, bdTrials, bdSuccesses)]]
 
+        # store it in main.
         self.mainScreenObject.set_csv(csv_data)
 
 

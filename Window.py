@@ -1,6 +1,10 @@
-import csv
-import sys
+"""
 
+"""
+
+# Author: Jenna McCown
+
+import csv
 from PyQt5.QtWidgets import QWidget, QMenuBar, QGridLayout, QRadioButton, QPushButton, QFileDialog, QApplication
 
 
@@ -104,12 +108,3 @@ class Window(QWidget):
 
     def submitFun(self):
             print("")
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    screen = Window()
-    screen.show()
-
-    sys.exit(app.exec_())

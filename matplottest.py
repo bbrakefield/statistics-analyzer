@@ -1,6 +1,12 @@
+"""
+Module that implements the logic for generating graphs
+"""
+
+# Authors: Brannon Brakefield
+#          Jenna McCown
+
 from PyQt5.QtWidgets import QDialog, QSizePolicy, QPushButton, QFileDialog, QLineEdit, QLabel
 from PyQt5 import QtCore
-from graphing import Plotter
 from interval import IntervalDataObject
 from frequency import FrequencyDataObject
 from ordinal import OrdinalDataObject
@@ -11,6 +17,10 @@ from scipy.stats import norm
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.pyplot import close
+
+# =============================================================================
+# Base window for showing graphs.
+# =============================================================================
 
 class App(QDialog):
 
@@ -86,13 +96,16 @@ class App(QDialog):
         close(self.m.fig)
         self.close()
 
+# =============================================================================
+# Canvas for plotting graphs on.
+# =============================================================================
+
 
 class PlotCanvas(FigureCanvas):
 
     def __init__(self, col_headers, row_headers, titleBox, parent=None, width=5, height=4, dpi=100):
         self.titleBox = titleBox
         self.last_figure_plotted = None
-        self.plotter = Plotter()
         self.fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = self.fig.add_subplot(111)
         self.counter = 0
@@ -108,6 +121,7 @@ class PlotCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
 
     def save_graph(self):
+        """Save graph as jpg."""
         filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "JPG File (*.jpg)")
         self.figure.savefig(filename)
@@ -140,8 +154,7 @@ class PlotCanvas(FigureCanvas):
             self.plot_graph()
 
     def plot_graph(self):
-        print(self.whichObject)
-        print(self.whichGraph)
+
         if self.whichObject == 1:
             '''Interval'''
             if self.whichGraph == 1:
@@ -222,8 +235,10 @@ class PlotCanvas(FigureCanvas):
             self.plot_normal_distribution_curve(graphTitle)
 
     def plot_previous(self):
+        """Counter logic for plotting the previous graph."""
+
         if self.whichGraph is not 4 and self.whichGraph is not 5:
-            if(self.counter > 1):
+            if (self.counter > 1):
                 self.counter = self.counter - 1
             else:
                 self.counter = 1
@@ -231,19 +246,20 @@ class PlotCanvas(FigureCanvas):
             self.plot_graph()
 
     def plot_horizontal_bar_chart(self, title):
+        """Plot horizontal bar chart on plot canvas. """
 
         self.fig.clear()
         labels = self.col_headers
         y_pos = np.arange(len(labels))
         row = list(map(int, self.object.data[self.counter - 1]))
-        print(row)
         ax = self.figure.add_subplot(111)
         ax.barh(y_pos, row, align='center')
-        #ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
+        # ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
         ax.set_title(title)
         self.draw()
 
     def plot_vertical_bar_chart(self, title):
+        """Plot vertical bar chart on plot canvas"""
 
         self.fig.clear()
         labels = self.col_headers
@@ -251,16 +267,16 @@ class PlotCanvas(FigureCanvas):
         row = list(map(int, self.object.data[self.counter - 1]))
         ax = self.figure.add_subplot(111)
         ax.bar(x_pos, row, color='blue')
-        #ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
+        # ax.set_title(self.row_headers[self.counter-1][0])  # Graph Title
         ax.set_title(title)
         self.draw()
 
     def plot_pie_chart(self, title):
+        """Plot pie chart on plotting canvas"""
 
         self.fig.clear()
         labels = self.col_headers
         row = list(map(int, self.object.data[self.counter-1]))
-        print(row)
         sizes = []
         valsum = sum(row)
         for value in row:
@@ -268,11 +284,12 @@ class PlotCanvas(FigureCanvas):
         ax = self.figure.add_subplot(111)
         ax.pie(sizes, labels=labels, autopct='%1.1f%%')
         ax.axis('equal')
-        #ax.set_title(self.row_headers[self.counter-1][0])
+        # ax.set_title(self.row_headers[self.counter-1][0])
         ax.set_title(title)
         self.draw()
 
     def plot_normal_distribution_curve(self, title):
+        """Plot normal distribution curve on plotting canvas."""
 
         self.fig.clear()
         object = IntervalDataObject(self.object.data)
@@ -287,6 +304,8 @@ class PlotCanvas(FigureCanvas):
         self.draw()
 
     def plot_xy_graph(self, title):
+        """Plot XY graph on plotting canvas."""
+
         self.fig.clear()
         values = []
         values2 = []

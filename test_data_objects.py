@@ -1,9 +1,14 @@
+"""
+This module is the unit testing class for testing the instantiation of DataObject subclasses.
+"""
+
+# Authors: Brannon Brakefield
+
 import csv
 import unittest
 
 from frequency import FrequencyDataObject
 from interval import IntervalDataObject
-from ordinal import OrdinalDataObject
 
 class TestDataObjects(unittest.TestCase):
 

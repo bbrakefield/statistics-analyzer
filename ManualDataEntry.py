@@ -1,10 +1,25 @@
+"""
+Module that contains the code to generate the view for manual data entry.
+Also contains the logic for turning manual entries into a list of useable data.
+"""
+
+# Authors: Mitch Stephenson
+#          Brannon Brakefield
+
 from PyQt5.QtWidgets import QDialog, QLabel
 from PyQt5 import QtCore, QtGui, QtWidgets
 from textBoxWrapper import textBoxWrapper
 
+# =============================================================================
+# Manual entry dialog screen.
+# =============================================================================
 
 
 class ManualDataEntry(QDialog):
+    """Manual Data entry view. User will be able to specify number of columns and rows.
+    Enter data manually.
+    """
+
     def __init__(self):
         super().__init__()
         self.scrollArea = QtWidgets.QScrollArea()
@@ -115,6 +130,8 @@ class ManualDataEntry(QDialog):
 
 
     def addColumnClicked(self):
+        """Event handler for when the add column button is clicked."""
+
         if self.DataType.currentText() == "Ordinal" and self.columnNumber < 6:
             temp = self.pointerBox
             for i in range(self.columnNumber - 1):
@@ -147,6 +164,8 @@ class ManualDataEntry(QDialog):
             self.columnNumber = self.columnNumber + 1
 
     def removeColumnClicked(self):
+        """Event handler for when remove column button is clicked."""
+
         if self.columnNumber > 3:
             temp = self.pointerBox
             for i in range(self.columnNumber - 2):
@@ -159,6 +178,7 @@ class ManualDataEntry(QDialog):
             self.columnNumber = self.columnNumber - 1
 
     def addRowClicked(self):
+        """Event handler for when add row button is clicked."""
         temp = self.pointerBox
         for i in range(self.rowNumber - 1):
             temp = temp.getBottom()
@@ -188,6 +208,8 @@ class ManualDataEntry(QDialog):
         self.rowNumber = self.rowNumber + 1
 
     def removeRowClicked(self):
+        """Event handler for when remove row button clicked."""
+
         if self.rowNumber > 1:
             temp = self.pointerBox
             for i in range(self.rowNumber - 2):
@@ -200,6 +222,8 @@ class ManualDataEntry(QDialog):
             self.rowNumber = self.rowNumber - 1
 
     def submitButtonClicked(self):
+        """Event handler for when submit button clicked."""
+
         str = []
         column = self.pointerBox
         row = self.pointerBox
@@ -247,12 +271,3 @@ class ManualDataEntry(QDialog):
             self.setIntervalFlag()
         elif text == "Frequency":
             self.setFrequencyFlag()
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = ManualDataEntry()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())

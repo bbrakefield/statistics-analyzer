@@ -1,16 +1,23 @@
-# -*- coding: utf-8 -*-
+"""
+Module responsible for generating the view when operating on interval data objects.
+"""
 
-# Form implementation generated from reading ui file 'IntervalDataScreen.ui'
-#
-# Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
+# Authors: Jenna McCown
+#         Brannon Brakefield
+
 from PyQt5 import QtCore, QtWidgets
-from interval import IntervalDataObject
 from matplottest import *
-import csv
+
+# =============================================================================
+# Interval data screen
+# =============================================================================
+
 
 class Ui_Form1(object):
+    """The view that is shown when operating on interval data.
+        User will be able to select which stats they wish to see in the report,
+        Generate charts, and export data and reports.
+    """
 
     def __init__(self):
         super().__init__()
@@ -277,6 +284,7 @@ class Ui_Form1(object):
         self.xyPlotBool = False
 
     def graphSubmit(self):
+
         if self.verBarBool == True:
             Dialog = QtWidgets.QDialog()
             self.ui = App(Dialog, self.interObject, 1, 1, self.col_headers, self.row_headers)
@@ -377,6 +385,8 @@ class Ui_Form1(object):
             self.pearCorBool = True
 
     def calcSubmit(self):
+        """Write calculation report and show it on the GUI."""
+
         desiredpercent = self.doubleSpinBox.value()
         headers = ["Phases"]
         stats = []

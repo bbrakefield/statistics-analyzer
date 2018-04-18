@@ -62,6 +62,8 @@ class StatisticalAnalyzer(QMainWindow):
         self.import_data(filename)
 
     def save_csv(self):
+        """Save calculated statistics in the form of a csv file."""
+
         try:
             filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "CSV File (*.csv)")
@@ -75,6 +77,8 @@ class StatisticalAnalyzer(QMainWindow):
             print("File was not saved.")
 
     def write_report(self):
+        """Save report on calculated statistics as a text file."""
+
         try:
             filename, _ = QFileDialog.getSaveFileName(self, "Save a ", "",
                                                   "TXT File (*.txt)")

@@ -1,5 +1,10 @@
-import unittest
+"""
+This module is the unit testing class for the Calculations class.
+"""
 
+# Authors: Brannon Brakefield
+
+import unittest
 import calculations
 
 
