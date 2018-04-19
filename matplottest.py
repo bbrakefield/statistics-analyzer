@@ -309,22 +309,66 @@ class PlotCanvas(FigureCanvas):
         self.fig.clear()
         values = []
         values2 = []
-        sampleCount = len(self.object.data[1:])
+        values3 = []
+        values4 = []
+        values5 = []
 
-        for row in self.object.data[1:]:
-            values.append(int(row[0]))
-            values2.append(int(row[1]))
-
-        line1 = np.array(values)
-        line2 = np.array(values2)
-
+        sampleCount = len(self.object.data)
         t = np.arange(0, sampleCount, 1)
-
         ax = self.figure.add_subplot(111)
-        ax.plot(t, line1)
-        ax.plot(t, line2)
-        # ax.xlabel("Sample #")
-        # ax.ylabel("Frequency")
+
+        for row in self.object.data:
+
+            if len(row) >= 1:
+                values.append(int(row[0]))
+
+            else:
+                values = None
+
+            if len(row) >= 2:
+                values2.append(int(row[1]))
+
+            else:
+                values2 = None
+
+            if len(row) >= 3:
+                values3.append(int(row[2]))
+
+            else:
+                values3 = None
+
+            if len(row) >= 4:
+                values4.append(int(row[3]))
+
+            else:
+                values4 = None
+
+            if len(row) >= 5:
+                values5.append(int(row[4]))
+
+            else:
+                values5 = None
+
+        if values is not None:
+            line1 = np.array(values)
+            ax.plot(t, line1)
+
+        if values2 is not None:
+            line2 = np.array(values2)
+            ax.plot(t, line2)
+
+        if values3 is not None:
+            line3 = np.array(values3)
+            ax.plot(t, line3)
+
+        if values4 is not None:
+            line4 = np.array(values4)
+            ax.plot(t, line4)
+
+        if values5 is not None:
+            line5 = np.array(values5)
+            ax.plot(t, line5)
+
         ax.set_title(title)
         self.draw()
 
