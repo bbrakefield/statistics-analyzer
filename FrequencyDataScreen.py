@@ -267,7 +267,7 @@ class Ui_Form(object):
                 report.append(modeText)
                 self.listWidget.addItem(modeText)
             else:
-                modeText = modeText + "Actual Mode: " + str(self.frequencyObject.actual_mode) + "\n"
+                modeText = "Actual Mode: " + str(self.frequencyObject.actual_mode) + "\n"
                 report.append(modeText)
                 self.listWidget.addItem(modeText)
 
