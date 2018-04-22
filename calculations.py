@@ -41,7 +41,7 @@ class Calculations:
 
             hits.sort(reverse=True)
             if hits != [] and len(hits) > 1:
-                if hits[0][0] > hits[1][0]:
+                if hits[0][0] >= hits[1][0]:
                     return hits[0][1]
                 else:
                     # There is not a mode.

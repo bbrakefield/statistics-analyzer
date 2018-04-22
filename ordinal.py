@@ -30,7 +30,6 @@ class OrdinalDataObject(DataObject):
         self.sign_test = self.get_sign_test()
         self.rank_sum = self.get_rank_sum()
 
-
     def unpack_a(self):
 
         a = []
@@ -39,9 +38,10 @@ class OrdinalDataObject(DataObject):
             for row in self.data[0:]:
                 if row[0] is not None:
                     a.append(float(row[0]))
+            return a
+
         except IndexError:
             return None
-        return a
 
     def unpack_b(self):
 
@@ -51,44 +51,46 @@ class OrdinalDataObject(DataObject):
             for row in self.data[0:]:
                 if row[1] is not None:
                     b.append(float(row[1]))
+            return b
+
         except IndexError:
             return None
-        return b
 
     def unpack_c(self):
 
         c = []
 
         try:
-            for row in self.data[1:]:
+            for row in self.data[0:]:
                 if row[2] is not None:
                     c.append(float(row[2]))
+            return c
+
         except IndexError:
             return None
-        return c
 
     def unpack_d(self):
 
         d = []
 
         try:
-            for row in self.data[1:]:
+            for row in self.data[0:]:
                 if row[3] is not None:
                     d.append(float(row[3]))
+            return d
         except IndexError:
             return None
-        return d
 
     def unpack_e(self):
 
         e = []
         try:
-            for row in self.data[1:]:
+            for row in self.data[0:]:
                 if row[4] is not None:
                     e.append(float(row[4]))
+            return e
         except IndexError:
             return None
-        return e
 
     def unpack_data(self):
 

@@ -314,7 +314,6 @@ class Ui_Form2(object):
                 self.listWidget.addItem(modeText)
                 mode_text_c = "None"
 
-
             if self.ordinalObject.d_mode != None:
                 modeText = "Mode D: {}\n" \
                     .format(str(self.ordinalObject.d_median))
@@ -333,6 +332,8 @@ class Ui_Form2(object):
                 modeText = "Mode E: {}\n" \
                     .format(str(self.ordinalObject.e_mode))
                 report.append(modeText)
+                self.listWidget.addItem(modeText)
+
                 mode_text_e = self.ordinalObject.e_mode
 
             else:
