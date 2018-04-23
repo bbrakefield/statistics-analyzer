@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
     tempData = getDataVar()
     typeFlag = ui.getType()
-    if typeFlag == 2 and tempData is not None:
+    if typeFlag == 2:
         try:
             inter = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -137,7 +137,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 1 and tempData is not None:
+    elif typeFlag == 1:
         try:
             ordn = QtWidgets.QWidget()
             application.data = ui.getData()
@@ -149,7 +149,7 @@ if __name__ == '__main__':
             sys.exit(app.exec_())
         except IOError:
             print("No Data Given")
-    elif typeFlag == 3 and tempData is not None:
+    elif typeFlag == 3:
         try:
             freq = QtWidgets.QWidget()
             application.data = ui.getData()

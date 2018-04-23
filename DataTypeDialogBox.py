@@ -1,9 +1,9 @@
-"""
-Module containing the code that will generate the view for selecting data.
-"""
+#"""
+#Module containing the code that will generate the view for selecting data.
+#"""
 
 # Authors: Jenna McCown
-#           Brannon Brakefield
+#          Brannon Brakefield
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
@@ -20,7 +20,7 @@ class Ui_Dialog(QFileDialog):
     """This is the screen that will allow users to select which
     data type they wish to work with. The user will also be able to
     choose the file, invoke manual entry, or specify which columns and/or
-    rows they whish to operate on within the data file.
+    rows they which to operate on within the data file.
     """
 
     def __init__(self, Dialog, mainApp):
